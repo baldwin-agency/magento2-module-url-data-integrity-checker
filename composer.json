@@ -20,7 +20,8 @@
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^2.15",
         "phpstan/phpstan": "^0.11.12",
-        "bitexpert/phpstan-magento": "dev-master"
+        "bitexpert/phpstan-magento": "dev-master",
+        "magento/magento-coding-standard": "^3.0"
     },
     "autoload": {
         "psr-4": {

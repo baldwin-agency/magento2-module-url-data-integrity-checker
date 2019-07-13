@@ -1,0 +1,22 @@
+{
+    "name": "baldwin/magento2-module-url-data-integrity-checker",
+    "type": "magento2-module",
+    "description": "Magento 2 module which can find potential url related problems in your catalog data",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pieter Hoste",
+            "email": "pieter@baldwin.be",
+            "role": "Problem Solver"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Baldwin\\UrlDataIntegrityChecker\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

@@ -12,7 +12,7 @@ class Stores
 
     public function __construct(
         StoreRepository $storeRepository
-    ){
+    ) {
         $this->storeRepository = $storeRepository;
     }
 
@@ -21,8 +21,7 @@ class Stores
         $storeIds = [];
 
         $stores = $this->storeRepository->getList();
-        foreach ($stores as $store)
-        {
+        foreach ($stores as $store) {
             $storeIds[] = (int) $store->getStoreId();
         }
 

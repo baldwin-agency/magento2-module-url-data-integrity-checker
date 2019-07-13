@@ -1,0 +1,9 @@
+parameters:
+    level: 7
+    inferPrivatePropertyTypeFromConstructor: true
+    paths:
+        - .
+    excludes_analyse:
+        - %currentWorkingDirectory%/vendor/*
+    includes:
+        - vendor/bitexpert/phpstan-magento/extension.neon

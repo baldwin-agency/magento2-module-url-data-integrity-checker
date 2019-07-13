@@ -4,14 +4,14 @@ declare(strict_types=1);
 
 namespace Baldwin\UrlDataIntegrityChecker\Util;
 
-use Magento\Store\Model\StoreRepository;
+use Magento\Store\Api\StoreRepositoryInterface;
 
 class Stores
 {
     private $storeRepository;
 
     public function __construct(
-        StoreRepository $storeRepository
+        StoreRepositoryInterface $storeRepository
     ) {
         $this->storeRepository = $storeRepository;
     }

@@ -96,7 +96,7 @@ class CheckProductUrlPaths extends ConsoleCommand
                     'id'      => $product->getEntityId(),
                     'sku'     => $product->getSku(),
                     'storeId' => $storeId,
-                    'problem' => self::PROBLEM_DESCRIPTION
+                    'problem' => self::PROBLEM_DESCRIPTION,
                 ];
             }
         }

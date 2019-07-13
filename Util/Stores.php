@@ -22,7 +22,7 @@ class Stores
 
         $stores = $this->storeRepository->getList();
         foreach ($stores as $store) {
-            $storeIds[] = (int) $store->getStoreId();
+            $storeIds[] = (int) $store->getId();
         }
 
         return $storeIds;

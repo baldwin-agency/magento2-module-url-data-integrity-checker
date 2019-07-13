@@ -104,7 +104,7 @@ class CheckProductUrlPaths extends ConsoleCommand
         return $products;
     }
 
-    private function outputProblems(array $productData, OutputInterface $output)
+    private function outputProblems(array $productData, OutputInterface $output): void
     {
         usort($productData, function ($prodA, $prodB) {
             if ($prodA['id'] === $prodB['id']) {

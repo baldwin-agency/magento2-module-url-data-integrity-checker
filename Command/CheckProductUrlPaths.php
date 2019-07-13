@@ -20,7 +20,7 @@ class CheckProductUrlPaths extends ConsoleCommand
     const URL_PATH_ATTRIBUTE = 'url_path';
     const PROBLEM_DESCRIPTION =
           'Product has a non-null url_path attribute, this is known to cause problems with url rewrites in Magento.'
-        . ' It\'s adviced to remove this value from the database.';
+        . ' It\'s advised to remove this value from the database.';
 
     private $storesUtil;
     private $productCollectionFactory;

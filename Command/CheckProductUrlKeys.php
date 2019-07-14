@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace Baldwin\UrlDataIntegrityChecker\Command;
 
 use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product\UrlKey as UrlKeyChecker;
+use Baldwin\UrlDataIntegrityChecker\Console\ResultOutput;
 use Baldwin\UrlDataIntegrityChecker\Console\Progress;
 use Magento\Framework\App\Area as AppArea;
 use Magento\Framework\App\State as AppState;
 use Symfony\Component\Console\Command\Command as ConsoleCommand;
-use Symfony\Component\Console\Helper\Table as ConsoleTable;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
@@ -17,15 +17,18 @@ class CheckProductUrlKeys extends ConsoleCommand
 {
     private $appState;
     private $progress;
+    private $resultOutput;
     private $urlKeyChecker;
 
     public function __construct(
         AppState $appState,
         Progress $progress,
+        ResultOutput $resultOutput,
         UrlKeyChecker $urlKeyChecker
     ) {
         $this->appState = $appState;
         $this->progress = $progress;
+        $this->resultOutput = $resultOutput;
         $this->urlKeyChecker = $urlKeyChecker;
 
         parent::__construct();
@@ -46,32 +49,9 @@ class CheckProductUrlKeys extends ConsoleCommand
             $this->progress->setOutput($output);
 
             $productData = $this->urlKeyChecker->execute();
-            $this->outputProblems($productData, $output);
+            $this->resultOutput->outputResult($productData, $output);
         } catch (\Throwable $ex) {
             $output->writeln("<error>An unexpected exception occured: '{$ex->getMessage()}'</error>");
         }
-    }
-
-    private function outputProblems(array $productData, OutputInterface $output): void
-    {
-        if (empty($productData)) {
-            $output->writeln('<info>No problems found!</info>');
-
-            return;
-        }
-
-        usort($productData, function ($prodA, $prodB) {
-            if ($prodA['id'] === $prodB['id']) {
-                return $prodA['storeId'] <=> $prodB['storeId'];
-            }
-
-            return $prodA['id'] <=> $prodB['id'];
-        });
-
-        $table = new ConsoleTable($output);
-        $table->setHeaders(['ID', 'SKU', 'Store', 'Problem']);
-        $table->setRows($productData);
-
-        $table->render();
     }
 }

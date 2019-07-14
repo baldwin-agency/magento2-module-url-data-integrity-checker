@@ -9,6 +9,8 @@ use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Model\Attribute\ScopeOverriddenValueFactory as AttributeScopeOverriddenValueFactory;
 use Magento\Catalog\Model\ResourceModel\Product\Collection as ProductCollection;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
+use Magento\Framework\App\Area as AppArea;
+use Magento\Framework\App\State as AppState;
 use Magento\Store\Model\Store;
 use Symfony\Component\Console\Command\Command as ConsoleCommand;
 use Symfony\Component\Console\Helper\Table as ConsoleTable;
@@ -25,15 +27,18 @@ class CheckProductUrlPaths extends ConsoleCommand
     private $storesUtil;
     private $productCollectionFactory;
     private $attributeScopeOverriddenValueFactory;
+    private $appState;
 
     public function __construct(
         StoresUtil $storesUtil,
         ProductCollectionFactory $productCollectionFactory,
-        AttributeScopeOverriddenValueFactory $attributeScopeOverriddenValueFactory
+        AttributeScopeOverriddenValueFactory $attributeScopeOverriddenValueFactory,
+        AppState $appState
     ) {
         $this->storesUtil = $storesUtil;
         $this->productCollectionFactory = $productCollectionFactory;
         $this->attributeScopeOverriddenValueFactory = $attributeScopeOverriddenValueFactory;
+        $this->appState = $appState;
 
         parent::__construct();
     }
@@ -49,6 +54,8 @@ class CheckProductUrlPaths extends ConsoleCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         try {
+            $this->appState->setAreaCode(AppArea::AREA_CRONTAB);
+
             $this->checkForNonEmptyUrlPathAttributeValues($output);
         } catch (\Throwable $ex) {
             $output->writeln("<error>An unexpected exception occured: '{$ex->getMessage()}'</error>");

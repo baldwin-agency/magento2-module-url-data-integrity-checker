@@ -79,7 +79,7 @@ class CheckProductUrlKeys extends ConsoleCommand
                         'attribute' => self::URL_KEY_ATTRIBUTE,
                         'eq' => '',
                     ],
-                ])
+                ], null, $joinType)
             ;
 
             $productsWithProblems[] = $this->getProductsWithProblems($storeId, $collection);

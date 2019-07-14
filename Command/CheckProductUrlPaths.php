@@ -67,7 +67,7 @@ class CheckProductUrlPaths extends ConsoleCommand
 
             $collection = $this->productCollectionFactory->create();
             $collection
-                ->addStoreFilter($storeId)
+                ->setStoreId($storeId)
                 ->addAttributeToSelect(self::URL_PATH_ATTRIBUTE)
                 ->addAttributeToFilter(self::URL_PATH_ATTRIBUTE, ['notnull' => true], $joinType)
             ;

@@ -8,6 +8,7 @@ use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product\UrlPath as UrlPathCh
 use Baldwin\UrlDataIntegrityChecker\Console\ResultOutput;
 use Magento\Framework\App\Area as AppArea;
 use Magento\Framework\App\State as AppState;
+use Magento\Framework\Console\Cli;
 use Symfony\Component\Console\Command\Command as ConsoleCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -44,9 +45,12 @@ class CheckProductUrlPaths extends ConsoleCommand
             $this->appState->setAreaCode(AppArea::AREA_CRONTAB);
 
             $productData = $this->urlPathChecker->execute();
-            $this->resultOutput->outputResult($productData, $output);
+
+            return $this->resultOutput->outputResult($productData, $output);
         } catch (\Throwable $ex) {
             $output->writeln("<error>An unexpected exception occured: '{$ex->getMessage()}'</error>");
         }
+
+        return Cli::RETURN_FAILURE;
     }
 }

@@ -4,17 +4,18 @@ declare(strict_types=1);
 
 namespace Baldwin\UrlDataIntegrityChecker\Console;
 
+use Magento\Framework\Console\Cli;
 use Symfony\Component\Console\Helper\Table as ConsoleTable;
 use Symfony\Component\Console\Output\OutputInterface;
 
 class ResultOutput
 {
-    public function outputResult(array $productData, OutputInterface $output): void
+    public function outputResult(array $productData, OutputInterface $output): int
     {
         if (empty($productData)) {
             $output->writeln('<info>No problems found!</info>');
 
-            return;
+            return Cli::RETURN_SUCCESS;
         }
 
         usort($productData, function ($prodA, $prodB) {
@@ -30,5 +31,7 @@ class ResultOutput
         $table->setRows($productData);
 
         $table->render();
+
+        return Cli::RETURN_FAILURE;
     }
 }

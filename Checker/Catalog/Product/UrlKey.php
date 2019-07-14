@@ -37,13 +37,13 @@ class UrlKey
         $this->progress = $progress;
         $this->productCollectionFactory = $productCollectionFactory;
         $this->attributeScopeOverriddenValueFactory = $attributeScopeOverriddenValueFactory;
-
-        $this->cachedProductUrlKeyData = [];
-        $this->cachedProductSkusByIds = [];
     }
 
     public function execute(): array
     {
+        $this->cachedProductUrlKeyData = [];
+        $this->cachedProductSkusByIds = [];
+
         $productData = array_merge(
             $this->checkForEmptyUrlKeyAttributeValues(),
             $this->checkForDuplicatedUrlKeyAttributeValues()

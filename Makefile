@@ -6,7 +6,7 @@ default:
 	# do nothing
 
 .PHONY: check
-check: checkstyle checkquality
+check: checkstyle checkquality test
 
 .PHONY: checkstyle
 checkstyle:
@@ -17,3 +17,7 @@ checkstyle:
 .PHONY: checkquality
 checkquality:
 	vendor/bin/phpstan analyse
+
+.PHONY: test
+test:
+	vendor/bin/phpunit Test/

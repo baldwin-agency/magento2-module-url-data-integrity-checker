@@ -3,7 +3,7 @@
     <type name="Magento\Framework\Console\CommandList">
         <arguments>
             <argument name="commands">
-                <!-- <item name="baldwin_urldataintegritychecker_command_checkproducturlkeys"   xsi:type="object">Baldwin\UrlDataIntegrityChecker\Command\CheckProductUrlKeys</item> -->
+                <item name="baldwin_urldataintegritychecker_command_checkproducturlkeys"   xsi:type="object">Baldwin\UrlDataIntegrityChecker\Command\CheckProductUrlKeys</item>
                 <item name="baldwin_urldataintegritychecker_command_checkproducturlpaths"  xsi:type="object">Baldwin\UrlDataIntegrityChecker\Command\CheckProductUrlPaths</item>
                 <!-- <item name="baldwin_urldataintegritychecker_command_checkcategoryurlpaths" xsi:type="object">Baldwin\UrlDataIntegrityChecker\Command\CheckCategoryUrlPaths</item> -->
                 <!-- <item name="baldwin_urldataintegritychecker_command_checkurlrewrites"      xsi:type="object">Baldwin\UrlDataIntegrityChecker\Command\CheckUrlRewrites</item> -->

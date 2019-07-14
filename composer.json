@@ -11,17 +11,21 @@
         }
     ],
     "require": {
+        "php": "~7.0.0 || ~7.1.0 || ~7.2.0",
         "magento/framework": "^100.1 || ^101.0 || ^102.0",
         "magento/module-catalog": "^101.0 || ^102.0 || ^103.0",
         "magento/module-store": "^100.1 || ^101.0",
-        "php": "~7.0.0 || ~7.1.0 || ~7.2.0",
         "symfony/console": "^2.3 || ^3.0 || ^4.0"
     },
     "require-dev": {
-        "friendsofphp/php-cs-fixer": "^2.15",
-        "phpstan/phpstan": "^0.11.12",
         "bitexpert/phpstan-magento": "dev-master",
-        "magento/magento-coding-standard": "^3.0"
+        "friendsofphp/php-cs-fixer": "^2.15",
+        "localheinz/composer-normalize": "^1.2",
+        "magento/magento-coding-standard": "^3.0",
+        "phpstan/phpstan": "^0.11.12"
+    },
+    "config": {
+        "sort-packages": true
     },
     "autoload": {
         "psr-4": {

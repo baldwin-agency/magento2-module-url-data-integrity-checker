@@ -134,8 +134,6 @@ class CheckProductUrlKeys extends ConsoleCommand
 
     private function storeProductUrlKeyData(OutputInterface $output, int $storeId, ProductCollection $collection): void
     {
-        // TODO: in older symfony/console < 2.5 we should use the Progress Helper
-        // (https://symfony.com/doc/2.3/components/console/helpers/progresshelper.html) which was removed in >= 3.0
         $progress = new ProgressBar($output, $collection->getSize());
         $progress->setRedrawFrequency(50);
         $progress->setFormat(" %message%\n %current%/%max% %bar% %percent%%\n");

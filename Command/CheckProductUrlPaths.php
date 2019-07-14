@@ -75,7 +75,9 @@ class CheckProductUrlPaths extends ConsoleCommand
             $productsWithProblems[] = $this->getProductsWithProblems($storeId, $collection);
         }
 
-        $productsWithProblems = array_merge(...$productsWithProblems);
+        if (!empty($productsWithProblems)) {
+            $productsWithProblems = array_merge(...$productsWithProblems);
+        }
 
         $this->outputProblems($productsWithProblems, $output);
     }
@@ -106,6 +108,12 @@ class CheckProductUrlPaths extends ConsoleCommand
 
     private function outputProblems(array $productData, OutputInterface $output): void
     {
+        if (empty($productData)) {
+            $output->writeln('<info>No problems found!</info>');
+
+            return;
+        }
+
         usort($productData, function ($prodA, $prodB) {
             if ($prodA['id'] === $prodB['id']) {
                 return $prodA['storeId'] <=> $prodB['storeId'];

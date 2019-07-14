@@ -32,7 +32,14 @@ class UrlPath
         $this->attributeScopeOverriddenValueFactory = $attributeScopeOverriddenValueFactory;
     }
 
-    public function checkForNonEmptyUrlPathAttributeValues(): array
+    public function execute(): array
+    {
+        $productData = $this->checkForNonEmptyUrlPathAttributeValues();
+
+        return $productData;
+    }
+
+    private function checkForNonEmptyUrlPathAttributeValues(): array
     {
         $productsWithProblems = [];
 

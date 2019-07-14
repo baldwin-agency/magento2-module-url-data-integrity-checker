@@ -40,7 +40,7 @@ class CheckProductUrlPaths extends ConsoleCommand
         try {
             $this->appState->setAreaCode(AppArea::AREA_CRONTAB);
 
-            $productData = $this->urlPathChecker->checkForNonEmptyUrlPathAttributeValues();
+            $productData = $this->urlPathChecker->execute();
             $this->outputProblems($productData, $output);
         } catch (\Throwable $ex) {
             $output->writeln("<error>An unexpected exception occured: '{$ex->getMessage()}'</error>");

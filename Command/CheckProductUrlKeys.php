@@ -21,14 +21,13 @@ class CheckProductUrlKeys extends ConsoleCommand
     const URL_KEY_ATTRIBUTE = 'url_key';
     const EMPTY_PROBLEM_DESCRIPTION = 'Product has an empty url_key value. This needs to be fixed.';
     const DUPLICATED_PROBLEM_DESCRIPTION =
-        'Product has a duplicated url_key value. It\'s the same as other products (ID\'s: %s)';
+        'Product has a duplicated url_key value. It\'s the same as another product (ID: %s, Store: %s)';
 
     private $storesUtil;
     private $productCollectionFactory;
     private $attributeScopeOverriddenValueFactory;
 
     private $cachedProductUrlKeyData;
-    private $cachedProductUrlKeyCountByStore;
 
     public function __construct(
         StoresUtil $storesUtil,
@@ -40,7 +39,6 @@ class CheckProductUrlKeys extends ConsoleCommand
         $this->attributeScopeOverriddenValueFactory = $attributeScopeOverriddenValueFactory;
 
         $this->cachedProductUrlKeyData = [];
-        $this->cachedProductUrlKeyCountByStore = [];
 
         parent::__construct();
     }
@@ -113,7 +111,10 @@ class CheckProductUrlKeys extends ConsoleCommand
                 ->addAttributeToSelect(self::URL_KEY_ATTRIBUTE)
                 ->addAttributeToFilter(self::URL_KEY_ATTRIBUTE, ['notnull' => true], $joinType)
                 ->addAttributeToFilter(self::URL_KEY_ATTRIBUTE, ['neq' => ''], $joinType)
-                // ->addAttributeToFilter('entity_id', ['in' => [147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157]]) // TODO: remove!
+                // TODO: remove!
+                // ->addAttributeToFilter('entity_id', [
+                //     'in' => [147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158],
+                // ])
             ;
 
             $this->storeProductUrlKeyData($output, $storeId, $collection);
@@ -126,21 +127,20 @@ class CheckProductUrlKeys extends ConsoleCommand
 
     private function storeProductUrlKeyData(OutputInterface $output, int $storeId, ProductCollection $collection): void
     {
-        // TODO: in older symfony/console < 2.5 we should use the Progress Helper (https://symfony.com/doc/2.3/components/console/helpers/progresshelper.html) which was removed in >= 3.0
+        // TODO: in older symfony/console < 2.5 we should use the Progress Helper
+        // (https://symfony.com/doc/2.3/components/console/helpers/progresshelper.html) which was removed in >= 3.0
         $progress = new ProgressBar($output, $collection->getSize());
         $progress->setRedrawFrequency(50);
         $progress->setFormat(" %message%\n %current%/%max% %bar% %percent%%\n");
         $progress->setMessage("Fetching data for store $storeId");
         $progress->start();
 
-        $this->cachedProductUrlKeyData[$storeId] = [];
-        $this->cachedProductUrlKeyCountByStore[$storeId] = [];
-
-        foreach ($collection as $product)
-        {
+        foreach ($collection as $product) {
             $productId     = $product->getEntityId();
             $productSku    = $product->getSku();
             $productUrlKey = $product->getUrlKey();
+
+            $dataKey = "$storeId-$productId";
 
             $isOverridden = $this
                 ->attributeScopeOverriddenValueFactory
@@ -148,18 +148,7 @@ class CheckProductUrlKeys extends ConsoleCommand
                 ->containsValue(ProductInterface::class, $product, self::URL_KEY_ATTRIBUTE, $storeId)
             ;
             if ($isOverridden || $storeId === Store::DEFAULT_STORE_ID) {
-
-                $this->cachedProductUrlKeyData[$storeId][$productId] = [
-                    'id'      => $productId,
-                    'sku'     => $productSku,
-                    'url_key' => $productUrlKey,
-                ];
-
-                if (!array_key_exists($productUrlKey, $this->cachedProductUrlKeyCountByStore[$storeId])) {
-                    $this->cachedProductUrlKeyCountByStore[$storeId][$productUrlKey] = [];
-                }
-
-                $this->cachedProductUrlKeyCountByStore[$storeId][$productUrlKey][] = $productId;
+                $this->cachedProductUrlKeyData[$dataKey] = $productUrlKey;
             }
 
             $progress->advance();
@@ -173,21 +162,67 @@ class CheckProductUrlKeys extends ConsoleCommand
     {
         $products = [];
 
-        // print_r($this->cachedProductUrlKeyData);
-        // print_r($this->cachedProductUrlKeyCountByStore);
+        $urlKeysWhichExistMoreThanOnce = array_filter(
+            array_count_values($this->cachedProductUrlKeyData),
+            function ($count) {
+                return $count > 1;
+            }
+        );
 
-        foreach ($this->cachedProductUrlKeyCountByStore as $storeId => $urlKeyCountData) {
-            foreach ($urlKeyCountData as $urlKey => $prodIds) {
-                if (count($prodIds) > 1) {
-                    foreach ($prodIds as $prodId) {
-                        $productData = $this->cachedProductUrlKeyData[$storeId][$prodId];
+        $potentialDuplicatedUrlKeys = array_filter(
+            $this->cachedProductUrlKeyData,
+            function ($urlKey) use ($urlKeysWhichExistMoreThanOnce) {
+                return array_key_exists($urlKey, $urlKeysWhichExistMoreThanOnce);
+            }
+        );
 
+        // TODO: there is probably a more elegant solution here...
+        $mappedUrlKeysWithStoreAndProductIds = [];
+        foreach ($potentialDuplicatedUrlKeys as $key => $urlKey) {
+            if (!array_key_exists($urlKey, $mappedUrlKeysWithStoreAndProductIds)) {
+                $mappedUrlKeysWithStoreAndProductIds[$urlKey] = [];
+            }
+            $mappedUrlKeysWithStoreAndProductIds[$urlKey][] = $key;
+        }
+
+        foreach ($mappedUrlKeysWithStoreAndProductIds as $urlKey => $storeAndProductIds) {
+            foreach ($storeAndProductIds as $storeAndProductId) {
+                list($storeId, $productId) = explode('-', $storeAndProductId);
+
+                $conflictingStoreAndProductIds = array_diff($storeAndProductIds, [$storeAndProductId]);
+                foreach ($conflictingStoreAndProductIds as $conflictingStoreAndProductId) {
+                    list($conflictingStoreId, $conflictingProductId) = explode('-', $conflictingStoreAndProductId);
+
+                    if ($storeId === $conflictingStoreId) {
                         $products[] = [
-                            'id'      => $productData['id'],
-                            'sku'     => $productData['sku'],
+                            'id'      => $productId,
+                            'sku'     => 'TODO',
                             'storeId' => $storeId,
-                            'problem' => sprintf(self::DUPLICATED_PROBLEM_DESCRIPTION, implode(', ', array_diff($prodIds, [$prodId]))),
+                            'problem' => sprintf(
+                                self::DUPLICATED_PROBLEM_DESCRIPTION,
+                                $conflictingProductId,
+                                $conflictingStoreId
+                            ),
                         ];
+                    // if same product id, we don't care,
+                    // since it wouldn't be a conflict if they exist in another storeview
+                    } elseif ($productId !== $conflictingProductId) {
+                        // TODO: this is pretty complex and I'm not sure if this was implemented 100% correct,
+                        // need to review and also document properly
+                        $conflictingDataKey = $storeId . '-' . $conflictingProductId;
+                        if ($storeId !== Store::DEFAULT_STORE_ID
+                            && !array_key_exists($conflictingDataKey, $potentialDuplicatedUrlKeys)) {
+                            $products[] = [
+                                'id'      => $productId,
+                                'sku'     => 'TODO',
+                                'storeId' => $storeId,
+                                'problem' => sprintf(
+                                    self::DUPLICATED_PROBLEM_DESCRIPTION,
+                                    $conflictingProductId,
+                                    $conflictingStoreId
+                                ),
+                            ];
+                        }
                     }
                 }
             }

@@ -18,18 +18,25 @@ class UrlKeyTest extends TestCase
      */
     public function testDuplicatedUrlKeyValues($dbData, $skuToProductIdMapping, $expectedResults)
     {
+        /** @var StoresUtil&PHPUnit_Framework_MockObject_MockObject */
         $storesUtilMock = $this
             ->getMockBuilder(StoresUtil::class)
             ->disableOriginalConstructor()
             ->getMock();
+
+        /** @var Progress&PHPUnit_Framework_MockObject_MockObject */
         $progressMock = $this
             ->getMockBuilder(Progress::class)
             ->disableOriginalConstructor()
             ->getMock();
+
+        /** @var ProductCollectionFactory&PHPUnit_Framework_MockObject_MockObject */
         $productCollectionFactoryMock = $this
             ->getMockBuilder(ProductCollectionFactory::class)
             ->disableOriginalConstructor()
             ->getMock();
+
+        /** @var AttributeScopeOverriddenValueFactory&PHPUnit_Framework_MockObject_MockObject */
         $attributeScopeOverriddenValueFactoryMock = $this
             ->getMockBuilder(AttributeScopeOverriddenValueFactory::class)
             ->disableOriginalConstructor()

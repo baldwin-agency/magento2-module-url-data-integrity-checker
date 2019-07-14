@@ -166,7 +166,7 @@ class UrlKey
             function ($urlKey) use ($urlKeysWhichExistMoreThanOnce) {
                 return array_key_exists($urlKey, $urlKeysWhichExistMoreThanOnce);
             }
-        );
+        ) ?: [];
 
         // TODO: there is probably a more elegant solution here...
         $mappedUrlKeysWithStoreAndProductIds = [];

@@ -68,7 +68,7 @@ class UrlKeyTest extends TestCase
     public function duplicatedUrlKeyValuesDataProvider()
     {
         return [
-            // two products having different url key, is ok!
+            // 0. two products having different url key, is ok!
             [
                 [
                     '0-1' => 'url_key_1',
@@ -81,7 +81,7 @@ class UrlKeyTest extends TestCase
                 [
                 ],
             ],
-            // single product having different url key on multiple store views, is ok!
+            // 1. single product having different url key on multiple store views, is ok!
             [
                 [
                     '0-1' => 'url_key_1',
@@ -93,7 +93,7 @@ class UrlKeyTest extends TestCase
                 [
                 ],
             ],
-            // single product having the same url key on multiple store views, is ok!
+            // 2. single product having the same url key on multiple store views, is ok!
             [
                 [
                     '0-1' => 'url_key_1',
@@ -105,7 +105,7 @@ class UrlKeyTest extends TestCase
                 [
                 ],
             ],
-            // two products having the same url key on the same store view, is not ok!
+            // 3. two products having the same url key on the same store view, is not ok!
             [
                 [
                     '0-1' => 'url_key_1',
@@ -130,7 +130,7 @@ class UrlKeyTest extends TestCase
                     ],
                 ],
             ],
-            // three products having the same url key on the same store view, is not ok!
+            // 4. three products having the same url key on the same store view, is not ok!
             [
                 [
                     '0-1' => 'url_key_1',
@@ -181,7 +181,7 @@ class UrlKeyTest extends TestCase
                     ],
                 ],
             ],
-            // two products having the same url keys but on different store views, is ok!
+            // 5. two products having the same url keys but on different store views, is ok!
             [
                 [
                     '0-1' => 'url_key_1',
@@ -196,8 +196,8 @@ class UrlKeyTest extends TestCase
                 [
                 ],
             ],
-            // two products having the same url keys where one inherits it from the default store view (0)
-            // and the other overwrites it on storeview level, is not ok!
+            // 6. two products having the same url keys where one inherits it from the default store view (0)
+            //    and the other overwrites it on storeview level, is not ok!
             [
                 [
                     '0-1' => 'url_key_1',
@@ -220,6 +220,181 @@ class UrlKeyTest extends TestCase
                         'sku'     => 'sku 2',
                         'storeId' => '1',
                         'problem' => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 1, 0),
+                    ],
+                ],
+            ],
+            // 7. two products where there is only a conflict on the default store view level (0)
+            //    not on store view level 1, is not ok!
+            [
+                [
+                    '0-1' => 'url_key_1',
+                    '0-2' => 'url_key_1',
+                    '1-1' => 'url_key_1',
+                    '1-2' => 'url_key_2',
+                ],
+                [
+                    '1' => 'sku 1',
+                    '2' => 'sku 2',
+                ],
+                [
+                    [
+                        'id'      => '1',
+                        'sku'     => 'sku 1',
+                        'storeId' => '0',
+                        'problem' => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 2, 0),
+                    ],
+                    [
+                        'id'      => '2',
+                        'sku'     => 'sku 2',
+                        'storeId' => '0',
+                        'problem' => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 1, 0),
+                    ],
+                ],
+            ],
+            // 8. two products where there is a conflict on both store view levels, is ok!
+            [
+                [
+                    '0-1' => 'url_key_1',
+                    '0-2' => 'url_key_1',
+                    '1-1' => 'url_key_1',
+                    '1-2' => 'url_key_1',
+                ],
+                [
+                    '1' => 'sku 1',
+                    '2' => 'sku 2',
+                ],
+                [
+                    [
+                        'id'      => '1',
+                        'sku'     => 'sku 1',
+                        'storeId' => '0',
+                        'problem' => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 2, 0),
+                    ],
+                    [
+                        'id'      => '2',
+                        'sku'     => 'sku 2',
+                        'storeId' => '0',
+                        'problem' => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 1, 0),
+                    ],
+                    [
+                        'id'      => '1',
+                        'sku'     => 'sku 1',
+                        'storeId' => '1',
+                        'problem' => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 2, 1),
+                    ],
+                    [
+                        'id'      => '2',
+                        'sku'     => 'sku 2',
+                        'storeId' => '1',
+                        'problem' => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 1, 1),
+                    ],
+                ],
+            ],
+            // 9. two products where there is only a conflict on store view level 1, not on 0, is not ok!
+            [
+                [
+                    '0-1' => 'url_key_1',
+                    '0-2' => 'url_key_2',
+                    '1-1' => 'url_key_2',
+                    '1-2' => 'url_key_2',
+                ],
+                [
+                    '1' => 'sku 1',
+                    '2' => 'sku 2',
+                ],
+                [
+                    [
+                        'id'      => '1',
+                        'sku'     => 'sku 1',
+                        'storeId' => '1',
+                        'problem' => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 2, 1),
+                    ],
+                    [
+                        'id'      => '2',
+                        'sku'     => 'sku 2',
+                        'storeId' => '1',
+                        'problem' => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 1, 1),
+                    ],
+                ],
+            ],
+            // 10. two products without conflicts, is ok!
+            [
+                [
+                    '0-1' => 'url_key_1',
+                    '0-2' => 'url_key_2',
+                    '1-1' => 'url_key_1',
+                    '1-2' => 'url_key_2',
+                ],
+                [
+                    '1' => 'sku 1',
+                    '2' => 'sku 2',
+                ],
+                [
+                ],
+            ],
+            // 11. two products without conflicts, is ok!
+            [
+                [
+                    '0-1' => 'url_key_1',
+                    '0-2' => 'url_key_2',
+                    '1-2' => 'url_key_2',
+                ],
+                [
+                    '1' => 'sku 1',
+                    '2' => 'sku 2',
+                ],
+                [
+                ],
+            ],
+            // 12. two products with conflicts, is not ok!
+            [
+                [
+                    '0-1' => 'url_key_1',
+                    '0-2' => 'url_key_1',
+                    '1-2' => 'url_key_2',
+                ],
+                [
+                    '1' => 'sku 1',
+                    '2' => 'sku 2',
+                ],
+                [
+                    [
+                        'id'      => '1',
+                        'sku'     => 'sku 1',
+                        'storeId' => '0',
+                        'problem' => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 2, 0),
+                    ],
+                    [
+                        'id'      => '2',
+                        'sku'     => 'sku 2',
+                        'storeId' => '0',
+                        'problem' => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 1, 0),
+                    ],
+                ],
+            ],
+            // 13. two products with conflicts, is not ok!
+            [
+                [
+                    '0-1' => 'url_key_2',
+                    '0-2' => 'url_key_1',
+                    '1-1' => 'url_key_1',
+                ],
+                [
+                    '1' => 'sku 1',
+                    '2' => 'sku 2',
+                ],
+                [
+                    [
+                        'id'      => '2',
+                        'sku'     => 'sku 2',
+                        'storeId' => '0',
+                        'problem' => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 1, 1),
+                    ],
+                    [
+                        'id'      => '1',
+                        'sku'     => 'sku 1',
+                        'storeId' => '1',
+                        'problem' => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 2, 0),
                     ],
                 ],
             ],

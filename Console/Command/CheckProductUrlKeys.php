@@ -2,38 +2,42 @@
 
 declare(strict_types=1);
 
-namespace Baldwin\UrlDataIntegrityChecker\Command;
+namespace Baldwin\UrlDataIntegrityChecker\Console\Command;
 
-use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product\UrlPath as UrlPathChecker;
+use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product\UrlKey as UrlKeyChecker;
 use Baldwin\UrlDataIntegrityChecker\Console\ResultOutput;
+use Baldwin\UrlDataIntegrityChecker\Console\Progress;
 use Magento\Framework\App\Area as AppArea;
 use Magento\Framework\App\State as AppState;
 use Symfony\Component\Console\Command\Command as ConsoleCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class CheckProductUrlPaths extends ConsoleCommand
+class CheckProductUrlKeys extends ConsoleCommand
 {
     private $appState;
+    private $progress;
     private $resultOutput;
-    private $urlPathChecker;
+    private $urlKeyChecker;
 
     public function __construct(
         AppState $appState,
+        Progress $progress,
         ResultOutput $resultOutput,
-        UrlPathChecker $urlPathChecker
+        UrlKeyChecker $urlKeyChecker
     ) {
         $this->appState = $appState;
+        $this->progress = $progress;
         $this->resultOutput = $resultOutput;
-        $this->urlPathChecker = $urlPathChecker;
+        $this->urlKeyChecker = $urlKeyChecker;
 
         parent::__construct();
     }
 
     protected function configure()
     {
-        $this->setName('catalog:product:integrity:urlpath');
-        $this->setDescription('Checks data integrity of the values of the url_path product attribute.');
+        $this->setName('catalog:product:integrity:urlkey');
+        $this->setDescription('Checks data integrity of the values of the url_key product attribute.');
 
         parent::configure();
     }
@@ -42,8 +46,9 @@ class CheckProductUrlPaths extends ConsoleCommand
     {
         try {
             $this->appState->setAreaCode(AppArea::AREA_CRONTAB);
+            $this->progress->setOutput($output);
 
-            $productData = $this->urlPathChecker->execute();
+            $productData = $this->urlKeyChecker->execute();
             $this->resultOutput->outputResult($productData, $output);
         } catch (\Throwable $ex) {
             $output->writeln("<error>An unexpected exception occured: '{$ex->getMessage()}'</error>");

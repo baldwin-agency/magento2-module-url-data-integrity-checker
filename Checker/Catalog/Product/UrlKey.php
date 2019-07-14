@@ -25,6 +25,7 @@ class UrlKey
     private $attributeScopeOverriddenValueFactory;
 
     private $cachedProductUrlKeyData;
+    private $cachedProductSkusByIds;
 
     public function __construct(
         StoresUtil $storesUtil,
@@ -38,6 +39,7 @@ class UrlKey
         $this->attributeScopeOverriddenValueFactory = $attributeScopeOverriddenValueFactory;
 
         $this->cachedProductUrlKeyData = [];
+        $this->cachedProductSkusByIds = [];
     }
 
     public function execute(): array
@@ -139,6 +141,8 @@ class UrlKey
                 $this->cachedProductUrlKeyData[$dataKey] = $productUrlKey;
             }
 
+            $this->cachedProductSkusByIds[$productId] = $productSku;
+
             $progress->advance();
         }
 
@@ -184,7 +188,7 @@ class UrlKey
                     if ($storeId === $conflictingStoreId) {
                         $products[] = [
                             'id'      => $productId,
-                            'sku'     => 'TODO',
+                            'sku'     => $this->cachedProductSkusByIds[$productId],
                             'storeId' => $storeId,
                             'problem' => sprintf(
                                 self::DUPLICATED_PROBLEM_DESCRIPTION,
@@ -202,7 +206,7 @@ class UrlKey
                             && !array_key_exists($conflictingDataKey, $potentialDuplicatedUrlKeys)) {
                             $products[] = [
                                 'id'      => $productId,
-                                'sku'     => 'TODO',
+                                'sku'     => $this->cachedProductSkusByIds[$productId],
                                 'storeId' => $storeId,
                                 'problem' => sprintf(
                                     self::DUPLICATED_PROBLEM_DESCRIPTION,

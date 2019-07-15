@@ -398,6 +398,21 @@ class UrlKeyTest extends TestCase
                     ],
                 ],
             ],
+            // 14. two products with all different url keys on different store views, is ok!
+            [
+                [
+                    '0-1' => 'url_key_1',
+                    '0-2' => 'url_key_2',
+                    '1-1' => 'url_key_3',
+                    '1-2' => 'url_key_1',
+                ],
+                [
+                    '1' => 'sku 1',
+                    '2' => 'sku 2',
+                ],
+                [
+                ],
+            ],
         ];
     }
 }

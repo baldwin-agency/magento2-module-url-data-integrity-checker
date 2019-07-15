@@ -25,7 +25,6 @@ class UrlKey
     private $attributeScopeOverriddenValueFactory;
 
     private $cachedProductUrlKeyData;
-    private $cachedInheritedProductUrlKeyData;
     private $cachedProductSkusByIds;
 
     public function __construct(
@@ -43,7 +42,6 @@ class UrlKey
     public function execute(): array
     {
         $this->cachedProductUrlKeyData = [];
-        $this->cachedInheritedProductUrlKeyData = [];
         $this->cachedProductSkusByIds = [];
 
         $productData = array_merge(
@@ -141,8 +139,6 @@ class UrlKey
             ;
             if ($isOverridden || $storeId === Store::DEFAULT_STORE_ID) {
                 $this->cachedProductUrlKeyData[$dataKey] = $productUrlKey;
-            } else {
-                $this->cachedInheritedProductUrlKeyData[$dataKey] = $productUrlKey;
             }
 
             $this->cachedProductSkusByIds[$productId] = $productSku;
@@ -157,6 +153,20 @@ class UrlKey
     private function getProductsWithDuplicatedUrlKeyProblems(): array
     {
         $products = [];
+
+        $storeIds = $this->storesUtil->getAllStoreIds();
+        $inheritedProductUrlKeyData = [];
+        foreach ($this->cachedProductUrlKeyData as $key => $urlKey) {
+            list($storeId, $productId) = explode('-', $key);
+            if ((int) $storeId === Store::DEFAULT_STORE_ID) {
+                foreach ($storeIds as $sId) {
+                    if ($sId !== Store::DEFAULT_STORE_ID
+                        && !array_key_exists("$sId-$productId", $this->cachedProductUrlKeyData)) {
+                        $inheritedProductUrlKeyData["$sId-$productId"] = $urlKey;
+                    }
+                }
+            }
+        }
 
         $urlKeysWhichExistMoreThanOnce = array_filter(
             array_count_values($this->cachedProductUrlKeyData),
@@ -203,8 +213,8 @@ class UrlKey
                     // if same product id, we don't care,
                     // since it wouldn't be a conflict if they exist in another storeview
                     } elseif ($productId !== $conflictingProductId) {
-                        if (isset($this->cachedInheritedProductUrlKeyData["$conflictingStoreId-$productId"])
-                            && $this->cachedInheritedProductUrlKeyData["$conflictingStoreId-$productId"] === $urlKey
+                        if (array_key_exists("$conflictingStoreId-$productId", $inheritedProductUrlKeyData)
+                            && $inheritedProductUrlKeyData["$conflictingStoreId-$productId"] === $urlKey
                         ) {
                             $products[] = [
                                 'id'      => $productId,

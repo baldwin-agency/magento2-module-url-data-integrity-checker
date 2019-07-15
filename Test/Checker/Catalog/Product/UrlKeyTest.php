@@ -16,13 +16,16 @@ class UrlKeyTest extends TestCase
     /**
      * @dataProvider duplicatedUrlKeyValuesDataProvider
      */
-    public function testDuplicatedUrlKeyValues($dbData, $inheritedData, $skuToProductIdMapping, $expectedResults)
+    public function testDuplicatedUrlKeyValues($dbData, $skuToProductIdMapping, $expectedResults)
     {
         /** @var StoresUtil&PHPUnit_Framework_MockObject_MockObject */
         $storesUtilMock = $this
             ->getMockBuilder(StoresUtil::class)
             ->disableOriginalConstructor()
             ->getMock();
+        $storesUtilMock->expects($this->once())
+            ->method('getAllStoreIds')
+            ->willReturn(array_map('intval', array_keys($skuToProductIdMapping)));
 
         /** @var Progress&PHPUnit_Framework_MockObject_MockObject */
         $progressMock = $this
@@ -53,11 +56,6 @@ class UrlKeyTest extends TestCase
         $productUrlKeyDataProperty->setAccessible(true);
         $productUrlKeyDataProperty->setValue($urlKeyChecker, $dbData);
 
-        $inheritdProductUrlKeyDataProperty = (new \ReflectionClass($urlKeyChecker))
-            ->getProperty('cachedInheritedProductUrlKeyData');
-        $inheritdProductUrlKeyDataProperty->setAccessible(true);
-        $inheritdProductUrlKeyDataProperty->setValue($urlKeyChecker, $inheritedData);
-
         $productSkusByIdsProperty = (new \ReflectionClass($urlKeyChecker))->getProperty('cachedProductSkusByIds');
         $productSkusByIdsProperty->setAccessible(true);
         $productSkusByIdsProperty->setValue($urlKeyChecker, $skuToProductIdMapping);
@@ -80,8 +78,6 @@ class UrlKeyTest extends TestCase
                     '0-2' => 'url_key_2',
                 ],
                 [
-                ],
-                [
                     '1' => 'sku 1',
                     '2' => 'sku 2',
                 ],
@@ -93,8 +89,6 @@ class UrlKeyTest extends TestCase
                 [
                     '0-1' => 'url_key_1',
                     '1-1' => 'url_key_2',
-                ],
-                [
                 ],
                 [
                     '1' => 'sku 1',
@@ -109,8 +103,6 @@ class UrlKeyTest extends TestCase
                     '1-1' => 'url_key_1',
                 ],
                 [
-                ],
-                [
                     '1' => 'sku 1',
                 ],
                 [
@@ -121,8 +113,6 @@ class UrlKeyTest extends TestCase
                 [
                     '0-1' => 'url_key_1',
                     '0-2' => 'url_key_1',
-                ],
-                [
                 ],
                 [
                     '1' => 'sku 1',
@@ -149,8 +139,6 @@ class UrlKeyTest extends TestCase
                     '0-1' => 'url_key_1',
                     '0-2' => 'url_key_1',
                     '0-3' => 'url_key_1',
-                ],
-                [
                 ],
                 [
                     '1' => 'sku 1',
@@ -205,8 +193,6 @@ class UrlKeyTest extends TestCase
                     '1-2' => 'url_key_1',
                 ],
                 [
-                ],
-                [
                     '1' => 'sku 1',
                     '2' => 'sku 2',
                 ],
@@ -220,9 +206,6 @@ class UrlKeyTest extends TestCase
                     '0-1' => 'url_key_1',
                     '0-2' => 'url_key_2',
                     '1-2' => 'url_key_1',
-                ],
-                [
-                    '1-1' => 'url_key_1',
                 ],
                 [
                     '1' => 'sku 1',
@@ -253,8 +236,6 @@ class UrlKeyTest extends TestCase
                     '1-2' => 'url_key_2',
                 ],
                 [
-                ],
-                [
                     '1' => 'sku 1',
                     '2' => 'sku 2',
                 ],
@@ -280,8 +261,6 @@ class UrlKeyTest extends TestCase
                     '0-2' => 'url_key_1',
                     '1-1' => 'url_key_1',
                     '1-2' => 'url_key_1',
-                ],
-                [
                 ],
                 [
                     '1' => 'sku 1',
@@ -323,8 +302,6 @@ class UrlKeyTest extends TestCase
                     '1-2' => 'url_key_2',
                 ],
                 [
-                ],
-                [
                     '1' => 'sku 1',
                     '2' => 'sku 2',
                 ],
@@ -352,8 +329,6 @@ class UrlKeyTest extends TestCase
                     '1-2' => 'url_key_2',
                 ],
                 [
-                ],
-                [
                     '1' => 'sku 1',
                     '2' => 'sku 2',
                 ],
@@ -368,8 +343,6 @@ class UrlKeyTest extends TestCase
                     '1-2' => 'url_key_2',
                 ],
                 [
-                ],
-                [
                     '1' => 'sku 1',
                     '2' => 'sku 2',
                 ],
@@ -382,9 +355,6 @@ class UrlKeyTest extends TestCase
                     '0-1' => 'url_key_1',
                     '0-2' => 'url_key_1',
                     '1-2' => 'url_key_2',
-                ],
-                [
-                    '1-1' => 'url_key_1',
                 ],
                 [
                     '1' => 'sku 1',
@@ -413,9 +383,6 @@ class UrlKeyTest extends TestCase
                     '1-1' => 'url_key_1',
                 ],
                 [
-                    '1-2' => 'url_key_1',
-                ],
-                [
                     '1' => 'sku 1',
                     '2' => 'sku 2',
                 ],
@@ -441,8 +408,6 @@ class UrlKeyTest extends TestCase
                     '0-2' => 'url_key_2',
                     '1-1' => 'url_key_3',
                     '1-2' => 'url_key_1',
-                ],
-                [
                 ],
                 [
                     '1' => 'sku 1',

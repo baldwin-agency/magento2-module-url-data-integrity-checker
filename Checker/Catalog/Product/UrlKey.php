@@ -25,6 +25,7 @@ class UrlKey
     private $attributeScopeOverriddenValueFactory;
 
     private $cachedProductUrlKeyData;
+    private $cachedInheritedProductUrlKeyData;
     private $cachedProductSkusByIds;
 
     public function __construct(
@@ -42,6 +43,7 @@ class UrlKey
     public function execute(): array
     {
         $this->cachedProductUrlKeyData = [];
+        $this->cachedInheritedProductUrlKeyData = [];
         $this->cachedProductSkusByIds = [];
 
         $productData = array_merge(
@@ -139,6 +141,8 @@ class UrlKey
             ;
             if ($isOverridden || $storeId === Store::DEFAULT_STORE_ID) {
                 $this->cachedProductUrlKeyData[$dataKey] = $productUrlKey;
+            } else {
+                $this->cachedInheritedProductUrlKeyData[$dataKey] = $productUrlKey;
             }
 
             $this->cachedProductSkusByIds[$productId] = $productSku;
@@ -199,11 +203,9 @@ class UrlKey
                     // if same product id, we don't care,
                     // since it wouldn't be a conflict if they exist in another storeview
                     } elseif ($productId !== $conflictingProductId) {
-                        // TODO: this is pretty complex and I'm not sure if this was implemented 100% correct,
-                        // need to review and also document properly
-                        $conflictingDataKey = $storeId . '-' . $conflictingProductId;
-                        if ($storeId !== Store::DEFAULT_STORE_ID
-                            && !array_key_exists($conflictingDataKey, $potentialDuplicatedUrlKeys)) {
+                        if (isset($this->cachedInheritedProductUrlKeyData["$conflictingStoreId-$productId"])
+                            && $this->cachedInheritedProductUrlKeyData["$conflictingStoreId-$productId"] === $urlKey
+                        ) {
                             $products[] = [
                                 'id'      => $productId,
                                 'sku'     => $this->cachedProductSkusByIds[$productId],
@@ -212,6 +214,16 @@ class UrlKey
                                     self::DUPLICATED_PROBLEM_DESCRIPTION,
                                     $conflictingProductId,
                                     $conflictingStoreId
+                                ),
+                            ];
+                            $products[] = [
+                                'id'      => $conflictingProductId,
+                                'sku'     => $this->cachedProductSkusByIds[$conflictingProductId],
+                                'storeId' => $conflictingStoreId,
+                                'problem' => sprintf(
+                                    self::DUPLICATED_PROBLEM_DESCRIPTION,
+                                    $productId,
+                                    $storeId
                                 ),
                             ];
                         }

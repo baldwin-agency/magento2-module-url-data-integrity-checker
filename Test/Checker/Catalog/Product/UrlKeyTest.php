@@ -9,6 +9,7 @@ use Baldwin\UrlDataIntegrityChecker\Console\Progress;
 use Baldwin\UrlDataIntegrityChecker\Util\Stores as StoresUtil;
 use Magento\Catalog\Model\Attribute\ScopeOverriddenValueFactory as AttributeScopeOverriddenValueFactory;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class UrlKeyTest extends TestCase
@@ -18,7 +19,7 @@ class UrlKeyTest extends TestCase
      */
     public function testDuplicatedUrlKeyValues($dbData, $skuToProductIdMapping, $expectedResults)
     {
-        /** @var StoresUtil&PHPUnit_Framework_MockObject_MockObject */
+        /** @var StoresUtil&MockObject */
         $storesUtilMock = $this
             ->getMockBuilder(StoresUtil::class)
             ->disableOriginalConstructor()
@@ -27,19 +28,19 @@ class UrlKeyTest extends TestCase
             ->method('getAllStoreIds')
             ->willReturn(array_map('intval', array_keys($skuToProductIdMapping)));
 
-        /** @var Progress&PHPUnit_Framework_MockObject_MockObject */
+        /** @var Progress&MockObject */
         $progressMock = $this
             ->getMockBuilder(Progress::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        /** @var ProductCollectionFactory&PHPUnit_Framework_MockObject_MockObject */
+        /** @var ProductCollectionFactory&MockObject */
         $productCollectionFactoryMock = $this
             ->getMockBuilder(ProductCollectionFactory::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        /** @var AttributeScopeOverriddenValueFactory&PHPUnit_Framework_MockObject_MockObject */
+        /** @var AttributeScopeOverriddenValueFactory&MockObject */
         $attributeScopeOverriddenValueFactoryMock = $this
             ->getMockBuilder(AttributeScopeOverriddenValueFactory::class)
             ->disableOriginalConstructor()

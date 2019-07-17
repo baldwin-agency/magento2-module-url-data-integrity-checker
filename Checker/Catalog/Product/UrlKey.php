@@ -132,6 +132,7 @@ class UrlKey
 
             $dataKey = "$storeId-$productId";
 
+            // TODO: this is very slow, maybe there is a better way to determine this... (yes yes, raw sql queries, *sigh*)
             $isOverridden = $this
                 ->attributeScopeOverriddenValueFactory
                 ->create()

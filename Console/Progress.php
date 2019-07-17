@@ -11,7 +11,7 @@ class Progress
 {
     private $output;
 
-    public function setOutput(OutputInterface $output): void
+    public function setOutput(OutputInterface $output)
     {
         $this->output = $output;
     }

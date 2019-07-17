@@ -116,7 +116,7 @@ class UrlKey
         return $productsWithProblems;
     }
 
-    private function storeProductUrlKeyData(int $storeId, ProductCollection $collection): void
+    private function storeProductUrlKeyData(int $storeId, ProductCollection $collection)
     {
         $progress = $this->progress->initProgressBar(
             $collection->getSize(),

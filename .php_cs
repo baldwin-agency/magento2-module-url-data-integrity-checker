@@ -16,7 +16,6 @@ return PhpCsFixer\Config::create()
         'phpdoc_align'           => false,
         'yoda_style'             => null,
         'declare_strict_types'   => true,
-        // 'void_return'            => true,
     ])
     ->setFinder($finder)
 ;

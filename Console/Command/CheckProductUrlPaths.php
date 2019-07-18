@@ -6,6 +6,7 @@ namespace Baldwin\UrlDataIntegrityChecker\Console\Command;
 
 use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product\UrlPath as UrlPathChecker;
 use Baldwin\UrlDataIntegrityChecker\Console\ResultOutput;
+use Baldwin\UrlDataIntegrityChecker\Storage\Cache as CacheStorage;
 use Magento\Framework\App\Area as AppArea;
 use Magento\Framework\App\State as AppState;
 use Magento\Framework\Console\Cli;
@@ -18,15 +19,18 @@ class CheckProductUrlPaths extends ConsoleCommand
     private $appState;
     private $resultOutput;
     private $urlPathChecker;
+    private $storage;
 
     public function __construct(
         AppState $appState,
         ResultOutput $resultOutput,
-        UrlPathChecker $urlPathChecker
+        UrlPathChecker $urlPathChecker,
+        CacheStorage $storage
     ) {
         $this->appState = $appState;
         $this->resultOutput = $resultOutput;
         $this->urlPathChecker = $urlPathChecker;
+        $this->storage = $storage;
 
         parent::__construct();
     }
@@ -45,6 +49,7 @@ class CheckProductUrlPaths extends ConsoleCommand
             $this->appState->setAreaCode(AppArea::AREA_CRONTAB);
 
             $productData = $this->urlPathChecker->execute();
+            $this->storage->write(UrlPathChecker::STORAGE_IDENTIFIER, $productData);
 
             return $this->resultOutput->outputResult($productData, $output);
         } catch (\Throwable $ex) {

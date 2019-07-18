@@ -17,6 +17,7 @@ class UrlPath
     const PROBLEM_DESCRIPTION =
           'Product has a non-null url_path attribute, this is known to cause problems with url rewrites in Magento.'
         . ' It\'s advised to remove this value from the database.';
+    const STORAGE_IDENTIFIER = 'product-url-path';
 
     private $storesUtil;
     private $productCollectionFactory;

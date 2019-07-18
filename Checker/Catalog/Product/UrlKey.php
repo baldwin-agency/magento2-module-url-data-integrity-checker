@@ -18,6 +18,7 @@ class UrlKey
     const EMPTY_PROBLEM_DESCRIPTION = 'Product has an empty url_key value. This needs to be fixed.';
     const DUPLICATED_PROBLEM_DESCRIPTION =
         'Product has a duplicated url_key value. It\'s the same as another product (ID: %s, Store: %s)';
+    const STORAGE_IDENTIFIER = 'product-url-key';
 
     private $storesUtil;
     private $progress;

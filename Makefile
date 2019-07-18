@@ -16,6 +16,12 @@ checkstyle:
 
 .PHONY: checkquality
 checkquality:
+	xmllint --noout --schema vendor/magento/module-backend/etc/menu.xsd            etc/adminhtml/menu.xml
+	xmllint --noout --schema vendor/magento/framework/App/etc/routes.xsd           etc/adminhtml/routes.xml
+	xmllint --noout --schema vendor/magento/framework/Acl/etc/acl.xsd              etc/acl.xml
+	# xmllint --noout --schema vendor/magento/framework/ObjectManager/etc/config.xsd etc/di.xml
+	xmllint --noout --schema vendor/magento/framework/Module/etc/module.xsd        etc/module.xml
+
 	vendor/bin/phpstan analyse
 
 .PHONY: test

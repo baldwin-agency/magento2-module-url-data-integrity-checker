@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace Baldwin\UrlDataIntegrityChecker\Controller\Adminhtml\Product;
+namespace Baldwin\UrlDataIntegrityChecker\Controller\Adminhtml\Product\UrlPath;
 
 use Magento\Backend\App\Action as BackendAction;
 use Magento\Backend\App\Action\Context as BackendContext;
 use Magento\Framework\View\Result\PageFactory as ResultPageFactory;
 
-class UrlPath extends BackendAction
+class Index extends BackendAction
 {
     const ADMIN_RESOURCE = 'Baldwin_UrlDataIntegrityChecker::catalog_data_integrity';
 

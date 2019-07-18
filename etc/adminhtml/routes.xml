@@ -2,7 +2,7 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="admin">
         <route id="baldwin_urldataintegritychecker" frontName="baldwin_urldataintegritychecker">
-            <module name="Baldwin_UrlDataIntegrityChecker" before="Magento_Backend"/>
+            <module name="Baldwin_UrlDataIntegrityChecker"/>
         </route>
     </router>
 </config>

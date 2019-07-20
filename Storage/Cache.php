@@ -29,7 +29,10 @@ class Cache
 
     public function read(string $identifier): array
     {
-        return json_decode($this->cache->load($this->getModuleCacheIdentifier($identifier)), true);
+        $data = $this->cache->load($this->getModuleCacheIdentifier($identifier)) ?: '{}';
+        // TODO: figure out something better to handle empty data
+
+        return json_decode($data, true);
     }
 
     private function getModuleCacheIdentifier(string $identifier): string

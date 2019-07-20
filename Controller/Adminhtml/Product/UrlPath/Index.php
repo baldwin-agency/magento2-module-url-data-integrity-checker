@@ -26,6 +26,7 @@ class Index extends BackendAction
     public function execute()
     {
         $resultPage = $this->resultPageFactory->create();
+        $resultPage->getConfig()->getTitle()->prepend('Data Integrity - Product Url Path');
 
         return $resultPage;
     }

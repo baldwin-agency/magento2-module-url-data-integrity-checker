@@ -1,0 +1,82 @@
+<?xml version="1.0"?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">baldwin_urldataintegritychecker_grid_catalog_product_urlpath.baldwin_urldataintegritychecker_grid_catalog_product_urlpath_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="refresh">
+                <url path="*/*/refresh"/>
+                <class>primary</class>
+                <label translate="true">Refresh</label>
+            </button>
+        </buttons>
+        <spinner>columns</spinner>
+        <deps>
+            <dep>baldwin_urldataintegritychecker_grid_catalog_product_urlpath.baldwin_urldataintegritychecker_grid_catalog_product_urlpath_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="baldwin_urldataintegritychecker_grid_catalog_product_urlpath_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="indexField" xsi:type="string">id</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Baldwin_UrlDataIntegrityChecker::catalog_data_integrity</aclResource>
+        <dataProvider class="Baldwin\UrlDataIntegrityChecker\Ui\DataProvider\ProductUrlPath" name="baldwin_urldataintegritychecker_grid_catalog_product_urlpath_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <columns name="columns">
+        <!--
+        <selectionsColumn name="ids">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="resizeEnabled" xsi:type="boolean">false</item>
+                    <item name="resizeDefaultWidth" xsi:type="string">55</item>
+                    <item name="indexField" xsi:type="string">id</item>
+                </item>
+            </argument>
+        </selectionsColumn>
+        -->
+        <column name="product_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">textRange</item>
+                    <item name="sorting" xsi:type="string">asc</item>
+                    <item name="label" xsi:type="string" translate="true">Product ID</item>
+                </item>
+            </argument>
+        </column>
+        <column name="sku">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">SKU</item>
+                </item>
+            </argument>
+        </column>
+        <column name="store_id">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Store ID</item>
+                </item>
+            </argument>
+        </column>
+        <column name="problem">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Problem</item>
+                </item>
+            </argument>
+        </column>
+    </columns>
+</listing>

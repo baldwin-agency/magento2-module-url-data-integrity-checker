@@ -5,5 +5,3 @@ parameters:
         - .
     excludes_analyse:
         - %currentWorkingDirectory%/vendor/*
-    includes:
-        - vendor/bitexpert/phpstan-magento/extension.neon

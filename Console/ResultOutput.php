@@ -18,16 +18,24 @@ class ResultOutput
             return Cli::RETURN_SUCCESS;
         }
 
+        // remove hashed id column, we don't want to display it here
+        $productData = array_map(function ($prod) {
+            unset($prod['hash']);
+
+            return $prod;
+        }, $productData);
+
+        // sort by productId and storeId
         usort($productData, function ($prodA, $prodB) {
-            if ($prodA['id'] === $prodB['id']) {
+            if ($prodA['productId'] === $prodB['productId']) {
                 return $prodA['storeId'] <=> $prodB['storeId'];
             }
 
-            return $prodA['id'] <=> $prodB['id'];
+            return $prodA['productId'] <=> $prodB['productId'];
         });
 
         $table = new ConsoleTable($output);
-        $table->setHeaders(['ID', 'SKU', 'Store', 'Problem']);
+        $table->setHeaders(['Product ID', 'SKU', 'Store ID', 'Problem']);
         $table->setRows($productData);
 
         $table->render();

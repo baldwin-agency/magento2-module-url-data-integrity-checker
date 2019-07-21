@@ -21,30 +21,19 @@
     <dataSource name="baldwin_urldataintegritychecker_grid_catalog_product_urlpath_data_source" component="Magento_Ui/js/grid/provider">
         <settings>
             <storageConfig>
-                <param name="indexField" xsi:type="string">id</param>
+                <param name="indexField" xsi:type="string">hash</param>
             </storageConfig>
             <updateUrl path="mui/index/render"/>
         </settings>
         <aclResource>Baldwin_UrlDataIntegrityChecker::catalog_data_integrity</aclResource>
         <dataProvider class="Baldwin\UrlDataIntegrityChecker\Ui\DataProvider\ProductUrlPath" name="baldwin_urldataintegritychecker_grid_catalog_product_urlpath_data_source">
             <settings>
-                <requestFieldName>id</requestFieldName>
-                <primaryFieldName>id</primaryFieldName>
+                <requestFieldName>hash</requestFieldName>
+                <primaryFieldName>hash</primaryFieldName>
             </settings>
         </dataProvider>
     </dataSource>
     <columns name="columns">
-        <!--
-        <selectionsColumn name="ids">
-            <argument name="data" xsi:type="array">
-                <item name="config" xsi:type="array">
-                    <item name="resizeEnabled" xsi:type="boolean">false</item>
-                    <item name="resizeDefaultWidth" xsi:type="string">55</item>
-                    <item name="indexField" xsi:type="string">id</item>
-                </item>
-            </argument>
-        </selectionsColumn>
-        -->
         <column name="product_id">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">

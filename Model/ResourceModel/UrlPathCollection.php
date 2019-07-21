@@ -29,8 +29,8 @@ class UrlPathCollection extends DataCollection
             $urlPaths = $this->storage->read(UrlPathChecker::STORAGE_IDENTIFIER);
             foreach ($urlPaths as $urlPath) {
                 $obj = new DataObject();
-                $obj->setId($urlPath['id'] . '-' . $urlPath['storeId']);
-                $obj->setProductId($urlPath['id']);
+                $obj->setHash($urlPath['hash']);
+                $obj->setProductId($urlPath['productId']);
                 $obj->setStoreId($urlPath['storeId']);
                 $obj->setSku($urlPath['sku']);
                 $obj->setProblem($urlPath['problem']);

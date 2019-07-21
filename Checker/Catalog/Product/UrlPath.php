@@ -79,12 +79,14 @@ class UrlPath
             ;
 
             if ($isOverridden || $storeId === Store::DEFAULT_STORE_ID) {
-                $products[] = [
-                    'id'      => $product->getEntityId(),
-                    'sku'     => $product->getSku(),
-                    'storeId' => $storeId,
-                    'problem' => self::PROBLEM_DESCRIPTION,
+                $product = [
+                    'productId' => $product->getEntityId(),
+                    'sku'       => $product->getSku(),
+                    'storeId'   => $storeId,
+                    'problem'   => self::PROBLEM_DESCRIPTION,
                 ];
+                $product['hash'] = sha1(json_encode($product) ?: '');
+                $products[] = $product;
             }
         }
 

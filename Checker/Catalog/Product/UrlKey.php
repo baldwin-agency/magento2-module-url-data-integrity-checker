@@ -203,42 +203,48 @@ class UrlKey
                     list($conflictingStoreId, $conflictingProductId) = explode('-', $conflictingStoreAndProductId);
 
                     if ($storeId === $conflictingStoreId) {
-                        $products[] = [
-                            'id'      => $productId,
-                            'sku'     => $this->cachedProductSkusByIds[$productId],
-                            'storeId' => $storeId,
-                            'problem' => sprintf(
+                        $product = [
+                            'productId' => $productId,
+                            'sku'       => $this->cachedProductSkusByIds[$productId],
+                            'storeId'   => $storeId,
+                            'problem'   => sprintf(
                                 self::DUPLICATED_PROBLEM_DESCRIPTION,
                                 $conflictingProductId,
                                 $conflictingStoreId
                             ),
                         ];
+                        $product['hash'] = sha1(json_encode($product) ?: '');
+                        $products[] = $product;
                     // if same product id, we don't care,
                     // since it wouldn't be a conflict if they exist in another storeview
                     } elseif ($productId !== $conflictingProductId) {
                         if (array_key_exists("$conflictingStoreId-$productId", $inheritedProductUrlKeyData)
                             && $inheritedProductUrlKeyData["$conflictingStoreId-$productId"] === $urlKey
                         ) {
-                            $products[] = [
-                                'id'      => $productId,
-                                'sku'     => $this->cachedProductSkusByIds[$productId],
-                                'storeId' => $storeId,
-                                'problem' => sprintf(
+                            $productOne = [
+                                'productId' => $productId,
+                                'sku'       => $this->cachedProductSkusByIds[$productId],
+                                'storeId'   => $storeId,
+                                'problem'   => sprintf(
                                     self::DUPLICATED_PROBLEM_DESCRIPTION,
                                     $conflictingProductId,
                                     $conflictingStoreId
                                 ),
                             ];
-                            $products[] = [
-                                'id'      => $conflictingProductId,
-                                'sku'     => $this->cachedProductSkusByIds[$conflictingProductId],
-                                'storeId' => $conflictingStoreId,
-                                'problem' => sprintf(
+                            $productOne['hash'] = sha1(json_encode($productOne) ?: '');
+                            $productTwo = [
+                                'productId' => $conflictingProductId,
+                                'sku'       => $this->cachedProductSkusByIds[$conflictingProductId],
+                                'storeId'   => $conflictingStoreId,
+                                'problem'   => sprintf(
                                     self::DUPLICATED_PROBLEM_DESCRIPTION,
                                     $productId,
                                     $storeId
                                 ),
                             ];
+                            $productTwo['hash'] = sha1(json_encode($productTwo) ?: '');
+                            $products[] = $productOne;
+                            $products[] = $productTwo;
                         }
                     }
                 }
@@ -260,12 +266,14 @@ class UrlKey
             ;
 
             if ($isOverridden || $storeId === Store::DEFAULT_STORE_ID) {
-                $products[] = [
-                    'id'      => $product->getEntityId(),
-                    'sku'     => $product->getSku(),
-                    'storeId' => $storeId,
-                    'problem' => self::EMPTY_PROBLEM_DESCRIPTION,
+                $product = [
+                    'productId' => $product->getEntityId(),
+                    'sku'       => $product->getSku(),
+                    'storeId'   => $storeId,
+                    'problem'   => self::EMPTY_PROBLEM_DESCRIPTION,
                 ];
+                $product['hash'] = sha1(json_encode($product) ?: '');
+                $products[] = $product;
             }
         }
 

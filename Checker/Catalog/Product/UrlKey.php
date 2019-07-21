@@ -17,7 +17,7 @@ class UrlKey
     const URL_KEY_ATTRIBUTE = 'url_key';
     const EMPTY_PROBLEM_DESCRIPTION = 'Product has an empty url_key value. This needs to be fixed.';
     const DUPLICATED_PROBLEM_DESCRIPTION =
-        'Product has a duplicated url_key value. It\'s the same as another product (ID: %s, Store: %s)';
+        'Product has a duplicated url_key value (%s). It\'s the same as another product (ID: %s, Store: %s)';
     const STORAGE_IDENTIFIER = 'product-url-key';
 
     private $storesUtil;
@@ -209,6 +209,7 @@ class UrlKey
                             'storeId'   => $storeId,
                             'problem'   => sprintf(
                                 self::DUPLICATED_PROBLEM_DESCRIPTION,
+                                $urlKey,
                                 $conflictingProductId,
                                 $conflictingStoreId
                             ),
@@ -227,6 +228,7 @@ class UrlKey
                                 'storeId'   => $storeId,
                                 'problem'   => sprintf(
                                     self::DUPLICATED_PROBLEM_DESCRIPTION,
+                                    $urlKey,
                                     $conflictingProductId,
                                     $conflictingStoreId
                                 ),
@@ -238,6 +240,7 @@ class UrlKey
                                 'storeId'   => $conflictingStoreId,
                                 'problem'   => sprintf(
                                     self::DUPLICATED_PROBLEM_DESCRIPTION,
+                                    $urlKey,
                                     $productId,
                                     $storeId
                                 ),

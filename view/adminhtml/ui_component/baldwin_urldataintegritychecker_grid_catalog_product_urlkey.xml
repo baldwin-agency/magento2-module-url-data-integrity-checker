@@ -3,35 +3,34 @@
     <argument name="data" xsi:type="array">
         <item name="js_config" xsi:type="array">
             <item name="provider" xsi:type="string">baldwin_urldataintegritychecker_grid_catalog_product_urlkey.baldwin_urldataintegritychecker_grid_catalog_product_urlkey_data_source</item>
+            <item name="deps" xsi:type="string">baldwin_urldataintegritychecker_grid_catalog_product_urlkey.baldwin_urldataintegritychecker_grid_catalog_product_urlkey_data_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">columns</item>
+        <item name="buttons" xsi:type="array">
+            <item name="refresh" xsi:type="array">
+                <item name="name" xsi:type="string">refresh</item>
+                <item name="label" xsi:type="string" translate="true">Refresh</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">*/*/refresh</item>
+            </item>
         </item>
     </argument>
-    <settings>
-        <buttons>
-            <button name="refresh">
-                <url path="*/*/refresh"/>
-                <class>primary</class>
-                <label translate="true">Refresh</label>
-            </button>
-        </buttons>
-        <spinner>columns</spinner>
-        <deps>
-            <dep>baldwin_urldataintegritychecker_grid_catalog_product_urlkey.baldwin_urldataintegritychecker_grid_catalog_product_urlkey_data_source</dep>
-        </deps>
-    </settings>
-    <dataSource name="baldwin_urldataintegritychecker_grid_catalog_product_urlkey_data_source" component="Magento_Ui/js/grid/provider">
-        <settings>
-            <storageConfig>
-                <param name="indexField" xsi:type="string">hash</param>
-            </storageConfig>
-            <updateUrl path="mui/index/render"/>
-        </settings>
-        <aclResource>Baldwin_UrlDataIntegrityChecker::catalog_data_integrity</aclResource>
-        <dataProvider class="Baldwin\UrlDataIntegrityChecker\Ui\DataProvider\ProductUrlKey" name="baldwin_urldataintegritychecker_grid_catalog_product_urlkey_data_source">
-            <settings>
-                <requestFieldName>hash</requestFieldName>
-                <primaryFieldName>hash</primaryFieldName>
-            </settings>
-        </dataProvider>
+    <dataSource name="baldwin_urldataintegritychecker_grid_catalog_product_urlkey_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Baldwin\UrlDataIntegrityChecker\Ui\DataProvider\ProductUrlKey</argument>
+            <argument name="name" xsi:type="string">baldwin_urldataintegritychecker_grid_catalog_product_urlkey_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">hash</argument>
+            <argument name="requestFieldName" xsi:type="string">hash</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">hash</item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
     </dataSource>
     <columns name="columns">
         <column name="product_id">

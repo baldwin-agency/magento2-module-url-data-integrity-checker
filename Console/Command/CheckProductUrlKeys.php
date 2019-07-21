@@ -54,9 +54,16 @@ class CheckProductUrlKeys extends ConsoleCommand
             $this->progress->setOutput($output);
 
             $productData = $this->urlKeyChecker->execute();
-            $this->storage->write(UrlKeyChecker::STORAGE_IDENTIFIER, $productData);
+            $stored = $this->storage->write(UrlKeyChecker::STORAGE_IDENTIFIER, $productData);
+            $cliResult = $this->resultOutput->outputResult($productData, $output);
 
-            return $this->resultOutput->outputResult($productData, $output);
+            if ($stored) {
+                $output->writeln(
+                    "\n<info>Data was stored in cache and you can now also review it in the admin of Magento</info>"
+                );
+            }
+
+            return $cliResult;
         } catch (\Throwable $ex) {
             $output->writeln("<error>An unexpected exception occured: '{$ex->getMessage()}'</error>");
         }

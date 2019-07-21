@@ -49,9 +49,16 @@ class CheckProductUrlPaths extends ConsoleCommand
             $this->appState->setAreaCode(AppArea::AREA_CRONTAB);
 
             $productData = $this->urlPathChecker->execute();
-            $this->storage->write(UrlPathChecker::STORAGE_IDENTIFIER, $productData);
+            $stored = $this->storage->write(UrlPathChecker::STORAGE_IDENTIFIER, $productData);
+            $cliResult = $this->resultOutput->outputResult($productData, $output);
 
-            return $this->resultOutput->outputResult($productData, $output);
+            if ($stored) {
+                $output->writeln(
+                    "\n<info>Data was stored in cache and you can now also review it in the admin of Magento</info>"
+                );
+            }
+
+            return $cliResult;
         } catch (\Throwable $ex) {
             $output->writeln("<error>An unexpected exception occured: '{$ex->getMessage()}'</error>");
         }

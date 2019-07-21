@@ -17,14 +17,14 @@ class Cache
         $this->cache = $cache;
     }
 
-    public function write(string $identifier, array $data)
+    public function write(string $identifier, array $data): bool
     {
         $encodedData = json_encode($data, JSON_UNESCAPED_UNICODE);
         if ($encodedData === false) {
             throw new SerializationException(__('Can\'t encode data as json to save in cache, error: %1', json_last_error_msg()));
         }
 
-        $this->cache->save($encodedData, $this->getModuleCacheIdentifier($identifier));
+        return $this->cache->save($encodedData, $this->getModuleCacheIdentifier($identifier));
     }
 
     public function read(string $identifier): array

@@ -17,7 +17,7 @@
     </argument>
     <dataSource name="baldwin_urldataintegritychecker_grid_catalog_product_urlkey_data_source">
         <argument name="dataProvider" xsi:type="configurableObject">
-            <argument name="class" xsi:type="string">Baldwin\UrlDataIntegrityChecker\Ui\DataProvider\ProductUrlKey</argument>
+            <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
             <argument name="name" xsi:type="string">baldwin_urldataintegritychecker_grid_catalog_product_urlkey_data_source</argument>
             <argument name="primaryFieldName" xsi:type="string">hash</argument>
             <argument name="requestFieldName" xsi:type="string">hash</argument>
@@ -33,7 +33,7 @@
         </argument>
     </dataSource>
     <columns name="columns">
-        <column name="product_id">
+        <column name="productId">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">textRange</item>
@@ -50,7 +50,7 @@
                 </item>
             </argument>
         </column>
-        <column name="store_id">
+        <column name="storeId">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="filter" xsi:type="string">text</item>

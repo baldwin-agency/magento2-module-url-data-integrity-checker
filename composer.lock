@@ -2584,16 +2584,16 @@
         },
         {
             "name": "magento/zendframework1",
-            "version": "1.14.1",
+            "version": "1.14.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/magento/zf1.git",
-                "reference": "4df018254c70b5b998b00a8cb1a30760f831ff0d"
+                "reference": "8221062d42a198e431d183bbe672e5e1a2f98c5f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/magento/zf1/zipball/4df018254c70b5b998b00a8cb1a30760f831ff0d",
-                "reference": "4df018254c70b5b998b00a8cb1a30760f831ff0d",
+                "url": "https://api.github.com/repos/magento/zf1/zipball/8221062d42a198e431d183bbe672e5e1a2f98c5f",
+                "reference": "8221062d42a198e431d183bbe672e5e1a2f98c5f",
                 "shasum": ""
             },
             "require": {
@@ -2627,7 +2627,7 @@
                 "ZF1",
                 "framework"
             ],
-            "time": "2018-08-09T15:03:40+00:00"
+            "time": "2019-07-26T16:43:11+00:00"
         },
         {
             "name": "monolog/monolog",
@@ -6763,16 +6763,16 @@
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "3.0.2",
+            "version": "3.1.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "c4a66b97f040e3e20b3aa2a243230a1c3a9f7c8c"
+                "reference": "e899757bb3df5ff6e95089132f32cd59aac2220a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/c4a66b97f040e3e20b3aa2a243230a1c3a9f7c8c",
-                "reference": "c4a66b97f040e3e20b3aa2a243230a1c3a9f7c8c",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/e899757bb3df5ff6e95089132f32cd59aac2220a",
+                "reference": "e899757bb3df5ff6e95089132f32cd59aac2220a",
                 "shasum": ""
             },
             "require": {
@@ -6785,7 +6785,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.0-dev"
+                    "dev-master": "3.1-dev"
                 }
             },
             "autoload": {
@@ -6808,7 +6808,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2019-07-08T05:24:54+00:00"
+            "time": "2019-07-25T05:29:42+00:00"
         },
         {
             "name": "phpunit/phpunit",

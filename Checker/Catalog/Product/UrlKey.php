@@ -22,12 +22,11 @@ class UrlKey
 
     private $storesUtil;
     private $progress;
+    private $progressIndex;
     private $productCollectionFactory;
     private $attributeScopeOverriddenValueFactory;
-
     private $cachedProductUrlKeyData;
     private $cachedProductSkusByIds;
-    private $progressIndex;
 
     public function __construct(
         StoresUtil $storesUtil,
@@ -58,6 +57,13 @@ class UrlKey
     {
         $productsWithProblems = [];
 
+        $this->progress->initProgressBar(
+            50,
+            " %message%\n %current%/%max% %bar% %percent%%\n",
+            'Preparing fecthing empty url key data'
+        );
+        $this->progressIndex = 0;
+
         $storeIds = $this->storesUtil->getAllStoreIds();
         foreach ($storeIds as $storeId) {
             // we need a left join when using the non-default store view
@@ -80,8 +86,19 @@ class UrlKey
                 ], null, $joinType)
             ;
 
+            if ($this->progressIndex === 0) {
+                $this->progress->setGuestimatedSize(count($storeIds), $collection->getSize());
+            }
+
+            $this->progress->updateExpectedSize($this->progressIndex++, $collection->getSize());
+            $this->progress->setMessage("Fetching empty url key data for store $storeId");
+
             $productsWithProblems[] = $this->getProductsWithProblems($storeId, $collection);
+
+            $this->progress->setMessage("Finished empty url key fetching data for store $storeId");
         }
+
+        $this->progress->finish();
 
         if (!empty($productsWithProblems)) {
             $productsWithProblems = array_merge(...$productsWithProblems);
@@ -94,7 +111,8 @@ class UrlKey
     {
         $this->progress->initProgressBar(
             50,
-            " %message%\n %current%/%max% %bar% %percent%%\n"
+            " %message%\n %current%/%max% %bar% %percent%%\n",
+            'Preparing fecthing duplicated url key data'
         );
         $this->progressIndex = 0;
 
@@ -121,11 +139,11 @@ class UrlKey
             }
 
             $this->progress->updateExpectedSize($this->progressIndex++, $collection->getSize());
-            $this->progress->setMessage("Fetching data for store $storeId");
+            $this->progress->setMessage("Fetching duplicated url key data for store $storeId");
 
             $this->storeProductUrlKeyData($storeId, $collection);
 
-            $this->progress->setMessage("Finished fetching data for store $storeId");
+            $this->progress->setMessage("Finished duplicated url key fetching data for store $storeId");
         }
 
         $this->progress->finish();
@@ -290,6 +308,8 @@ class UrlKey
                 $product['hash'] = sha1(json_encode($product) ?: '');
                 $products[] = $product;
             }
+
+            $this->progress->advance();
         }
 
         return $products;

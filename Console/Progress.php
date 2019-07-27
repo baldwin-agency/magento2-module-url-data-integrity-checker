@@ -12,19 +12,23 @@ class Progress
     private $progressBar;
     private $output;
     private $sizeByIndex;
+    private $format;
 
     public function setOutput(OutputInterface $output)
     {
         $this->output = $output;
     }
 
-    public function initProgressBar(int $redrawFequency, string $format)
+    public function initProgressBar(int $redrawFequency, string $format, string $message)
     {
         if ($this->canOutput()) {
             $this->progressBar = new ProgressBar($this->output);
             $this->progressBar->setRedrawFrequency($redrawFequency);
             $this->progressBar->setFormat($format);
+            $this->progressBar->setMessage($message);
             $this->progressBar->start();
+
+            $this->format = $format;
         }
     }
 
@@ -71,7 +75,21 @@ class Progress
     private function updateMaxSteps()
     {
         if ($this->canOutput()) {
-            $this->progressBar->setMaxSteps(array_sum($this->sizeByIndex));
+            $newMaxStepsValue = array_sum($this->sizeByIndex);
+
+            // ugly solution for the fact that the setMaxSteps method only became
+            // publicly accesible in symfony/console > 4.1.0
+            $reflection     = new \ReflectionObject($this->progressBar);
+            $maxStepsMethod = $reflection->getMethod('setMaxSteps');
+            if ($maxStepsMethod->isPrivate()) {
+                $maxStepsMethod->setAccessible(true);
+                $maxStepsMethod->invoke($this->progressBar, $newMaxStepsValue);
+            } else {
+                $this->progressBar->setMaxSteps($newMaxStepsValue);
+            }
+
+            // since symfony/console > 4.1.0, the format gets resetted after calling 'setMaxSteps'
+            $this->progressBar->setFormat($this->format);
         }
     }
 }

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Cron:etc/crontab.xsd">
+    <group id="data_integrity">
+        <job name="baldwin_urldataintegritychecker_cron_checkproducturlpath" instance="Baldwin\UrlDataIntegrityChecker\Cron\CheckProductUrlPath" method="execute">
+            <schedule>10 2 * * *</schedule>
+        </job>
+        <job name="baldwin_urldataintegritychecker_cron_checkproducturlkey" instance="Baldwin\UrlDataIntegrityChecker\Cron\CheckProductUrlKey" method="execute">
+            <schedule>20 2 * * *</schedule>
+        </job>
+    </group>
+</config>

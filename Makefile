@@ -19,6 +19,8 @@ checkquality:
 	xmllint --noout --schema vendor/magento/module-backend/etc/menu.xsd            etc/adminhtml/menu.xml
 	xmllint --noout --schema vendor/magento/framework/App/etc/routes.xsd           etc/adminhtml/routes.xml
 	xmllint --noout --schema vendor/magento/framework/Acl/etc/acl.xsd              etc/acl.xml
+	xmllint --noout --schema vendor/magento/module-cron/etc/cron_groups.xsd        etc/cron_groups.xml
+	xmllint --noout --schema vendor/magento/module-cron/etc/crontab.xsd            etc/crontab.xml
 	xmllint --noout                                                                etc/di.xml # schema validation doesn't work here since the xsd includes another xsd ..
 	xmllint --noout --schema vendor/magento/framework/Module/etc/module.xsd        etc/module.xml
 

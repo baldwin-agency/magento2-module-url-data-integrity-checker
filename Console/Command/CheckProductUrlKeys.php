@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Baldwin\UrlDataIntegrityChecker\Console\Command;
 
 use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product\UrlKey as UrlKeyChecker;
-use Baldwin\UrlDataIntegrityChecker\Console\ResultOutput;
 use Baldwin\UrlDataIntegrityChecker\Console\Progress;
+use Baldwin\UrlDataIntegrityChecker\Console\ResultOutput;
 use Baldwin\UrlDataIntegrityChecker\Storage\Cache as CacheStorage;
 use Magento\Framework\App\Area as AppArea;
 use Magento\Framework\App\State as AppState;

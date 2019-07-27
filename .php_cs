@@ -11,6 +11,7 @@ return PhpCsFixer\Config::create()
         'array_syntax'           => ['syntax' => 'short'],
         'binary_operator_spaces' => ['default' => null],
         'concat_space'           => ['spacing' => 'one'],
+        'ordered_imports'        => ['sort_algorithm' => 'alpha'],
         'phpdoc_summary'         => false,
         'phpdoc_separation'      => false,
         'phpdoc_align'           => false,

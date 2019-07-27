@@ -27,7 +27,7 @@ class UrlKey
 
     private $cachedProductUrlKeyData;
     private $cachedProductSkusByIds;
-    private $showProgress;
+    private $progressIndex;
 
     public function __construct(
         StoresUtil $storesUtil,
@@ -39,11 +39,6 @@ class UrlKey
         $this->progress = $progress;
         $this->productCollectionFactory = $productCollectionFactory;
         $this->attributeScopeOverriddenValueFactory = $attributeScopeOverriddenValueFactory;
-    }
-
-    public function setShowProgress(bool $show)
-    {
-        $this->showProgress = $show;
     }
 
     public function execute(): array
@@ -97,6 +92,12 @@ class UrlKey
 
     private function checkForDuplicatedUrlKeyAttributeValues(): array
     {
+        $this->progress->initProgressBar(
+            50,
+            " %message%\n %current%/%max% %bar% %percent%%\n"
+        );
+        $this->progressIndex = 0;
+
         $storeIds = $this->storesUtil->getAllStoreIds();
         foreach ($storeIds as $storeId) {
             // we need a left join when using the non-default store view
@@ -115,8 +116,19 @@ class UrlKey
                 // ])
             ;
 
+            if ($this->progressIndex === 0) {
+                $this->progress->setGuestimatedSize(count($storeIds), $collection->getSize());
+            }
+
+            $this->progress->updateExpectedSize($this->progressIndex++, $collection->getSize());
+            $this->progress->setMessage("Fetching data for store $storeId");
+
             $this->storeProductUrlKeyData($storeId, $collection);
+
+            $this->progress->setMessage("Finished fetching data for store $storeId");
         }
+
+        $this->progress->finish();
 
         $productsWithProblems = $this->getProductsWithDuplicatedUrlKeyProblems();
 
@@ -125,15 +137,6 @@ class UrlKey
 
     private function storeProductUrlKeyData(int $storeId, ProductCollection $collection)
     {
-        if ($this->showProgress) {
-            $progress = $this->progress->initProgressBar(
-                $collection->getSize(),
-                50,
-                " %message%\n %current%/%max% %bar% %percent%%\n",
-                "Fetching data for store $storeId"
-            );
-        }
-
         foreach ($collection as $product) {
             $productId     = $product->getEntityId();
             $productSku    = $product->getSku();
@@ -154,14 +157,7 @@ class UrlKey
 
             $this->cachedProductSkusByIds[$productId] = $productSku;
 
-            if (isset($progress)) {
-                $progress->advance();
-            }
-        }
-
-        if (isset($progress)) {
-            $progress->setMessage("Finished fetching data for store $storeId");
-            $progress->finish();
+            $this->progress->advance();
         }
     }
 

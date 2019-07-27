@@ -53,7 +53,6 @@ class CheckProductUrlKeys extends ConsoleCommand
             $this->appState->setAreaCode(AppArea::AREA_CRONTAB);
             $this->progress->setOutput($output);
 
-            $this->urlKeyChecker->setShowProgress(true);
             $productData = $this->urlKeyChecker->execute();
             $stored = $this->storage->write(UrlKeyChecker::STORAGE_IDENTIFIER, $productData);
             $cliResult = $this->resultOutput->outputResult($productData, $output);

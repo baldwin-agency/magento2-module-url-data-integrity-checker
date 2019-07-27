@@ -11,12 +11,12 @@ return PhpCsFixer\Config::create()
         'array_syntax'           => ['syntax' => 'short'],
         'binary_operator_spaces' => ['default' => null],
         'concat_space'           => ['spacing' => 'one'],
-        'ordered_imports'        => ['sort_algorithm' => 'alpha'],
-        'phpdoc_summary'         => false,
-        'phpdoc_separation'      => false,
-        'phpdoc_align'           => false,
-        'yoda_style'             => null,
         'declare_strict_types'   => true,
+        'ordered_imports'        => ['sort_algorithm' => 'alpha'],
+        'phpdoc_align'           => false,
+        'phpdoc_separation'      => false,
+        'phpdoc_summary'         => false,
+        'yoda_style'             => null,
     ])
     ->setFinder($finder)
 ;

@@ -80,7 +80,7 @@ class UrlPath
 
             if ($isOverridden || $storeId === Store::DEFAULT_STORE_ID) {
                 $product = [
-                    'productId' => $product->getEntityId(),
+                    'productId' => (int) $product->getEntityId(),
                     'sku'       => $product->getSku(),
                     'storeId'   => $storeId,
                     'problem'   => self::PROBLEM_DESCRIPTION,

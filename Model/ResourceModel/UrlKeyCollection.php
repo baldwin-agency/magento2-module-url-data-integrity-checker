@@ -35,6 +35,21 @@ class UrlKeyCollection extends DataCollection implements SearchResultInterface
                 $this->addItem($this->createDataObject($urlKey));
             }
 
+            foreach ($this->_orders as $field => $direction) {
+                usort($this->_items, function ($itemA, $itemB) use ($field, $direction) {
+                    $comparisonFieldA = $itemA->getData($field);
+                    $comparisonFieldB = $itemB->getData($field);
+
+                    if ($direction === DataCollection::SORT_ORDER_ASC) {
+                        return $comparisonFieldA <=> $comparisonFieldB;
+                    } else {
+                        return $comparisonFieldB <=> $comparisonFieldA;
+                    }
+                });
+
+                break; // breaking after using one entry of $this->_orders
+            }
+
             $this->_setIsLoaded();
         }
 

@@ -205,10 +205,14 @@ class UrlKey
         foreach ($mappedUrlKeysWithStoreAndProductIds as $urlKey => $storeAndProductIds) {
             foreach ($storeAndProductIds as $storeAndProductId) {
                 list($storeId, $productId) = explode('-', $storeAndProductId);
+                $storeId   = (int) $storeId;
+                $productId = (int) $productId;
 
                 $conflictingStoreAndProductIds = array_diff($storeAndProductIds, [$storeAndProductId]);
                 foreach ($conflictingStoreAndProductIds as $conflictingStoreAndProductId) {
                     list($conflictingStoreId, $conflictingProductId) = explode('-', $conflictingStoreAndProductId);
+                    $conflictingStoreId   = (int) $conflictingStoreId;
+                    $conflictingProductId = (int) $conflictingProductId;
 
                     if ($storeId === $conflictingStoreId) {
                         $product = [
@@ -278,7 +282,7 @@ class UrlKey
 
             if ($isOverridden || $storeId === Store::DEFAULT_STORE_ID) {
                 $product = [
-                    'productId' => $product->getEntityId(),
+                    'productId' => (int) $product->getEntityId(),
                     'sku'       => $product->getSku(),
                     'storeId'   => $storeId,
                     'problem'   => self::EMPTY_PROBLEM_DESCRIPTION,

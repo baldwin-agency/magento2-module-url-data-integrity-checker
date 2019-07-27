@@ -27,6 +27,7 @@ class UrlKey
 
     private $cachedProductUrlKeyData;
     private $cachedProductSkusByIds;
+    private $showProgress;
 
     public function __construct(
         StoresUtil $storesUtil,
@@ -38,6 +39,11 @@ class UrlKey
         $this->progress = $progress;
         $this->productCollectionFactory = $productCollectionFactory;
         $this->attributeScopeOverriddenValueFactory = $attributeScopeOverriddenValueFactory;
+    }
+
+    public function setShowProgress(bool $show)
+    {
+        $this->showProgress = $show;
     }
 
     public function execute(): array
@@ -119,12 +125,14 @@ class UrlKey
 
     private function storeProductUrlKeyData(int $storeId, ProductCollection $collection)
     {
-        $progress = $this->progress->initProgressBar(
-            $collection->getSize(),
-            50,
-            " %message%\n %current%/%max% %bar% %percent%%\n",
-            "Fetching data for store $storeId"
-        );
+        if ($this->showProgress) {
+            $progress = $this->progress->initProgressBar(
+                $collection->getSize(),
+                50,
+                " %message%\n %current%/%max% %bar% %percent%%\n",
+                "Fetching data for store $storeId"
+            );
+        }
 
         foreach ($collection as $product) {
             $productId     = $product->getEntityId();
@@ -146,11 +154,15 @@ class UrlKey
 
             $this->cachedProductSkusByIds[$productId] = $productSku;
 
-            $progress->advance();
+            if (isset($progress)) {
+                $progress->advance();
+            }
         }
 
-        $progress->setMessage("Finished fetching data for store $storeId");
-        $progress->finish();
+        if (isset($progress)) {
+            $progress->setMessage("Finished fetching data for store $storeId");
+            $progress->finish();
+        }
     }
 
     private function getProductsWithDuplicatedUrlKeyProblems(): array

@@ -6,6 +6,7 @@ namespace Baldwin\UrlDataIntegrityChecker\Controller\Adminhtml\Product\UrlKey;
 
 use Magento\Backend\App\Action as BackendAction;
 use Magento\Backend\App\Action\Context as BackendContext;
+use Magento\Backend\Model\View\Result\Page as BackendResultPage;
 use Magento\Framework\View\Result\PageFactory as ResultPageFactory;
 
 class Index extends BackendAction
@@ -25,7 +26,9 @@ class Index extends BackendAction
 
     public function execute()
     {
+        /** @var BackendResultPage */
         $resultPage = $this->resultPageFactory->create();
+        $resultPage->setActiveMenu('Baldwin_UrlDataIntegrityChecker::product_urlkey');
         $resultPage->getConfig()->getTitle()->prepend('Data Integrity - Product Url Key');
 
         return $resultPage;

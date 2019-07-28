@@ -4,27 +4,23 @@ declare(strict_types=1);
 
 namespace Baldwin\UrlDataIntegrityChecker\Cron;
 
-use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product\UrlKey as UrlKeyChecker;
-use Baldwin\UrlDataIntegrityChecker\Storage\Cache as CacheStorage;
+use Baldwin\UrlDataIntegrityChecker\Storage\Meta as MetaStorage;
+use Baldwin\UrlDataIntegrityChecker\Updater\Catalog\Product\UrlKey as UrlKeyUpdater;
 
 class CheckProductUrlKey
 {
     const JOB_NAME = 'baldwin_urldataintegritychecker_cron_checkproducturlkey';
 
-    private $urlKeyChecker;
-    private $storage;
+    private $urlKeyUpdater;
 
     public function __construct(
-        UrlKeyChecker $urlKeyChecker,
-        CacheStorage $storage
+        UrlKeyUpdater $urlKeyUpdater
     ) {
-        $this->urlKeyChecker = $urlKeyChecker;
-        $this->storage = $storage;
+        $this->urlKeyUpdater = $urlKeyUpdater;
     }
 
     public function execute()
     {
-        $productData = $this->urlKeyChecker->execute();
-        $this->storage->write(UrlKeyChecker::STORAGE_IDENTIFIER, $productData);
+        $this->urlKeyUpdater->refresh(MetaStorage::INITIATOR_CRON);
     }
 }

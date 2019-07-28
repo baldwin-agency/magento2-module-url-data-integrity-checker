@@ -30,9 +30,16 @@ class Cache
     public function read(string $identifier): array
     {
         $data = $this->cache->load($this->getModuleCacheIdentifier($identifier)) ?: '{}';
-        // TODO: figure out something better to handle empty data
 
         return json_decode($data, true);
+    }
+
+    public function update(string $identifier, array $data): bool
+    {
+        $currentData = $this->read($identifier);
+        $newData = array_merge($currentData, $data);
+
+        return $this->write($identifier, $newData);
     }
 
     private function getModuleCacheIdentifier(string $identifier): string

@@ -4,9 +4,9 @@ declare(strict_types=1);
 
 namespace Baldwin\UrlDataIntegrityChecker\Console\Command;
 
-use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product\UrlPath as UrlPathChecker;
 use Baldwin\UrlDataIntegrityChecker\Console\ResultOutput;
-use Baldwin\UrlDataIntegrityChecker\Storage\Cache as CacheStorage;
+use Baldwin\UrlDataIntegrityChecker\Storage\Meta as MetaStorage;
+use Baldwin\UrlDataIntegrityChecker\Updater\Catalog\Product\UrlPath as UrlPathUpdater;
 use Magento\Framework\App\Area as AppArea;
 use Magento\Framework\App\State as AppState;
 use Magento\Framework\Console\Cli;
@@ -18,19 +18,16 @@ class CheckProductUrlPaths extends ConsoleCommand
 {
     private $appState;
     private $resultOutput;
-    private $urlPathChecker;
-    private $storage;
+    private $urlPathUpdater;
 
     public function __construct(
         AppState $appState,
         ResultOutput $resultOutput,
-        UrlPathChecker $urlPathChecker,
-        CacheStorage $storage
+        UrlPathUpdater $urlPathUpdater
     ) {
         $this->appState = $appState;
         $this->resultOutput = $resultOutput;
-        $this->urlPathChecker = $urlPathChecker;
-        $this->storage = $storage;
+        $this->urlPathUpdater = $urlPathUpdater;
 
         parent::__construct();
     }
@@ -48,15 +45,12 @@ class CheckProductUrlPaths extends ConsoleCommand
         try {
             $this->appState->setAreaCode(AppArea::AREA_CRONTAB);
 
-            $productData = $this->urlPathChecker->execute();
-            $stored = $this->storage->write(UrlPathChecker::STORAGE_IDENTIFIER, $productData);
+            $productData = $this->urlPathUpdater->refresh(MetaStorage::INITIATOR_CLI);
             $cliResult = $this->resultOutput->outputResult($productData, $output);
 
-            if ($stored) {
-                $output->writeln(
-                    "\n<info>Data was stored in cache and you can now also review it in the admin of Magento</info>"
-                );
-            }
+            $output->writeln(
+                "\n<info>Data was stored in cache and you can now also review it in the admin of Magento</info>"
+            );
 
             return $cliResult;
         } catch (\Throwable $ex) {

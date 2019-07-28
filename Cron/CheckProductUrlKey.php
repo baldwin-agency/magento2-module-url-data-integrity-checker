@@ -9,6 +9,8 @@ use Baldwin\UrlDataIntegrityChecker\Storage\Cache as CacheStorage;
 
 class CheckProductUrlKey
 {
+    const JOB_NAME = 'baldwin_urldataintegritychecker_cron_checkproducturlkey';
+
     private $urlKeyChecker;
     private $storage;
 

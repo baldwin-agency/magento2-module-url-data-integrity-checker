@@ -25,7 +25,7 @@ class Metadata extends Template
         $this->metaStorage = $metaStorage;
     }
 
-    public function getMetadata(): array
+    public function getMetadata()
     {
         $storageIdentifier = $this->getStorageIdentifier();
         if ($storageIdentifier === null || $storageIdentifier === '') {

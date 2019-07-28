@@ -30,9 +30,13 @@ class UrlKey
         $storageIdentifier = UrlKeyChecker::STORAGE_IDENTIFIER;
 
         if ($this->metaStorage->isRefreshing($storageIdentifier)) {
-            throw new AlreadyRefreshingException(__('We are already refreshing the product url key\'s, just have a little patience :)'));
+            $errorMsg = __('We are already refreshing the product url key\'s, just have a little patience 🙂');
+
+            $this->metaStorage->setErrorMessage($storageIdentifier, (string) $errorMsg);
+            throw new AlreadyRefreshingException($errorMsg);
         }
 
+        $this->metaStorage->setErrorMessage($storageIdentifier, '');
         $this->metaStorage->setStartRefreshing($storageIdentifier, $initiator);
 
         $productData = $this->urlKeyChecker->execute();

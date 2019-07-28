@@ -55,6 +55,15 @@ class Meta
         ]);
     }
 
+    public function setErrorMessage(string $storageIdentifier, string $message)
+    {
+        $storageIdentifier .= self::STORAGE_SUFFIX;
+
+        $this->storage->update($storageIdentifier, [
+            'error' => $message,
+        ]);
+    }
+
     public function isRefreshing(string $storageIdentifier): bool
     {
         $storageIdentifier .= self::STORAGE_SUFFIX;
@@ -76,6 +85,15 @@ class Meta
         $storageIdentifier .= self::STORAGE_SUFFIX;
 
         return $this->storage->read($storageIdentifier);
+    }
+
+    public function clearStatus(string $storageIdentifier)
+    {
+        $storageIdentifier .= self::STORAGE_SUFFIX;
+
+        return $this->storage->update($storageIdentifier, [
+            'status' => '',
+        ]);
     }
 
     private function getStartTime(string $storageIdentifier): int

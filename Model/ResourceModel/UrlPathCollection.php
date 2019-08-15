@@ -51,6 +51,11 @@ class UrlPathCollection extends DataCollection implements SearchResultInterface
             }
 
             $this->_setIsLoaded();
+
+            // page the data, need to do this after setting the data as loaded,
+            // otherwise the getCurPage would create a recursive problem
+            $startIndex = ($this->getCurPage() - 1) * $this->getPageSize();
+            $this->_items = array_slice($this->_items, $startIndex, $this->getPageSize());
         }
 
         return $this;

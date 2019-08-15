@@ -32,6 +32,9 @@
             </argument>
         </argument>
     </dataSource>
+    <listingToolbar name="listing_top">
+        <paging name="listing_paging"/>
+    </listingToolbar>
     <columns name="columns">
         <column name="productId">
             <argument name="data" xsi:type="array">

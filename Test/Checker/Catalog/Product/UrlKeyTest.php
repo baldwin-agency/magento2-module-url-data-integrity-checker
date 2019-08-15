@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Baldwin\UrlDataIntegrityChecker\Test\Checker\Catalog\Product;
 
-use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product\UrlKey as UrlKeyChecker;
+use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product\UrlKey\DuplicateUrlKey as UrlKeyChecker;
 use Baldwin\UrlDataIntegrityChecker\Console\Progress;
 use Baldwin\UrlDataIntegrityChecker\Util\Stores as StoresUtil;
 use Magento\Catalog\Model\Attribute\ScopeOverriddenValueFactory as AttributeScopeOverriddenValueFactory;

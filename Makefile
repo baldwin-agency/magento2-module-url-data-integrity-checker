@@ -12,6 +12,7 @@ check: checkstyle checkquality test
 checkstyle:
 	vendor/bin/php-cs-fixer fix --dry-run --diff --stop-on-violation --allow-risky=yes
 	vendor/bin/phpcs --standard=Magento2 --ignore=./vendor/ .
+	vendor/bin/phpcs --standard=PHPCompatibility --runtime-set testVersion 7.0- --ignore=./vendor/ .
 	composer normalize --dry-run
 
 .PHONY: checkquality

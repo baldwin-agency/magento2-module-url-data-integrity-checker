@@ -6500,16 +6500,16 @@
         },
         {
             "name": "phpstan/extension-installer",
-            "version": "1.0.1",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/extension-installer.git",
-                "reference": "9dcaf22162affff49f8f166a18d4ed8bfd71da98"
+                "reference": "b9f4c4e9fe93373a102c982bda5b8e57f901ce33"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/extension-installer/zipball/9dcaf22162affff49f8f166a18d4ed8bfd71da98",
-                "reference": "9dcaf22162affff49f8f166a18d4ed8bfd71da98",
+                "url": "https://api.github.com/repos/phpstan/extension-installer/zipball/b9f4c4e9fe93373a102c982bda5b8e57f901ce33",
+                "reference": "b9f4c4e9fe93373a102c982bda5b8e57f901ce33",
                 "shasum": ""
             },
             "require": {
@@ -6540,7 +6540,7 @@
                 "MIT"
             ],
             "description": "Composer plugin for automatic installation of PHPStan extensions",
-            "time": "2019-05-20T12:22:00+00:00"
+            "time": "2019-09-13T19:07:11+00:00"
         },
         {
             "name": "phpstan/phpdoc-parser",

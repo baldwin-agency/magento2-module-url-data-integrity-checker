@@ -59,11 +59,13 @@ class Metadata extends Template
             }
         }
 
-        if ($metaData['status'] === MetaStorage::STATUS_REFRESHING) {
-            unset($formatted['finished']);
-            unset($formatted['execution_time']);
-        } elseif ($metaData['status'] === MetaStorage::STATUS_FINISHED) {
-            unset($formatted['error']);
+        if (array_key_exists('status', $metaData)) {
+            if ($metaData['status'] === MetaStorage::STATUS_REFRESHING) {
+                unset($formatted['finished']);
+                unset($formatted['execution_time']);
+            } elseif ($metaData['status'] === MetaStorage::STATUS_FINISHED) {
+                unset($formatted['error']);
+            }
         }
 
         return $formatted;

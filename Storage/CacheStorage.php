@@ -7,7 +7,7 @@ namespace Baldwin\UrlDataIntegrityChecker\Storage;
 use Baldwin\UrlDataIntegrityChecker\Exception\SerializationException;
 use Magento\Framework\App\CacheInterface;
 
-class Cache
+class CacheStorage extends AbstractStorage implements StorageInterface
 {
     private $cache;
 
@@ -32,14 +32,6 @@ class Cache
         $data = $this->cache->load($this->getModuleCacheIdentifier($identifier)) ?: '{}';
 
         return json_decode($data, true);
-    }
-
-    public function update(string $identifier, array $data): bool
-    {
-        $currentData = $this->read($identifier);
-        $newData = array_merge($currentData, $data);
-
-        return $this->write($identifier, $newData);
     }
 
     private function getModuleCacheIdentifier(string $identifier): string

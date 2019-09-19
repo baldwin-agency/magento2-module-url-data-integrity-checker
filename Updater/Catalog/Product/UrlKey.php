@@ -6,8 +6,8 @@ namespace Baldwin\UrlDataIntegrityChecker\Updater\Catalog\Product;
 
 use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product\UrlKey as UrlKeyChecker;
 use Baldwin\UrlDataIntegrityChecker\Exception\AlreadyRefreshingException;
-use Baldwin\UrlDataIntegrityChecker\Storage\Cache as CacheStorage;
 use Baldwin\UrlDataIntegrityChecker\Storage\Meta as MetaStorage;
+use Baldwin\UrlDataIntegrityChecker\Storage\StorageInterface;
 
 class UrlKey
 {
@@ -17,7 +17,7 @@ class UrlKey
 
     public function __construct(
         UrlKeyChecker $urlKeyChecker,
-        CacheStorage $storage,
+        StorageInterface $storage,
         MetaStorage $metaStorage
     ) {
         $this->urlKeyChecker = $urlKeyChecker;

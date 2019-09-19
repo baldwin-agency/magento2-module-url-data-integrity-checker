@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Baldwin\UrlDataIntegrityChecker\Model\ResourceModel\Catalog\Product;
 
 use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product\UrlKey as UrlKeyChecker;
-use Baldwin\UrlDataIntegrityChecker\Storage\Cache as CacheStorage;
+use Baldwin\UrlDataIntegrityChecker\Storage\StorageInterface;
 use Magento\Framework\Api\AttributeInterface;
 use Magento\Framework\Api\AttributeValue;
 use Magento\Framework\Api\Search\SearchResultInterface;
@@ -20,7 +20,7 @@ class UrlKeyCollection extends DataCollection implements SearchResultInterface
 
     public function __construct(
         EntityFactoryInterface $entityFactory,
-        CacheStorage $storage
+        StorageInterface $storage
     ) {
         parent::__construct($entityFactory);
 

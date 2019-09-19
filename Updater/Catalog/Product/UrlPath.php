@@ -6,8 +6,8 @@ namespace Baldwin\UrlDataIntegrityChecker\Updater\Catalog\Product;
 
 use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product\UrlPath as UrlPathChecker;
 use Baldwin\UrlDataIntegrityChecker\Exception\AlreadyRefreshingException;
-use Baldwin\UrlDataIntegrityChecker\Storage\Cache as CacheStorage;
 use Baldwin\UrlDataIntegrityChecker\Storage\Meta as MetaStorage;
+use Baldwin\UrlDataIntegrityChecker\Storage\StorageInterface;
 
 class UrlPath
 {
@@ -17,7 +17,7 @@ class UrlPath
 
     public function __construct(
         UrlPathChecker $urlPathChecker,
-        CacheStorage $storage,
+        StorageInterface $storage,
         MetaStorage $metaStorage
     ) {
         $this->urlPathChecker = $urlPathChecker;

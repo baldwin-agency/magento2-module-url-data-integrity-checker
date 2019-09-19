@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Baldwin\UrlDataIntegrityChecker\Storage;
 
-use Baldwin\UrlDataIntegrityChecker\Storage\Cache as CacheStorage;
 use Magento\Framework\Stdlib\DateTime\DateTime;
 
 class Meta
@@ -21,7 +20,7 @@ class Meta
     private $dateTime;
 
     public function __construct(
-        CacheStorage $storage,
+        StorageInterface $storage,
         DateTime $dateTime
     ) {
         $this->storage = $storage;

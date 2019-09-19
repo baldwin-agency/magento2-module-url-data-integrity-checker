@@ -4,12 +4,12 @@ declare(strict_types=1);
 
 namespace Baldwin\UrlDataIntegrityChecker\Test\Storage;
 
-use Baldwin\UrlDataIntegrityChecker\Storage\Cache as CacheStorage;
+use Baldwin\UrlDataIntegrityChecker\Storage\CacheStorage;
 use Magento\Framework\App\Cache as AppCache;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
-class CacheTest extends TestCase
+class CacheStorageTest extends TestCase
 {
     public function testUpdatingNonExisting()
     {

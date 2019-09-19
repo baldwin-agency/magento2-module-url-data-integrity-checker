@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Baldwin\UrlDataIntegrityChecker\Controller\Adminhtml\Product\UrlKey;
+namespace Baldwin\UrlDataIntegrityChecker\Controller\Adminhtml\Catalog\Product\UrlPath;
 
-use Baldwin\UrlDataIntegrityChecker\Cron\CheckProductUrlKey as CheckProductUrlKeyCron;
+use Baldwin\UrlDataIntegrityChecker\Cron\CheckProductUrlPath as CheckProductUrlPathCron;
 use Baldwin\UrlDataIntegrityChecker\Cron\ScheduleJob;
 use Magento\Backend\App\Action as BackendAction;
 use Magento\Backend\App\Action\Context as BackendContext;
@@ -26,7 +26,7 @@ class Refresh extends BackendAction
 
     public function execute()
     {
-        $scheduled = $this->scheduleJob->schedule(CheckProductUrlKeyCron::JOB_NAME);
+        $scheduled = $this->scheduleJob->schedule(CheckProductUrlPathCron::JOB_NAME);
 
         if ($scheduled) {
             $this->getMessageManager()->addSuccess(

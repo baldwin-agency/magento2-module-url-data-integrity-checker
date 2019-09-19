@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Baldwin\UrlDataIntegrityChecker\Controller\Adminhtml\Product\UrlPath;
+namespace Baldwin\UrlDataIntegrityChecker\Controller\Adminhtml\Catalog\Product\UrlPath;
 
 use Magento\Backend\App\Action as BackendAction;
 use Magento\Backend\App\Action\Context as BackendContext;
@@ -28,7 +28,7 @@ class Index extends BackendAction
     {
         /** @var BackendResultPage */
         $resultPage = $this->resultPageFactory->create();
-        $resultPage->setActiveMenu('Baldwin_UrlDataIntegrityChecker::product_urlpath');
+        $resultPage->setActiveMenu('Baldwin_UrlDataIntegrityChecker::catalog_product_urlpath');
         $resultPage->getConfig()->getTitle()->prepend('Data Integrity - Product Url Path');
 
         return $resultPage;

@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Baldwin_UrlDataIntegrityChecker::catalog_data_integrity" title="Data Integrity Checker" translate="title" module="Baldwin_UrlDataIntegrityChecker" parent="Magento_Catalog::catalog" sortOrder="100" dependsOnModule="Magento_Catalog" resource="Baldwin_UrlDataIntegrityChecker::catalog_data_integrity"/>
-        <add id="Baldwin_UrlDataIntegrityChecker::product_urlpath" title="Product Url Path" translate="title" module="Baldwin_UrlDataIntegrityChecker" parent="Baldwin_UrlDataIntegrityChecker::catalog_data_integrity" sortOrder="10" action="baldwin_urldataintegritychecker/product_urlPath" resource="Baldwin_UrlDataIntegrityChecker::catalog_data_integrity"/>
-        <add id="Baldwin_UrlDataIntegrityChecker::product_urlkey"  title="Product Url Key"  translate="title" module="Baldwin_UrlDataIntegrityChecker" parent="Baldwin_UrlDataIntegrityChecker::catalog_data_integrity" sortOrder="20" action="baldwin_urldataintegritychecker/product_urlKey"  resource="Baldwin_UrlDataIntegrityChecker::catalog_data_integrity"/>
+        <add id="Baldwin_UrlDataIntegrityChecker::catalog_data_integrity"  title="Data Integrity Checker" translate="title" module="Baldwin_UrlDataIntegrityChecker" parent="Magento_Catalog::catalog"                                sortOrder="100" dependsOnModule="Magento_Catalog"                               resource="Baldwin_UrlDataIntegrityChecker::catalog_data_integrity"/>
+        <add id="Baldwin_UrlDataIntegrityChecker::catalog_product_urlpath" title="Product Url Path"       translate="title" module="Baldwin_UrlDataIntegrityChecker" parent="Baldwin_UrlDataIntegrityChecker::catalog_data_integrity" sortOrder="10" action="baldwin_urldataintegritychecker/catalog_product_urlPath" resource="Baldwin_UrlDataIntegrityChecker::catalog_data_integrity"/>
+        <add id="Baldwin_UrlDataIntegrityChecker::catalog_product_urlkey"  title="Product Url Key"        translate="title" module="Baldwin_UrlDataIntegrityChecker" parent="Baldwin_UrlDataIntegrityChecker::catalog_data_integrity" sortOrder="20" action="baldwin_urldataintegritychecker/catalog_product_urlKey"  resource="Baldwin_UrlDataIntegrityChecker::catalog_data_integrity"/>
     </menu>
 </config>

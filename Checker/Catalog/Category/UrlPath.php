@@ -42,7 +42,7 @@ class UrlPath
 
         $storeIds = $this->storesUtil->getAllStoreIds();
         foreach ($storeIds as $storeId) {
-            $allCategories = $this->getAllCategoriesWithStoreId($storeId);
+            $allCategories = $this->getAllVisibleCategoriesWithStoreId($storeId);
 
             foreach ($allCategories as $category) {
                 if (!$this->doesCategoryUrlPathMatchCalculatedUrlPath($category, $storeId)) {
@@ -63,7 +63,7 @@ class UrlPath
         return $problems;
     }
 
-    private function getAllCategoriesWithStoreId($storeId): CategoryCollection
+    private function getAllVisibleCategoriesWithStoreId($storeId): CategoryCollection
     {
         $categories = $this->categoryCollectionFactory->create()
             ->addAttributeToSelect('name')
@@ -105,18 +105,23 @@ class UrlPath
     {
         $this->calculatedUrlPathPerCategoryAndStoreId = [];
 
+        $invisibleRootIds = $this->getAllInvisibleRootIds();
         $storeIds = $this->storesUtil->getAllStoreIds();
         foreach ($storeIds as $storeId) {
             $tempCatData = [];
 
-            $allCategories = $this->getAllCategoriesWithStoreId($storeId);
+            $allCategories = $this->getAllVisibleCategoriesWithStoreId($storeId);
             foreach ($allCategories as $category) {
                 $categoryId = (int) $category->getId();
 
+                $path = $category->getPath();
+                foreach ($invisibleRootIds as $rootId) {
+                    $path = preg_replace('#^' . preg_quote($rootId) . self::URL_PATH_SEPARATOR . '#', '', $path);
+                }
+
                 $tempCatData[$categoryId] = [
                     'url_key' => $category->getUrlKey(),
-                     // TODO: don't hardcode '1/2/' but figure out a proper solution here !!!!
-                    'path'    => str_replace('1/2/', '', $category->getPath()),
+                    'path'    => $path,
                 ];
             }
 
@@ -139,6 +144,18 @@ class UrlPath
                     implode(self::URL_PATH_SEPARATOR, $calculatedUrlPath);
             }
         }
+    }
+
+    private function getAllInvisibleRootIds(): array
+    {
+        $categoryIds = $this->categoryCollectionFactory->create()
+            ->addAttributeToSelect('name')
+            ->addAttributeToSelect('url_path')
+            ->addAttributeToSelect('url_key')
+            ->addAttributeToFilter('level', ['lteq' => 1])
+            ->getAllIds();
+
+        return $categoryIds;
     }
 
     private function getArrayKeyForCategoryAndStoreId(int $categoryId, int $storeId): string

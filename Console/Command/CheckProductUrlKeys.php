@@ -75,7 +75,9 @@ class CheckProductUrlKeys extends ConsoleCommand
 
             return $cliResult;
         } catch (\Throwable $ex) {
-            $output->writeln("<error>An unexpected exception occured: '{$ex->getMessage()}'</error>");
+            $output->writeln(
+                "<error>An unexpected exception occured: '{$ex->getMessage()}'</error>\n{$ex->getTraceAsString()}"
+            );
         }
 
         return Cli::RETURN_FAILURE;

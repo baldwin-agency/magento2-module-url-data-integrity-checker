@@ -5,8 +5,8 @@ declare(strict_types=1);
 namespace Baldwin\UrlDataIntegrityChecker\Console\Command;
 
 use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product\UrlKey as UrlKeyChecker;
+use Baldwin\UrlDataIntegrityChecker\Console\ProductResultOutput;
 use Baldwin\UrlDataIntegrityChecker\Console\Progress;
-use Baldwin\UrlDataIntegrityChecker\Console\ResultOutput;
 use Baldwin\UrlDataIntegrityChecker\Storage\Meta as MetaStorage;
 use Baldwin\UrlDataIntegrityChecker\Updater\Catalog\Product\UrlKey as UrlKeyUpdater;
 use Magento\Framework\App\Area as AppArea;
@@ -28,7 +28,7 @@ class CheckProductUrlKeys extends ConsoleCommand
     public function __construct(
         AppState $appState,
         Progress $progress,
-        ResultOutput $resultOutput,
+        ProductResultOutput $resultOutput,
         UrlKeyUpdater $urlKeyUpdater,
         MetaStorage $metaStorage
     ) {

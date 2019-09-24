@@ -49,10 +49,10 @@ class UrlPath
                     $correctUrlPath = $this->getCalculatedUrlPathForCategory($category, $storeId);
 
                     $problems[] = [
-                        'productId' => (int) $category->getId(),
-                        'name'      => $category->getName(),
-                        'storeId'   => $storeId,
-                        'problem'   => sprintf(self::PROBLEM_DESCRIPTION, $category->getUrlPath(), $correctUrlPath),
+                        'catId'   => (int) $category->getId(),
+                        'name'    => $category->getName(),
+                        'storeId' => $storeId,
+                        'problem' => sprintf(self::PROBLEM_DESCRIPTION, $category->getUrlPath(), $correctUrlPath),
                     ];
                 }
             }

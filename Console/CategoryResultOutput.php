@@ -8,28 +8,28 @@ use Magento\Framework\Console\Cli;
 use Symfony\Component\Console\Helper\Table as ConsoleTable;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class ResultOutput
+class CategoryResultOutput
 {
-    public function outputResult(array $productData, OutputInterface $output): int
+    public function outputResult(array $categoryData, OutputInterface $output): int
     {
-        if (empty($productData)) {
+        if (empty($categoryData)) {
             $output->writeln('<info>No problems found!</info>');
 
             return Cli::RETURN_SUCCESS;
         }
 
         // sort by productId and storeId
-        usort($productData, function ($prodA, $prodB) {
-            if ($prodA['productId'] === $prodB['productId']) {
-                return $prodA['storeId'] <=> $prodB['storeId'];
+        usort($categoryData, function ($catA, $catB) {
+            if ($catA['catId'] === $catB['catId']) {
+                return $catA['storeId'] <=> $catB['storeId'];
             }
 
-            return $prodA['productId'] <=> $prodB['productId'];
+            return $catA['catId'] <=> $catB['catId'];
         });
 
         $table = new ConsoleTable($output);
-        $table->setHeaders(['Product ID', 'SKU', 'Store ID', 'Problem']);
-        $table->setRows($productData);
+        $table->setHeaders(['Category ID', 'Name', 'Store ID', 'Problem']);
+        $table->setRows($categoryData);
 
         $table->render();
 

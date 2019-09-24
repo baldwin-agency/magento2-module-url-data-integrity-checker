@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Baldwin\UrlDataIntegrityChecker\Console\Command;
 
 use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product\UrlPath as UrlPathChecker;
-use Baldwin\UrlDataIntegrityChecker\Console\ResultOutput;
+use Baldwin\UrlDataIntegrityChecker\Console\ProductResultOutput;
 use Baldwin\UrlDataIntegrityChecker\Storage\Meta as MetaStorage;
 use Baldwin\UrlDataIntegrityChecker\Updater\Catalog\Product\UrlPath as UrlPathUpdater;
 use Magento\Framework\App\Area as AppArea;
@@ -25,7 +25,7 @@ class CheckProductUrlPaths extends ConsoleCommand
 
     public function __construct(
         AppState $appState,
-        ResultOutput $resultOutput,
+        ProductResultOutput $resultOutput,
         UrlPathUpdater $urlPathUpdater,
         MetaStorage $metaStorage
     ) {

@@ -5,28 +5,35 @@ declare(strict_types=1);
 namespace Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Category;
 
 use Baldwin\UrlDataIntegrityChecker\Util\Stores as StoresUtil;
+use Magento\Catalog\Api\Data\CategoryInterface;
+use Magento\Catalog\Model\Attribute\ScopeOverriddenValueFactory as AttributeScopeOverriddenValueFactory;
 use Magento\Catalog\Model\Category;
 use Magento\Catalog\Model\ResourceModel\Category\Collection as CategoryCollection;
 use Magento\Catalog\Model\ResourceModel\Category\CollectionFactory as CategoryCollectionFactory;
 use Magento\Framework\Exception\LocalizedException;
+use Magento\Store\Model\Store;
 
 class UrlPath
 {
-    const STORAGE_IDENTIFIER = 'category-url-path';
+    const URL_PATH_ATTRIBUTE = 'url_path';
     const URL_PATH_SEPARATOR = '/';
     const PROBLEM_DESCRIPTION = 'Category has an incorrect url_path value "%s". It should be "%s"';
+    const STORAGE_IDENTIFIER = 'category-url-path';
 
     private $storesUtil;
     private $categoryCollectionFactory;
+    private $attributeScopeOverriddenValueFactory;
 
     private $calculatedUrlPathPerCategoryAndStoreId;
 
     public function __construct(
         StoresUtil $storesUtil,
-        CategoryCollectionFactory $categoryCollectionFactory
+        CategoryCollectionFactory $categoryCollectionFactory,
+        AttributeScopeOverriddenValueFactory $attributeScopeOverriddenValueFactory
     ) {
         $this->storesUtil = $storesUtil;
         $this->categoryCollectionFactory = $categoryCollectionFactory;
+        $this->attributeScopeOverriddenValueFactory = $attributeScopeOverriddenValueFactory;
     }
 
     public function execute(): array
@@ -45,6 +52,17 @@ class UrlPath
             $allCategories = $this->getAllVisibleCategoriesWithStoreId($storeId);
 
             foreach ($allCategories as $category) {
+                $isOverridden = $this
+                    ->attributeScopeOverriddenValueFactory
+                    ->create()
+                    ->containsValue(CategoryInterface::class, $category, self::URL_PATH_ATTRIBUTE, $storeId)
+                ;
+
+                // we don't care about non overwritten values
+                if (!$isOverridden && $storeId !== Store::DEFAULT_STORE_ID) {
+                    continue;
+                }
+
                 if (!$this->doesCategoryUrlPathMatchCalculatedUrlPath($category, $storeId)) {
                     $correctUrlPath = $this->getCalculatedUrlPathForCategory($category, $storeId);
 

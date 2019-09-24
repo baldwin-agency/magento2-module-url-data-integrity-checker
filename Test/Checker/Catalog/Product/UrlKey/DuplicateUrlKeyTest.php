@@ -126,12 +126,6 @@ class DuplicateUrlKeyTest extends TestCase
             $attributeScopeOverriddenValueFactoryMock
         );
         $results = $urlKeyChecker->execute();
-        // remove hashed id, we don't care about it here
-        $results = array_map(function ($prod) {
-            unset($prod['hash']);
-
-            return $prod;
-        }, $results);
 
         $this->assertEquals($expectedResults, $results);
     }

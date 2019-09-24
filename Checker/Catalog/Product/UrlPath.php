@@ -69,7 +69,7 @@ class UrlPath
 
     private function getProductsWithProblems(int $storeId, ProductCollection $collection): array
     {
-        $products = [];
+        $problems = [];
 
         foreach ($collection as $product) {
             $isOverridden = $this
@@ -79,17 +79,15 @@ class UrlPath
             ;
 
             if ($isOverridden || $storeId === Store::DEFAULT_STORE_ID) {
-                $product = [
+                $problems[] = [
                     'productId' => (int) $product->getEntityId(),
                     'sku'       => $product->getSku(),
                     'storeId'   => $storeId,
                     'problem'   => self::PROBLEM_DESCRIPTION,
                 ];
-                $product['hash'] = sha1(json_encode($product) ?: '');
-                $products[] = $product;
             }
         }
 
-        return $products;
+        return $problems;
     }
 }

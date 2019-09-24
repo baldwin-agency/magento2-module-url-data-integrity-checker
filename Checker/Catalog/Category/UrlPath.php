@@ -48,14 +48,12 @@ class UrlPath
                 if (!$this->doesCategoryUrlPathMatchCalculatedUrlPath($category, $storeId)) {
                     $correctUrlPath = $this->getCalculatedUrlPathForCategory($category, $storeId);
 
-                    $problemData = [
+                    $problems[] = [
                         'productId' => (int) $category->getId(),
                         'name'      => $category->getName(),
                         'storeId'   => $storeId,
                         'problem'   => sprintf(self::PROBLEM_DESCRIPTION, $category->getUrlPath(), $correctUrlPath),
                     ];
-                    $problemData['hash'] = sha1(json_encode($problemData) ?: '');
-                    $problems[] = $problemData;
                 }
             }
         }

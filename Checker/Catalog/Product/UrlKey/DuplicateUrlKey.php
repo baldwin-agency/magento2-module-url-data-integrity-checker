@@ -122,7 +122,7 @@ class DuplicateUrlKey
 
     private function getProductsWithDuplicatedUrlKeyProblems(): array
     {
-        $products = [];
+        $problems = [];
 
         $storeIds = $this->storesUtil->getAllStoreIds();
         $inheritedProductUrlKeyData = [];
@@ -174,7 +174,7 @@ class DuplicateUrlKey
                     $conflictingProductId = (int) $conflictingProductId;
 
                     if ($storeId === $conflictingStoreId) {
-                        $product = [
+                        $problems[] = [
                             'productId' => $productId,
                             'sku'       => $this->cachedProductSkusByIds[$productId],
                             'storeId'   => $storeId,
@@ -185,15 +185,13 @@ class DuplicateUrlKey
                                 $conflictingStoreId
                             ),
                         ];
-                        $product['hash'] = sha1(json_encode($product) ?: '');
-                        $products[] = $product;
                     // if same product id, we don't care,
                     // since it wouldn't be a conflict if they exist in another storeview
                     } elseif ($productId !== $conflictingProductId) {
                         if (array_key_exists("$conflictingStoreId-$productId", $inheritedProductUrlKeyData)
                             && $inheritedProductUrlKeyData["$conflictingStoreId-$productId"] === $urlKey
                         ) {
-                            $productOne = [
+                            $problems[] = [
                                 'productId' => $productId,
                                 'sku'       => $this->cachedProductSkusByIds[$productId],
                                 'storeId'   => $storeId,
@@ -204,8 +202,7 @@ class DuplicateUrlKey
                                     $conflictingStoreId
                                 ),
                             ];
-                            $productOne['hash'] = sha1(json_encode($productOne) ?: '');
-                            $productTwo = [
+                            $problems[] = [
                                 'productId' => $conflictingProductId,
                                 'sku'       => $this->cachedProductSkusByIds[$conflictingProductId],
                                 'storeId'   => $conflictingStoreId,
@@ -216,15 +213,12 @@ class DuplicateUrlKey
                                     $storeId
                                 ),
                             ];
-                            $productTwo['hash'] = sha1(json_encode($productTwo) ?: '');
-                            $products[] = $productOne;
-                            $products[] = $productTwo;
                         }
                     }
                 }
             }
         }
 
-        return $products;
+        return $problems;
     }
 }

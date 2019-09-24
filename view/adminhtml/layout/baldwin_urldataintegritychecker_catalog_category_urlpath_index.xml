@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <uiComponent name="baldwin_urldataintegritychecker_grid_catalog_category_urlpath"/>
+        </referenceContainer>
+        <referenceContainer name="page.main.actions">
+            <block class="Baldwin\UrlDataIntegrityChecker\Block\Adminhtml\Metadata" name="baldwin.urldataintegritychecker.block.adminhtml.metadata">
+                <arguments>
+                    <argument name="storage_identifier" xsi:type="string">category-url-path</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

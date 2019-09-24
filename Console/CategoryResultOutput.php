@@ -18,7 +18,7 @@ class CategoryResultOutput
             return Cli::RETURN_SUCCESS;
         }
 
-        // sort by productId and storeId
+        // sort by catId and storeId
         usort($categoryData, function ($catA, $catB) {
             if ($catA['catId'] === $catB['catId']) {
                 return $catA['storeId'] <=> $catB['storeId'];

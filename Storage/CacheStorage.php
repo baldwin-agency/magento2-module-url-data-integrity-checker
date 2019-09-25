@@ -21,7 +21,9 @@ class CacheStorage extends AbstractStorage implements StorageInterface
     {
         $encodedData = json_encode($data, JSON_UNESCAPED_UNICODE);
         if ($encodedData === false) {
-            throw new SerializationException(__('Can\'t encode data as json to save in cache, error: %1', json_last_error_msg()));
+            throw new SerializationException(
+                __('Can\'t encode data as json to save in cache, error: %1', json_last_error_msg())
+            );
         }
 
         return $this->cache->save($encodedData, $this->getModuleCacheIdentifier($identifier));

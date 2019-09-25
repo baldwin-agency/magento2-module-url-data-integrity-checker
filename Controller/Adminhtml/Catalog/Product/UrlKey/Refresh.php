@@ -30,7 +30,9 @@ class Refresh extends BackendAction
 
         if ($scheduled) {
             $this->getMessageManager()->addSuccess(
-                (string) __('The refresh job was scheduled, please check back in a few moments to see the updated results')
+                (string) __(
+                    'The refresh job was scheduled, please check back in a few moments to see the updated results'
+                )
             );
         } else {
             $this->getMessageManager()->addError(

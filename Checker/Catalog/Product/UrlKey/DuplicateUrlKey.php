@@ -16,7 +16,8 @@ use Magento\Store\Model\Store;
 class DuplicateUrlKey
 {
     const DUPLICATED_PROBLEM_DESCRIPTION =
-        'Product has a duplicated url_key value (%s). It\'s the same as another product (ID: %s, Store: %s)';
+          'Product has a duplicated url_key value (%s). It\'s the same as another product (ID: %s, Store: %s).'
+        . ' Please fix because this will cause problems.';
 
     private $storesUtil;
     private $progress;

@@ -17,6 +17,7 @@ return PhpCsFixer\Config::create()
         'phpdoc_separation'      => false,
         'phpdoc_summary'         => false,
         'yoda_style'             => null,
+        'single_line_throw'      => false,
     ])
     ->setFinder($finder)
 ;

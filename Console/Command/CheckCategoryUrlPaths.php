@@ -65,7 +65,7 @@ class CheckCategoryUrlPaths extends ConsoleCommand
             $cliResult = $this->resultOutput->outputResult($categoryData, $output);
 
             $output->writeln(
-                "\n<info>Data was stored in cache and you can now also review it in the admin of Magento</info>"
+                "\n<info>Data was stored and you can now also review it in the admin of Magento</info>"
             );
 
             return $cliResult;

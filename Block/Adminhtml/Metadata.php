@@ -11,8 +11,6 @@ use Magento\Backend\Block\Template\Context as BackendBlockContext;
 
 class Metadata extends Template
 {
-    protected $_template = 'Baldwin_UrlDataIntegrityChecker::metadata.phtml';
-
     private $metaStorage;
 
     public function __construct(

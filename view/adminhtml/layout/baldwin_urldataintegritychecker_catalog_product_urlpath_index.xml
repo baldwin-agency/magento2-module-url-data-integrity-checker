@@ -5,7 +5,7 @@
             <uiComponent name="baldwin_urldataintegritychecker_grid_catalog_product_urlpath"/>
         </referenceContainer>
         <referenceContainer name="page.main.actions">
-            <block class="Baldwin\UrlDataIntegrityChecker\Block\Adminhtml\Metadata" name="baldwin.urldataintegritychecker.block.adminhtml.metadata">
+            <block class="Baldwin\UrlDataIntegrityChecker\Block\Adminhtml\Metadata" name="baldwin.urldataintegritychecker.block.adminhtml.metadata" template="Baldwin_UrlDataIntegrityChecker::metadata.phtml">
                 <arguments>
                     <argument name="storage_identifier" xsi:type="string">product-url-path</argument>
                 </arguments>

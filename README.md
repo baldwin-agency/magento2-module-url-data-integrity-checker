@@ -3,7 +3,7 @@
 ## Purpose
 
 The purpose of this module is to give store owners of a Magento 2 shop insight into what url-related problems they have in their products, categories and url rewrites.  
-It was explicitly chosen not to have automated fixers for these problems, since fixing these issues can have an significant SEO impact.  
+It was explicitly chosen not to have automated fixers for these problems, since fixing these issues can have a significant SEO impact.  
 It should be up to the store owner to figure out how he/she wants to fix these problems. Doing this with an automated tool might have a negative impact on SEO rankings, hence why it only reports problems and doesn't try to fix them.
 
 ## Implemented features

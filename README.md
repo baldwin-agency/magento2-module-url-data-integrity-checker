@@ -28,16 +28,24 @@ It should be up to the store owner to figure out how he/she wants to fix these p
 This module should be compatible with Magento 2.1.x, 2.2.x, and 2.3.x versions.  
 Some code in this module is using old ways of doing things. It could have been written in a more modern way (using message queues instead of cronjobs, use newer syntax for UI components, ...). But we wanted this module to be compatible with older versions of Magento, so we've chosen this route for now.
 
+The module should be compatible with PHP 7.0, 7.1, 7.2 and 7.3
+
 ## Installation
 
 You can use composer to install this module:
 
 ```sh
 composer config repositories.magento2-module-url-data-integrity-checker vcs https://github.com/baldwin-agency/magento2-module-url-data-integrity-checker
-composer require baldwin/magento2-module-url-data-integrity-checker
+composer require baldwin/magento2-module-url-data-integrity-checker:dev-master
 ```
 
 Or download the code and put all the files in the directory `app/code/Baldwin/UrlDataIntegrityChecker`
+
+After which you can then activate it in Magento using:
+
+```sh
+bin/magento setup:upgrade
+```
 
 ## Usage
 
@@ -71,4 +79,4 @@ After cloning your fork:
 
 1. Create an `auth.json` file with your credentials for https://repo.magento.com/
 1. Run `composer install`
-1. Make sure running `make check` doesn't report problems with suggested changes
+1. Make sure running `make check` doesn't report problems with proposed changes

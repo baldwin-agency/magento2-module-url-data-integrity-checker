@@ -44,6 +44,7 @@ Or download the code and put all the files in the directory `app/code/Baldwin/Ur
 After which you can then activate it in Magento using:
 
 ```sh
+bin/magento module:enable Baldwin_UrlDataIntegrityChecker
 bin/magento setup:upgrade
 ```
 

@@ -20,4 +20,16 @@
             </argument>
         </arguments>
     </type>
+    <type name="Baldwin\UrlDataIntegrityChecker\Console\Command\CheckProductUrlPaths">
+        <arguments>
+            <argument name="urlPathUpdater" xsi:type="object">Baldwin\UrlDataIntegrityChecker\Updater\Catalog\Product\UrlPath\Proxy</argument>
+            <argument name="metaStorage" xsi:type="object">Baldwin\UrlDataIntegrityChecker\Storage\Meta\Proxy</argument>
+        </arguments>
+    </type>
+    <type name="Baldwin\UrlDataIntegrityChecker\Console\Command\CheckCategoryUrlPaths">
+        <arguments>
+            <argument name="urlPathUpdater" xsi:type="object">Baldwin\UrlDataIntegrityChecker\Updater\Catalog\Category\UrlPath\Proxy</argument>
+            <argument name="metaStorage" xsi:type="object">Baldwin\UrlDataIntegrityChecker\Storage\Meta\Proxy</argument>
+        </arguments>
+    </type>
 </config>

@@ -3,7 +3,7 @@
     <preference for="Baldwin\UrlDataIntegrityChecker\Storage\StorageInterface" type="Baldwin\UrlDataIntegrityChecker\Storage\FileStorage" />
     <type name="Magento\Framework\Console\CommandList">
         <arguments>
-            <argument name="commands">
+            <argument name="commands" xsi:type="array">
                 <item name="baldwin_urldataintegritychecker_console_command_checkproducturlkeys"   xsi:type="object">Baldwin\UrlDataIntegrityChecker\Console\Command\CheckProductUrlKeys</item>
                 <item name="baldwin_urldataintegritychecker_console_command_checkproducturlpaths"  xsi:type="object">Baldwin\UrlDataIntegrityChecker\Console\Command\CheckProductUrlPaths</item>
                 <item name="baldwin_urldataintegritychecker_console_command_checkcategoryurlpaths" xsi:type="object">Baldwin\UrlDataIntegrityChecker\Console\Command\CheckCategoryUrlPaths</item>

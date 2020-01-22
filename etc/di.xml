@@ -20,16 +20,11 @@
             </argument>
         </arguments>
     </type>
-    <type name="Baldwin\UrlDataIntegrityChecker\Console\Command\CheckProductUrlPaths">
+    <type name="Baldwin\UrlDataIntegrityChecker\Storage\Meta">
         <arguments>
-            <argument name="urlPathUpdater" xsi:type="object">Baldwin\UrlDataIntegrityChecker\Updater\Catalog\Product\UrlPath\Proxy</argument>
-            <argument name="metaStorage" xsi:type="object">Baldwin\UrlDataIntegrityChecker\Storage\Meta\Proxy</argument>
-        </arguments>
-    </type>
-    <type name="Baldwin\UrlDataIntegrityChecker\Console\Command\CheckCategoryUrlPaths">
-        <arguments>
-            <argument name="urlPathUpdater" xsi:type="object">Baldwin\UrlDataIntegrityChecker\Updater\Catalog\Category\UrlPath\Proxy</argument>
-            <argument name="metaStorage" xsi:type="object">Baldwin\UrlDataIntegrityChecker\Storage\Meta\Proxy</argument>
+            <argument name="dateTime" xsi:type="object">
+                \Magento\Framework\Stdlib\DateTime\DateTime\Proxy
+            </argument>
         </arguments>
     </type>
 </config>

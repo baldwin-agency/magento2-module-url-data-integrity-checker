@@ -56,6 +56,12 @@ class ScheduleJob
     {
         $version = $this->productMetadata->getVersion();
 
+        // When running on a version of Magento in development by cloning the repo,
+        // the version will be for example 'dev-2.4-develop',
+        // stripping of 'dev-' from the start will still execute the correct version check here
+        // '?:' exists to satisfy static tests because preg_replace could potentially return 'null'
+        $version = preg_replace('/^dev\-/', '', $version) ?: $version;
+
         if (version_compare($version, '2.2.0') >= 0) {
             return $this->dateTime->gmtTimestamp();
         }

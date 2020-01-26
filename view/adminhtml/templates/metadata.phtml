@@ -1,4 +1,6 @@
 <?php
+    use Baldwin\UrlDataIntegrityChecker\Storage\Meta as MetaStorage;
+
     $metadata = $block->getMetadata();
 ?>
 <style>
@@ -16,19 +18,22 @@
     }
 </style>
 <div class="data-integrity-meta-data" style="float: left">
+    <?php if (isset($metadata['status'])): ?>
     <h2><?= $block->escapeHtml(__('Info')) ?></h2>
     <dl>
         <dt><?= $block->escapeHtml(__('Status')) ?>:</dt>
         <dd><?= $block->escapeHtml($metadata['status'] ?? '') ?></dd>
-        <dt><?= $block->escapeHtml(__('Started refreshing')) ?>:</dt>
-        <dd><?= $block->escapeHtml($metadata['started'] ?? '') ?></dd>
-        <?php if (isset($metadata['finished'])): ?>
-            <dt><?= $block->escapeHtml(__('Finished refreshing')) ?>:</dt>
-            <dd><?= $block->escapeHtml($metadata['finished'] ?? '') ?></dd>
-        <?php endif; ?>
-        <?php if (isset($metadata['execution_time'])): ?>
-            <dt><?= $block->escapeHtml(__('Execution time')) ?>:</dt>
-            <dd><?= $block->escapeHtml($metadata['execution_time'] ?? '') ?></dd>
+        <?php if ($metadata['status'] !== MetaStorage::STATUS_PENDING): ?>
+            <dt><?= $block->escapeHtml(__('Started refreshing')) ?>:</dt>
+            <dd><?= $block->escapeHtml($metadata['started'] ?? '') ?></dd>
+            <?php if (isset($metadata['finished'])): ?>
+                <dt><?= $block->escapeHtml(__('Finished refreshing')) ?>:</dt>
+                <dd><?= $block->escapeHtml($metadata['finished'] ?? '') ?></dd>
+            <?php endif; ?>
+            <?php if (isset($metadata['execution_time'])): ?>
+                <dt><?= $block->escapeHtml(__('Execution time')) ?>:</dt>
+                <dd><?= $block->escapeHtml($metadata['execution_time'] ?? '') ?></dd>
+            <?php endif; ?>
         <?php endif; ?>
         <dt><?= $block->escapeHtml(__('Initiator')) ?>:</dt>
         <dd><?= $block->escapeHtml($metadata['initiator'] ?? '') ?></dd>
@@ -37,4 +42,5 @@
             <dd><?= $block->escapeHtml($metadata['error'] ?? '') ?></dd>
         <?php endif; ?>
     </dl>
+    <?php endif; ?>
 </div>

@@ -4,12 +4,14 @@ declare(strict_types=1);
 
 namespace Baldwin\UrlDataIntegrityChecker\Storage;
 
+use Baldwin\UrlDataIntegrityChecker\Exception\AlreadyRefreshingException;
 use Magento\Framework\Stdlib\DateTime\DateTime;
 
 class Meta
 {
     const STORAGE_SUFFIX = '-meta';
 
+    const STATUS_PENDING = 'pending';
     const STATUS_REFRESHING = 'refreshing';
     const STATUS_FINISHED = 'finished';
 
@@ -25,6 +27,26 @@ class Meta
     ) {
         $this->storage = $storage;
         $this->dateTime = $dateTime;
+    }
+
+    public function setPending(string $storageIdentifier, string $initiator)
+    {
+        if ($this->isRefreshing($storageIdentifier)) {
+            throw new AlreadyRefreshingException(__(
+                'We are already refreshing this checker. ' .
+                'If you believe this is an error, clear it by providing the \'--force\' flag using the command line ' .
+                'in the appropriate integrity check command'
+            ));
+        }
+
+        $storageIdentifier .= self::STORAGE_SUFFIX;
+
+        $this->storage->update($storageIdentifier, [
+            'initiator' => $initiator,
+            'started'   => 0,
+            'finished'  => 0,
+            'status'    => self::STATUS_PENDING,
+        ]);
     }
 
     public function setStartRefreshing(string $storageIdentifier, string $initiator)

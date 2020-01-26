@@ -20,4 +20,11 @@
             </argument>
         </arguments>
     </type>
+    <type name="Baldwin\UrlDataIntegrityChecker\Storage\Meta">
+        <arguments>
+            <argument name="dateTime" xsi:type="object">
+                \Magento\Framework\Stdlib\DateTime\DateTime\Proxy
+            </argument>
+        </arguments>
+    </type>
 </config>

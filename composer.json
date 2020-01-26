@@ -22,8 +22,8 @@
     },
     "require-dev": {
         "bitexpert/phpstan-magento": "dev-master",
+        "ergebnis/composer-normalize": "^2.2",
         "friendsofphp/php-cs-fixer": "^2.15",
-        "localheinz/composer-normalize": "^1.2",
         "magento/magento-coding-standard": "^5.0",
         "phpcompatibility/php-compatibility": "^9.2",
         "phpstan/extension-installer": "^1.0",

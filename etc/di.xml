@@ -20,11 +20,15 @@
             </argument>
         </arguments>
     </type>
+    <!--
+    We need to proxy the creating of a DateTime object,
+    because it tries to talk to the database and we don't want that to happen already when injecting this argument in a constructor,
+    it breaks running integration tests for example
+    See: https://github.com/baldwin-agency/magento2-module-url-data-integrity-checker/issues/2
+    -->
     <type name="Baldwin\UrlDataIntegrityChecker\Storage\Meta">
         <arguments>
-            <argument name="dateTime" xsi:type="object">
-                \Magento\Framework\Stdlib\DateTime\DateTime\Proxy
-            </argument>
+            <argument name="dateTime" xsi:type="object">\Magento\Framework\Stdlib\DateTime\DateTime\Proxy</argument>
         </arguments>
     </type>
 </config>

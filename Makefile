@@ -33,6 +33,7 @@ checkquality:
 	xmllint --noout                                                                view/adminhtml/ui_component/baldwin_urldataintegritychecker_grid_catalog_product_urlpath.xml # schema validation doesn't work here since the xsd includes another xsd ..
 
 	vendor/bin/phpstan analyse
+	vendor/bin/psalm
 
 .PHONY: test
 test:

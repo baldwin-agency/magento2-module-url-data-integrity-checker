@@ -28,7 +28,8 @@
         "phpcompatibility/php-compatibility": "^9.2",
         "phpstan/extension-installer": "^1.0",
         "phpstan/phpstan": "^0.11.12",
-        "phpunit/phpunit": "^7.5"
+        "phpunit/phpunit": "^7.5",
+        "vimeo/psalm": "^3.9"
     },
     "config": {
         "sort-packages": true

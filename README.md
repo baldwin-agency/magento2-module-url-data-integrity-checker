@@ -47,7 +47,7 @@ bin/magento setup:upgrade
 
 ## Usage
 
-There are some automatic cronjobs running every night at 02u10, 02u20 and 02u30 which will run the various checkers of this module.  
+There are some automatic cronjobs running every night at 02:10, 02:20 and 02:30 which will run the various checkers of this module.  
 You can also opt to manually refresh one of the checkers in the Magento admin, which will schedule one of the cronjobs to be ran the next minute. You'll have to wait a few minutes (depending on the number of problems and how big your catalog is) before you'll see the results appearing. You'll need to refresh the page yourself btw, it won't happen by itself.
 
 There are also some cli commands you can execute, which will give you instant feedback about found problems, and will also store that data so you can see them in the Magento admin:

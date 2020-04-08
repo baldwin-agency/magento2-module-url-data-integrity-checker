@@ -5258,12 +5258,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bitExpert/phpstan-magento.git",
-                "reference": "ebf064925ae2f4a884d5646f30e698b293d128d2"
+                "reference": "76410fc2d56f833728d3cd3978eb47e17f152f3a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bitExpert/phpstan-magento/zipball/ebf064925ae2f4a884d5646f30e698b293d128d2",
-                "reference": "ebf064925ae2f4a884d5646f30e698b293d128d2",
+                "url": "https://api.github.com/repos/bitExpert/phpstan-magento/zipball/76410fc2d56f833728d3cd3978eb47e17f152f3a",
+                "reference": "76410fc2d56f833728d3cd3978eb47e17f152f3a",
                 "shasum": ""
             },
             "require": {
@@ -5307,7 +5307,7 @@
                 }
             ],
             "description": "PHPStan Magento Extension",
-            "time": "2020-04-07T07:18:48+00:00"
+            "time": "2020-04-08T19:45:20+00:00"
         },
         {
             "name": "doctrine/annotations",

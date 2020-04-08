@@ -26,6 +26,7 @@ class UrlPath
     private $categoryCollectionFactory;
     private $attributeScopeOverriddenValueFactory;
 
+    /** @var array */
     private $calculatedUrlPathPerCategoryAndStoreId;
 
     public function __construct(
@@ -81,7 +82,7 @@ class UrlPath
         return $problems;
     }
 
-    private function getAllVisibleCategoriesWithStoreId($storeId): CategoryCollection
+    private function getAllVisibleCategoriesWithStoreId(int $storeId): CategoryCollection
     {
         $categories = $this->categoryCollectionFactory->create()
             ->addAttributeToSelect('name')

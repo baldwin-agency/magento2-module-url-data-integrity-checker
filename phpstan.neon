@@ -1,7 +1,12 @@
 parameters:
     level: 7
     inferPrivatePropertyTypeFromConstructor: true
+    checkMissingIterableValueType: false
     paths:
         - .
+    autoload_files:
+        - vendor/bitexpert/phpstan-magento/autoload.php
     excludes_analyse:
         - %currentWorkingDirectory%/vendor/*
+    ignoreErrors:
+        - '/ has no return typehint specified./'

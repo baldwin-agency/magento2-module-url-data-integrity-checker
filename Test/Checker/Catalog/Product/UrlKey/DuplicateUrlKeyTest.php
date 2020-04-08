@@ -18,6 +18,7 @@ use PHPUnit\Framework\TestCase;
 
 class DuplicateUrlKeyTest extends TestCase
 {
+    /** @var ObjectManagerHelper */
     private $objectManagerHelper;
 
     protected function setUp()
@@ -28,7 +29,7 @@ class DuplicateUrlKeyTest extends TestCase
     /**
      * @dataProvider duplicatedProductUrlKeyValuesDataProvider
      */
-    public function testDuplicatedProductUrlKeyValues($dbData, $expectedResults)
+    public function testDuplicatedProductUrlKeyValues(array $dbData, array $expectedResults)
     {
         $dbData = array_map(function ($productData) {
             return new DataObject($productData);

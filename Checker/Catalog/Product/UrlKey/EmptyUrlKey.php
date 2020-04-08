@@ -33,6 +33,8 @@ class EmptyUrlKey
         $this->progress = $progress;
         $this->productCollectionFactory = $productCollectionFactory;
         $this->attributeScopeOverriddenValueFactory = $attributeScopeOverriddenValueFactory;
+
+        $this->progressIndex = 0;
     }
 
     public function execute(): array

@@ -37,6 +37,10 @@ class DuplicateUrlKey
         $this->progress = $progress;
         $this->productCollectionFactory = $productCollectionFactory;
         $this->attributeScopeOverriddenValueFactory = $attributeScopeOverriddenValueFactory;
+
+        $this->progressIndex = 0;
+        $this->cachedProductUrlKeyData = [];
+        $this->cachedProductSkusByIds = [];
     }
 
     public function execute(): array

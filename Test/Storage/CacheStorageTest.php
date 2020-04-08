@@ -85,6 +85,9 @@ class CacheStorageTest extends TestCase
         $this->assertEquals($expectedData, $cacheStorage->read($identifier));
     }
 
+    /**
+     * @param array<string, string> $data
+     */
     private function jsonEncode(array $data): string
     {
         $data = json_encode($data, JSON_UNESCAPED_UNICODE);

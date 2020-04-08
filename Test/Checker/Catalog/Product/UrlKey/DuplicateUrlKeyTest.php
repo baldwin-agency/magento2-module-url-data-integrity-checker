@@ -28,6 +28,9 @@ class DuplicateUrlKeyTest extends TestCase
 
     /**
      * @dataProvider duplicatedProductUrlKeyValuesDataProvider
+     *
+     * @param array<array<string, mixed>> $dbData
+     * @param array<array<string, mixed>> $expectedResults
      */
     public function testDuplicatedProductUrlKeyValues(array $dbData, array $expectedResults)
     {

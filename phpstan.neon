@@ -1,7 +1,6 @@
 parameters:
-    level: 7
+    level: 8
     inferPrivatePropertyTypeFromConstructor: true
-    checkMissingIterableValueType: false
     paths:
         - .
     autoload_files:

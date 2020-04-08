@@ -27,6 +27,10 @@ class UrlKeyCollection extends DataCollection implements SearchResultInterface
         $this->storage = $storage;
     }
 
+    /**
+     * @param bool $printQuery
+     * @param bool $logQuery
+     */
     public function loadData($printQuery = false, $logQuery = false)
     {
         if (!$this->isLoaded()) {
@@ -61,6 +65,9 @@ class UrlKeyCollection extends DataCollection implements SearchResultInterface
         return $this;
     }
 
+    /**
+     * @param array<string, mixed> $arguments
+     */
     public function createDataObject(array $arguments = [])
     {
         $obj = $this->_entityFactory->create($this->_itemObjectClass, ['data' => $arguments]);

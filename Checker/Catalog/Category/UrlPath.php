@@ -26,7 +26,7 @@ class UrlPath
     private $categoryCollectionFactory;
     private $attributeScopeOverriddenValueFactory;
 
-    /** @var array */
+    /** @var array<string, string> */
     private $calculatedUrlPathPerCategoryAndStoreId;
 
     public function __construct(
@@ -39,6 +39,9 @@ class UrlPath
         $this->attributeScopeOverriddenValueFactory = $attributeScopeOverriddenValueFactory;
     }
 
+    /**
+     * @return array<array<string, mixed>>
+     */
     public function execute(): array
     {
         $categoryData = $this->checkForIncorrectUrlPathAttributeValues();
@@ -46,6 +49,9 @@ class UrlPath
         return $categoryData;
     }
 
+    /**
+     * @return array<array<string, mixed>>
+     */
     public function checkForIncorrectUrlPathAttributeValues(): array
     {
         $problems = [];
@@ -82,6 +88,9 @@ class UrlPath
         return $problems;
     }
 
+    /**
+     * @return CategoryCollection<Category>
+     */
     private function getAllVisibleCategoriesWithStoreId(int $storeId): CategoryCollection
     {
         $categories = $this->categoryCollectionFactory->create()
@@ -165,6 +174,9 @@ class UrlPath
         }
     }
 
+    /**
+     * @return array<string>
+     */
     private function getAllInvisibleRootIds(): array
     {
         $categoryIds = $this->categoryCollectionFactory->create()

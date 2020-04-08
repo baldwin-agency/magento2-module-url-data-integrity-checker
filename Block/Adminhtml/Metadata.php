@@ -36,6 +36,11 @@ class Metadata extends Template
         return $metaData;
     }
 
+    /**
+     * @param array<string, mixed> $metaData
+     *
+     * @return array<string, mixed>
+     */
     private function format(array $metaData): array
     {
         $formatted = [];

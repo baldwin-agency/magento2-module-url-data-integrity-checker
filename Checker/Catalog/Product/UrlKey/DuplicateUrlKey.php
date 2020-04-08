@@ -9,6 +9,7 @@ use Baldwin\UrlDataIntegrityChecker\Console\Progress;
 use Baldwin\UrlDataIntegrityChecker\Util\Stores as StoresUtil;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Model\Attribute\ScopeOverriddenValueFactory as AttributeScopeOverriddenValueFactory;
+use Magento\Catalog\Model\Product as ProductModel;
 use Magento\Catalog\Model\ResourceModel\Product\Collection as ProductCollection;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
 use Magento\Store\Model\Store;
@@ -43,6 +44,9 @@ class DuplicateUrlKey
         $this->cachedProductSkusByIds = [];
     }
 
+    /**
+     * @return array<array<string, mixed>>
+     */
     public function execute(): array
     {
         $this->cachedProductUrlKeyData = [];
@@ -53,6 +57,9 @@ class DuplicateUrlKey
         return $productData;
     }
 
+    /**
+     * @return array<array<string, mixed>>
+     */
     private function checkForDuplicatedUrlKeyAttributeValues(): array
     {
         $this->progress->initProgressBar(
@@ -99,6 +106,9 @@ class DuplicateUrlKey
         return $productsWithProblems;
     }
 
+    /**
+     * @param ProductCollection<ProductModel> $collection
+     */
     private function storeProductUrlKeyData(int $storeId, ProductCollection $collection)
     {
         foreach ($collection as $product) {
@@ -125,6 +135,9 @@ class DuplicateUrlKey
         }
     }
 
+    /**
+     * @return array<array<string, mixed>>
+     */
     private function getProductsWithDuplicatedUrlKeyProblems(): array
     {
         $problems = [];

@@ -26,7 +26,7 @@ class UrlKey
     }
 
     /**
-     * @return array<string>
+     * @return array<array<string, mixed>>
      */
     public function refresh(string $initiator): array
     {

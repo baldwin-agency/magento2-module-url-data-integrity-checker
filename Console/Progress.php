@@ -70,6 +70,9 @@ class Progress
         }
     }
 
+    /**
+     * @psalm-suppress ReservedWord
+     */
     public function finish()
     {
         if ($this->canOutput()) {

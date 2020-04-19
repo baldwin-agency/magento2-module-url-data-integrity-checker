@@ -13,6 +13,9 @@ class Metadata extends Template
 {
     private $metaStorage;
 
+    /**
+     * @param array<mixed> $data
+     */
     public function __construct(
         BackendBlockContext $context,
         MetaStorage $metaStorage,

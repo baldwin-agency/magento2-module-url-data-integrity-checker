@@ -142,9 +142,9 @@ class UrlPath
             foreach ($allCategories as $category) {
                 $categoryId = (int) $category->getId();
 
-                $path = $category->getPath();
+                $path = $category->getPath() ?: '';
                 foreach ($invisibleRootIds as $rootId) {
-                    $path = preg_replace('#^' . preg_quote($rootId) . self::URL_PATH_SEPARATOR . '#', '', $path);
+                    $path = preg_replace('#^' . preg_quote($rootId) . self::URL_PATH_SEPARATOR . '#', '', $path) ?: '';
                 }
 
                 $tempCatData[$categoryId] = [

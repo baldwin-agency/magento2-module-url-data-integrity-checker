@@ -29,7 +29,7 @@ class Metadata extends Template
     /**
      * @return array<string, mixed>
      */
-    public function getMetadata(): array
+    public function getMetadata()
     {
         $storageIdentifier = $this->getStorageIdentifier();
         if ($storageIdentifier === null || $storageIdentifier === '') {

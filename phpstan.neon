@@ -1,7 +1,11 @@
 parameters:
-    level: 7
+    level: 8
     inferPrivatePropertyTypeFromConstructor: true
     paths:
         - .
+    autoload_files:
+        - vendor/bitexpert/phpstan-magento/autoload.php
     excludes_analyse:
         - %currentWorkingDirectory%/vendor/*
+    ignoreErrors:
+        - '/ has no return typehint specified./'

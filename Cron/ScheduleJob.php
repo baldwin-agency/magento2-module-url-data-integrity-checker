@@ -6,6 +6,7 @@ namespace Baldwin\UrlDataIntegrityChecker\Cron;
 
 use Magento\Cron\Model\ResourceModel\Schedule\Collection as CronScheduleCollection;
 use Magento\Cron\Model\Schedule;
+use Magento\Cron\Model\Schedule as CronScheduleModel;
 use Magento\Framework\App\ProductMetadataInterface;
 use Magento\Framework\Stdlib\DateTime\DateTime;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
@@ -17,6 +18,9 @@ class ScheduleJob
     private $timezone;
     private $cronScheduleCollection;
 
+    /**
+     * @param CronScheduleCollection<CronScheduleModel> $cronScheduleCollection
+     */
     public function __construct(
         ProductMetadataInterface $productMetadata,
         DateTime $dateTime,

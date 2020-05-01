@@ -27,6 +27,9 @@ class UrlKey
         $this->progress = $progress;
     }
 
+    /**
+     * @return array<array<string, mixed>>
+     */
     public function execute(): array
     {
         $productData = array_merge(

@@ -18,6 +18,7 @@ use PHPUnit\Framework\TestCase;
 
 class DuplicateUrlKeyTest extends TestCase
 {
+    /** @var ObjectManagerHelper */
     private $objectManagerHelper;
 
     protected function setUp()
@@ -27,8 +28,11 @@ class DuplicateUrlKeyTest extends TestCase
 
     /**
      * @dataProvider duplicatedProductUrlKeyValuesDataProvider
+     *
+     * @param array<array<string, mixed>> $dbData
+     * @param array<array<string, mixed>> $expectedResults
      */
-    public function testDuplicatedProductUrlKeyValues($dbData, $expectedResults)
+    public function testDuplicatedProductUrlKeyValues(array $dbData, array $expectedResults)
     {
         $dbData = array_map(function ($productData) {
             return new DataObject($productData);
@@ -130,7 +134,10 @@ class DuplicateUrlKeyTest extends TestCase
         $this->assertEquals($expectedResults, $results);
     }
 
-    public function duplicatedProductUrlKeyValuesDataProvider()
+    /**
+     * @return array<array<array<array<string, mixed>>>>
+     */
+    public function duplicatedProductUrlKeyValuesDataProvider(): array
     {
         return [
             // 0. two products having different url key, is ok!

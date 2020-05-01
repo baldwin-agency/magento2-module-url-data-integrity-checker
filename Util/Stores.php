@@ -16,6 +16,9 @@ class Stores
         $this->storeRepository = $storeRepository;
     }
 
+    /**
+     * @return array<int>
+     */
     public function getAllStoreIds(): array
     {
         $storeIds = [];

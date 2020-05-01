@@ -101,6 +101,9 @@ class Meta
         return false;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getData(string $storageIdentifier): array
     {
         $storageIdentifier .= self::STORAGE_SUFFIX;
@@ -108,7 +111,7 @@ class Meta
         return $this->storage->read($storageIdentifier);
     }
 
-    public function clearStatus(string $storageIdentifier)
+    public function clearStatus(string $storageIdentifier): bool
     {
         $storageIdentifier .= self::STORAGE_SUFFIX;
 

@@ -10,6 +10,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class CategoryResultOutput
 {
+    /**
+     * @param array<array<string, mixed>> $categoryData
+     */
     public function outputResult(array $categoryData, OutputInterface $output): int
     {
         if (empty($categoryData)) {

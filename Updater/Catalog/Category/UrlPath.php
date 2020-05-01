@@ -25,6 +25,9 @@ class UrlPath
         $this->metaStorage = $metaStorage;
     }
 
+    /**
+     * @return array<array<string, mixed>>
+     */
     public function refresh(string $initiator): array
     {
         $storageIdentifier = UrlPathChecker::STORAGE_IDENTIFIER;

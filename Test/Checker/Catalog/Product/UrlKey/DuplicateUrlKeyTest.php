@@ -134,7 +134,10 @@ class DuplicateUrlKeyTest extends TestCase
         $this->assertEquals($expectedResults, $results);
     }
 
-    public function duplicatedProductUrlKeyValuesDataProvider()
+    /**
+     * @return array<array<array<array<string, mixed>>>>
+     */
+    public function duplicatedProductUrlKeyValuesDataProvider(): array
     {
         return [
             // 0. two products having different url key, is ok!

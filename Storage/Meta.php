@@ -111,7 +111,7 @@ class Meta
         return $this->storage->read($storageIdentifier);
     }
 
-    public function clearStatus(string $storageIdentifier)
+    public function clearStatus(string $storageIdentifier): bool
     {
         $storageIdentifier .= self::STORAGE_SUFFIX;
 

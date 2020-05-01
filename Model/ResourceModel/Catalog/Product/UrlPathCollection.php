@@ -12,6 +12,7 @@ use Magento\Framework\Api\Search\SearchResultInterface;
 use Magento\Framework\Api\SearchCriteriaInterface;
 use Magento\Framework\Data\Collection as DataCollection;
 use Magento\Framework\Data\Collection\EntityFactoryInterface;
+use Magento\Framework\DataObject;
 use Magento\Framework\Exception\LocalizedException;
 
 class UrlPathCollection extends DataCollection implements SearchResultInterface
@@ -68,7 +69,7 @@ class UrlPathCollection extends DataCollection implements SearchResultInterface
     /**
      * @param array<string, mixed> $arguments
      */
-    public function createDataObject(array $arguments = [])
+    public function createDataObject(array $arguments = []): DataObject
     {
         $obj = $this->_entityFactory->create($this->_itemObjectClass, ['data' => $arguments]);
 

@@ -31,6 +31,8 @@ class UrlKeyCollection extends DataCollection implements SearchResultInterface
     /**
      * @param bool $printQuery
      * @param bool $logQuery
+     *
+     * @return UrlKeyCollection<DataObject>
      */
     public function loadData($printQuery = false, $logQuery = false)
     {

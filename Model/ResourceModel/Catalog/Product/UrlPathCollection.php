@@ -31,6 +31,8 @@ class UrlPathCollection extends DataCollection implements SearchResultInterface
     /**
      * @param bool $printQuery
      * @param bool $logQuery
+     *
+     * @return UrlPathCollection<DataObject>
      */
     public function loadData($printQuery = false, $logQuery = false)
     {

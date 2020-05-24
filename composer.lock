@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "729e77045ae20e9ef14d9a44eeca14a6",
+    "content-hash": "fd302189692d16bd3dd577468d99fdbd",
     "packages": [
         {
             "name": "colinmollenhour/credis",
@@ -5800,22 +5800,22 @@
         },
         {
             "name": "bitexpert/phpstan-magento",
-            "version": "v0.1.1",
+            "version": "v0.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bitExpert/phpstan-magento.git",
-                "reference": "975b6dff190de9da8681e34fb967434dbf638479"
+                "reference": "28c9d11d00eea39c42be6392f623f71115364336"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bitExpert/phpstan-magento/zipball/975b6dff190de9da8681e34fb967434dbf638479",
-                "reference": "975b6dff190de9da8681e34fb967434dbf638479",
+                "url": "https://api.github.com/repos/bitExpert/phpstan-magento/zipball/28c9d11d00eea39c42be6392f623f71115364336",
+                "reference": "28c9d11d00eea39c42be6392f623f71115364336",
                 "shasum": ""
             },
             "require": {
                 "nette/neon": "^3.1",
                 "php": "^7.2.0",
-                "phpstan/phpstan": "^0.12.18"
+                "phpstan/phpstan": "^0.12.24"
             },
             "require-dev": {
                 "bitexpert/phing-securitychecker": "^0.4.0",
@@ -5824,6 +5824,8 @@
                 "mikey179/vfsstream": "^1.6",
                 "nikic/php-parser": "^4.3",
                 "phing/phing": "^2.16",
+                "phpstan/extension-installer": "^1.0",
+                "phpstan/phpstan-phpunit": "^0.12.8",
                 "phpunit/phpunit": "^8.5.3",
                 "squizlabs/php_codesniffer": "^3.4"
             },
@@ -5852,7 +5854,7 @@
                 }
             ],
             "description": "PHPStan Magento Extension",
-            "time": "2020-05-12T09:32:43+00:00"
+            "time": "2020-05-17T20:23:10+00:00"
         },
         {
             "name": "doctrine/annotations",

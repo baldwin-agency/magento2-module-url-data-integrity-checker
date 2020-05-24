@@ -37,6 +37,7 @@ class ScheduleJob
         $createdAtTime = $this->getCronTimestamp();
         $scheduledAtTime = $createdAtTime + (60 - ($createdAtTime % 60)); // set scheduledAtTime to next minute
 
+        /** @var CronScheduleModel */
         $schedule = $this->cronScheduleCollection->getNewEmptyItem();
         $schedule
             ->setJobCode($jobCode)

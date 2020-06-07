@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "bd643f317d4b4a734dad01c051fb27f0",
+    "content-hash": "ca54f60666ffaf5f27b9e9856cb1e8e2",
     "packages": [
         {
             "name": "colinmollenhour/credis",

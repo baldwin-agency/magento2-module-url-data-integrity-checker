@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "fd302189692d16bd3dd577468d99fdbd",
+    "content-hash": "bd643f317d4b4a734dad01c051fb27f0",
     "packages": [
         {
             "name": "colinmollenhour/credis",
@@ -5800,16 +5800,16 @@
         },
         {
             "name": "bitexpert/phpstan-magento",
-            "version": "v0.2.0",
+            "version": "v0.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bitExpert/phpstan-magento.git",
-                "reference": "28c9d11d00eea39c42be6392f623f71115364336"
+                "reference": "bb7de49734e385c20165cb85831226cb7579a44d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bitExpert/phpstan-magento/zipball/28c9d11d00eea39c42be6392f623f71115364336",
-                "reference": "28c9d11d00eea39c42be6392f623f71115364336",
+                "url": "https://api.github.com/repos/bitExpert/phpstan-magento/zipball/bb7de49734e385c20165cb85831226cb7579a44d",
+                "reference": "bb7de49734e385c20165cb85831226cb7579a44d",
                 "shasum": ""
             },
             "require": {
@@ -5854,7 +5854,7 @@
                 }
             ],
             "description": "PHPStan Magento Extension",
-            "time": "2020-05-17T20:23:10+00:00"
+            "time": "2020-05-29T07:35:23+00:00"
         },
         {
             "name": "doctrine/annotations",

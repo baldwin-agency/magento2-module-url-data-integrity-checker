@@ -3,7 +3,7 @@ parameters:
     inferPrivatePropertyTypeFromConstructor: true
     paths:
         - .
-    autoload_files:
+    bootstrapFiles:
         - vendor/bitexpert/phpstan-magento/autoload.php
     excludes_analyse:
         - %currentWorkingDirectory%/vendor/*

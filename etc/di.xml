@@ -6,6 +6,7 @@
             <argument name="commands" xsi:type="array">
                 <item name="baldwin_urldataintegritychecker_console_command_checkproducturlkeys"   xsi:type="object">Baldwin\UrlDataIntegrityChecker\Console\Command\CheckProductUrlKeys</item>
                 <item name="baldwin_urldataintegritychecker_console_command_checkproducturlpaths"  xsi:type="object">Baldwin\UrlDataIntegrityChecker\Console\Command\CheckProductUrlPaths</item>
+                <item name="baldwin_urldataintegritychecker_console_command_checkcategoryurlkeys"  xsi:type="object">Baldwin\UrlDataIntegrityChecker\Console\Command\CheckCategoryUrlKeys</item>
                 <item name="baldwin_urldataintegritychecker_console_command_checkcategoryurlpaths" xsi:type="object">Baldwin\UrlDataIntegrityChecker\Console\Command\CheckCategoryUrlPaths</item>
                 <!-- <item name="baldwin_urldataintegritychecker_console_command_checkurlrewrites"      xsi:type="object">Baldwin\UrlDataIntegrityChecker\Console\Command\CheckUrlRewrites</item> -->
             </argument>

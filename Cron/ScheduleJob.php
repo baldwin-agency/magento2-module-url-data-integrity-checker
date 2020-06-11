@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace Baldwin\UrlDataIntegrityChecker\Cron;
 
 use Magento\Cron\Model\ResourceModel\Schedule\Collection as CronScheduleCollection;
-use Magento\Cron\Model\Schedule;
+use Magento\Cron\Model\Schedule as CronScheduleModel;
 use Magento\Framework\App\ProductMetadataInterface;
 use Magento\Framework\Stdlib\DateTime\DateTime;
 use Magento\Framework\Stdlib\DateTime\TimezoneInterface;
@@ -17,6 +17,9 @@ class ScheduleJob
     private $timezone;
     private $cronScheduleCollection;
 
+    /**
+     * @param CronScheduleCollection<CronScheduleModel> $cronScheduleCollection
+     */
     public function __construct(
         ProductMetadataInterface $productMetadata,
         DateTime $dateTime,
@@ -34,10 +37,11 @@ class ScheduleJob
         $createdAtTime = $this->getCronTimestamp();
         $scheduledAtTime = $createdAtTime + (60 - ($createdAtTime % 60)); // set scheduledAtTime to next minute
 
+        /** @var CronScheduleModel */
         $schedule = $this->cronScheduleCollection->getNewEmptyItem();
         $schedule
             ->setJobCode($jobCode)
-            ->setStatus(Schedule::STATUS_PENDING)
+            ->setStatus(CronScheduleModel::STATUS_PENDING)
             ->setCreatedAt(strftime('%Y-%m-%d %H:%M:%S', $createdAtTime))
             ->setScheduledAt(strftime('%Y-%m-%d %H:%M', $scheduledAtTime))
             ->save();

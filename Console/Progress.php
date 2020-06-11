@@ -9,10 +9,20 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class Progress
 {
+    /** @var ProgressBar */
     private $progressBar;
+
+    /** @var OutputInterface */
     private $output;
+
     private $sizeByIndex;
     private $format;
+
+    public function __construct()
+    {
+        $this->sizeByIndex = [];
+        $this->format = '';
+    }
 
     public function setOutput(OutputInterface $output)
     {
@@ -60,6 +70,10 @@ class Progress
         }
     }
 
+    /**
+     * @psalm-suppress ReservedWord
+     * When we remove PHP 7.0 support from the composer.json file, we can remove this suppress line
+     */
     public function finish()
     {
         if ($this->canOutput()) {
@@ -75,7 +89,7 @@ class Progress
     private function updateMaxSteps()
     {
         if ($this->canOutput()) {
-            $newMaxStepsValue = array_sum($this->sizeByIndex);
+            $newMaxStepsValue = (int) array_sum($this->sizeByIndex);
 
             // ugly solution for the fact that the setMaxSteps method only became
             // publicly accesible in symfony/console > 4.1.0

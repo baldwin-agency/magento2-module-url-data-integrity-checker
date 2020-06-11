@@ -9,6 +9,7 @@ use Baldwin\UrlDataIntegrityChecker\Console\Progress;
 use Baldwin\UrlDataIntegrityChecker\Util\Stores as StoresUtil;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Model\Attribute\ScopeOverriddenValueFactory as AttributeScopeOverriddenValueFactory;
+use Magento\Catalog\Model\Product as ProductModel;
 use Magento\Catalog\Model\ResourceModel\Product\Collection as ProductCollection;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
 use Magento\Store\Model\Store;
@@ -33,8 +34,13 @@ class EmptyUrlKey
         $this->progress = $progress;
         $this->productCollectionFactory = $productCollectionFactory;
         $this->attributeScopeOverriddenValueFactory = $attributeScopeOverriddenValueFactory;
+
+        $this->progressIndex = 0;
     }
 
+    /**
+     * @return array<array<string, mixed>>
+     */
     public function execute(): array
     {
         $productData = $this->checkForEmptyUrlKeyAttributeValues();
@@ -42,6 +48,9 @@ class EmptyUrlKey
         return $productData;
     }
 
+    /**
+     * @return array<array<string, mixed>>
+     */
     private function checkForEmptyUrlKeyAttributeValues(): array
     {
         $productsWithProblems = [];
@@ -96,6 +105,11 @@ class EmptyUrlKey
         return $productsWithProblems;
     }
 
+    /**
+     * @param ProductCollection<ProductModel> $collection
+     *
+     * @return array<array<string, mixed>>
+     */
     private function getProductsWithProblems(int $storeId, ProductCollection $collection): array
     {
         $problems = [];

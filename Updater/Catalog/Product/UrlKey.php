@@ -25,6 +25,9 @@ class UrlKey
         $this->metaStorage = $metaStorage;
     }
 
+    /**
+     * @return array<array<string, mixed>>
+     */
     public function refresh(string $initiator): array
     {
         $storageIdentifier = UrlKeyChecker::STORAGE_IDENTIFIER;

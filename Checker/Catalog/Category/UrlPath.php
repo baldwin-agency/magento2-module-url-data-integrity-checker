@@ -26,6 +26,7 @@ class UrlPath
     private $categoryCollectionFactory;
     private $attributeScopeOverriddenValueFactory;
 
+    /** @var array<string, string> */
     private $calculatedUrlPathPerCategoryAndStoreId;
 
     public function __construct(
@@ -38,6 +39,9 @@ class UrlPath
         $this->attributeScopeOverriddenValueFactory = $attributeScopeOverriddenValueFactory;
     }
 
+    /**
+     * @return array<array<string, mixed>>
+     */
     public function execute(): array
     {
         $categoryData = $this->checkForIncorrectUrlPathAttributeValues();
@@ -45,6 +49,9 @@ class UrlPath
         return $categoryData;
     }
 
+    /**
+     * @return array<array<string, mixed>>
+     */
     public function checkForIncorrectUrlPathAttributeValues(): array
     {
         $problems = [];
@@ -81,7 +88,10 @@ class UrlPath
         return $problems;
     }
 
-    private function getAllVisibleCategoriesWithStoreId($storeId): CategoryCollection
+    /**
+     * @return CategoryCollection<Category>
+     */
+    private function getAllVisibleCategoriesWithStoreId(int $storeId): CategoryCollection
     {
         $categories = $this->categoryCollectionFactory->create()
             ->addAttributeToSelect('name')
@@ -132,9 +142,9 @@ class UrlPath
             foreach ($allCategories as $category) {
                 $categoryId = (int) $category->getId();
 
-                $path = $category->getPath();
+                $path = $category->getPath() ?: '';
                 foreach ($invisibleRootIds as $rootId) {
-                    $path = preg_replace('#^' . preg_quote($rootId) . self::URL_PATH_SEPARATOR . '#', '', $path);
+                    $path = preg_replace('#^' . preg_quote($rootId) . self::URL_PATH_SEPARATOR . '#', '', $path) ?: '';
                 }
 
                 $tempCatData[$categoryId] = [
@@ -164,6 +174,9 @@ class UrlPath
         }
     }
 
+    /**
+     * @return array<string>
+     */
     private function getAllInvisibleRootIds(): array
     {
         $categoryIds = $this->categoryCollectionFactory->create()

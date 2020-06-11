@@ -10,6 +10,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class ProductResultOutput
 {
+    /**
+     * @param array<array<string, mixed>> $productData
+     */
     public function outputResult(array $productData, OutputInterface $output): int
     {
         if (empty($productData)) {

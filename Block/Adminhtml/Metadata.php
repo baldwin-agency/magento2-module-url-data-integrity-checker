@@ -13,6 +13,9 @@ class Metadata extends Template
 {
     private $metaStorage;
 
+    /**
+     * @param array<mixed> $data
+     */
     public function __construct(
         BackendBlockContext $context,
         MetaStorage $metaStorage,
@@ -23,6 +26,9 @@ class Metadata extends Template
         $this->metaStorage = $metaStorage;
     }
 
+    /**
+     * @return array<string, mixed>
+     */
     public function getMetadata()
     {
         $storageIdentifier = $this->getStorageIdentifier();
@@ -36,6 +42,11 @@ class Metadata extends Template
         return $metaData;
     }
 
+    /**
+     * @param array<string, mixed> $metaData
+     *
+     * @return array<string, mixed>
+     */
     private function format(array $metaData): array
     {
         $formatted = [];

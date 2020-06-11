@@ -7,6 +7,7 @@ namespace Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product;
 use Baldwin\UrlDataIntegrityChecker\Util\Stores as StoresUtil;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Model\Attribute\ScopeOverriddenValueFactory as AttributeScopeOverriddenValueFactory;
+use Magento\Catalog\Model\Product as ProductModel;
 use Magento\Catalog\Model\ResourceModel\Product\Collection as ProductCollection;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
 use Magento\Store\Model\Store;
@@ -33,6 +34,9 @@ class UrlPath
         $this->attributeScopeOverriddenValueFactory = $attributeScopeOverriddenValueFactory;
     }
 
+    /**
+     * @return array<array<string, mixed>>
+     */
     public function execute(): array
     {
         $productData = $this->checkForNonEmptyUrlPathAttributeValues();
@@ -40,6 +44,9 @@ class UrlPath
         return $productData;
     }
 
+    /**
+     * @return array<array<string, mixed>>
+     */
     private function checkForNonEmptyUrlPathAttributeValues(): array
     {
         $productsWithProblems = [];
@@ -67,6 +74,11 @@ class UrlPath
         return $productsWithProblems;
     }
 
+    /**
+     * @param ProductCollection<ProductModel> $collection
+     *
+     * @return array<array<string, mixed>>
+     */
     private function getProductsWithProblems(int $storeId, ProductCollection $collection): array
     {
         $problems = [];

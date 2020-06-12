@@ -9,6 +9,8 @@ It should be up to the store owner to figure out how he/she wants to fix these p
 ## Implemented features
 
 - It can detect categories having incorrect `url_path` attribute values
+- It can detect categories having duplicated `url_key` attribute values within the same parent
+- It can detect categories having an empty `url_key` attribute value
 - It can detect products having non-empty `url_path` attribute values
 - It can detect products having duplicated `url_key` attribute values on the same store view
 - It can detect products having an empty `url_key` attribute value
@@ -47,11 +49,12 @@ bin/magento setup:upgrade
 
 ## Usage
 
-There are some automatic cronjobs running every night at 02:10, 02:20 and 02:30 which will run the various checkers of this module.  
+There are some automatic cronjobs running every night at 02:10, 02:15, 02:20 and 02:30 which will run the various checkers of this module.  
 You can also opt to manually refresh one of the checkers in the Magento admin, which will schedule one of the cronjobs to be ran the next minute. You'll have to wait a few minutes (depending on the number of problems and how big your catalog is) before you'll see the results appearing. You'll need to refresh the page yourself btw, it won't happen by itself.
 
 There are also some cli commands you can execute, which will give you instant feedback about found problems, and will also store that data so you can see them in the Magento admin:
 
+- `bin/magento catalog:category:integrity:urlkey`
 - `bin/magento catalog:category:integrity:urlpath`
 - `bin/magento catalog:product:integrity:urlkey`
 - `bin/magento catalog:product:integrity:urlpath`

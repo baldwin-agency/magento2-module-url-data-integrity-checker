@@ -58,6 +58,7 @@ class EmptyUrlKey
             $collection
                 ->setStoreId($storeId)
                 ->addAttributeToSelect(UrlKeyChecker::URL_KEY_ATTRIBUTE)
+                ->addAttributeToSelect('name')
                 ->addAttributeToFilter('entity_id', ['neq' => CategoryModel::TREE_ROOT_ID])
                 ->addAttributeToFilter([
                     [
@@ -100,7 +101,7 @@ class EmptyUrlKey
             if ($isOverridden || $storeId === Store::DEFAULT_STORE_ID) {
                 $problems[] = [
                     'catId'   => (int) $category->getEntityId(),
-                    'sku'     => $category->getSku(),
+                    'name'    => $category->getName(),
                     'storeId' => $storeId,
                     'problem' => self::EMPTY_PROBLEM_DESCRIPTION,
                 ];

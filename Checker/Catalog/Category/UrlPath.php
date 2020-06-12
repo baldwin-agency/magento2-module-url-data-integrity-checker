@@ -91,7 +91,7 @@ class UrlPath
     /**
      * @return CategoryCollection<Category>
      */
-    private function getAllVisibleCategoriesWithStoreId(int $storeId): CategoryCollection
+    public function getAllVisibleCategoriesWithStoreId(int $storeId): CategoryCollection
     {
         $categories = $this->categoryCollectionFactory->create()
             ->addAttributeToSelect('name')
@@ -111,7 +111,7 @@ class UrlPath
         return $calculatedUrlPath === $currentUrlPath;
     }
 
-    private function getCalculatedUrlPathForCategory(Category $category, int $storeId): string
+    public function getCalculatedUrlPathForCategory(Category $category, int $storeId): string
     {
         if ($this->calculatedUrlPathPerCategoryAndStoreId === null) {
             $this->fetchAllCategoriesWithUrlPathCalculatedByUrlKey();

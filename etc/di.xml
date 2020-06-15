@@ -6,6 +6,7 @@
             <argument name="commands" xsi:type="array">
                 <item name="baldwin_urldataintegritychecker_console_command_checkproducturlkeys"   xsi:type="object">Baldwin\UrlDataIntegrityChecker\Console\Command\CheckProductUrlKeys</item>
                 <item name="baldwin_urldataintegritychecker_console_command_checkproducturlpaths"  xsi:type="object">Baldwin\UrlDataIntegrityChecker\Console\Command\CheckProductUrlPaths</item>
+                <item name="baldwin_urldataintegritychecker_console_command_checkcategoryurlkeys"  xsi:type="object">Baldwin\UrlDataIntegrityChecker\Console\Command\CheckCategoryUrlKeys</item>
                 <item name="baldwin_urldataintegritychecker_console_command_checkcategoryurlpaths" xsi:type="object">Baldwin\UrlDataIntegrityChecker\Console\Command\CheckCategoryUrlPaths</item>
                 <!-- <item name="baldwin_urldataintegritychecker_console_command_checkurlrewrites"      xsi:type="object">Baldwin\UrlDataIntegrityChecker\Console\Command\CheckUrlRewrites</item> -->
             </argument>
@@ -14,6 +15,7 @@
     <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
         <arguments>
             <argument name="collections" xsi:type="array">
+                <item name="baldwin_urldataintegritychecker_grid_catalog_category_urlkey_data_source" xsi:type="string">Baldwin\UrlDataIntegrityChecker\Model\ResourceModel\Catalog\Category\UrlKeyCollection</item>
                 <item name="baldwin_urldataintegritychecker_grid_catalog_category_urlpath_data_source" xsi:type="string">Baldwin\UrlDataIntegrityChecker\Model\ResourceModel\Catalog\Category\UrlPathCollection</item>
                 <item name="baldwin_urldataintegritychecker_grid_catalog_product_urlkey_data_source" xsi:type="string">Baldwin\UrlDataIntegrityChecker\Model\ResourceModel\Catalog\Product\UrlKeyCollection</item>
                 <item name="baldwin_urldataintegritychecker_grid_catalog_product_urlpath_data_source" xsi:type="string">Baldwin\UrlDataIntegrityChecker\Model\ResourceModel\Catalog\Product\UrlPathCollection</item>

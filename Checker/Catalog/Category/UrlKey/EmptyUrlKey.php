@@ -59,6 +59,7 @@ class EmptyUrlKey
                 ->setStoreId($storeId)
                 ->addAttributeToSelect(UrlKeyChecker::URL_KEY_ATTRIBUTE)
                 ->addAttributeToSelect('name')
+                ->addAttributeToFilter('level', ['gt' => 1]) // cats with levels 0 or 1 aren't used in the frontend
                 ->addAttributeToFilter('entity_id', ['neq' => CategoryModel::TREE_ROOT_ID])
                 ->addAttributeToFilter([
                     [

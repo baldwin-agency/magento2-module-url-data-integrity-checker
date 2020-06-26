@@ -73,6 +73,8 @@ class UrlPathCollection extends DataCollection implements SearchResultInterface
      */
     public function createDataObject(array $arguments = []): DataObject
     {
+        $arguments['hash'] = sha1(json_encode($arguments) ?: '');
+
         $obj = $this->_entityFactory->create($this->_itemObjectClass, ['data' => $arguments]);
 
         $attributes = [];

@@ -13,4 +13,9 @@ abstract class AbstractStorage implements StorageInterface
 
         return $this->write($identifier, $newData);
     }
+
+    public function clear(string $identifier): bool
+    {
+        return $this->write($identifier, []);
+    }
 }

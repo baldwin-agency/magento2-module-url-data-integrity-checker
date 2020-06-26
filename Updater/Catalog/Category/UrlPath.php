@@ -39,6 +39,8 @@ class UrlPath
             throw new AlreadyRefreshingException($errorMsg);
         }
 
+        $this->storage->clear($storageIdentifier);
+
         $this->metaStorage->setErrorMessage($storageIdentifier, '');
         $this->metaStorage->setStartRefreshing($storageIdentifier, $initiator);
 

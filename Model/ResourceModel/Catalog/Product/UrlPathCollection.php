@@ -73,6 +73,8 @@ class UrlPathCollection extends DataCollection implements SearchResultInterface
      */
     public function createDataObject(array $arguments = []): DataObject
     {
+        $arguments['hash'] = sha1(json_encode($arguments) ?: '');
+
         $obj = $this->_entityFactory->create($this->_itemObjectClass, ['data' => $arguments]);
 
         $attributes = [];
@@ -89,6 +91,9 @@ class UrlPathCollection extends DataCollection implements SearchResultInterface
         return $obj;
     }
 
+    /**
+     * @return UrlPathCollection<DataObject>
+     */
     public function setItems(array $items = null)
     {
         throw new LocalizedException(__('Not implemented: setItems!'));
@@ -99,6 +104,9 @@ class UrlPathCollection extends DataCollection implements SearchResultInterface
         throw new LocalizedException(__('Not implemented: getAggregations!'));
     }
 
+    /**
+     * @return UrlPathCollection<DataObject>
+     */
     public function setAggregations($aggregations)
     {
         throw new LocalizedException(__('Not implemented: setAggregations!'));
@@ -109,6 +117,9 @@ class UrlPathCollection extends DataCollection implements SearchResultInterface
         throw new LocalizedException(__('Not implemented: getSearchCriteria!'));
     }
 
+    /**
+     * @return UrlPathCollection<DataObject>
+     */
     public function setSearchCriteria(SearchCriteriaInterface $searchCriteria)
     {
         throw new LocalizedException(__('Not implemented: setSearchCriteria!'));
@@ -119,6 +130,9 @@ class UrlPathCollection extends DataCollection implements SearchResultInterface
         return $this->getSize();
     }
 
+    /**
+     * @return UrlPathCollection<DataObject>
+     */
     public function setTotalCount($totalCount)
     {
         throw new LocalizedException(__('Not implemented: setTotalCount!'));

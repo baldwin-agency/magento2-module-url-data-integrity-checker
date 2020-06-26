@@ -20,4 +20,6 @@ interface StorageInterface
      * @param array<string, mixed> $data
      */
     public function update(string $identifier, array $data): bool;
+
+    public function clear(string $identifier): bool;
 }

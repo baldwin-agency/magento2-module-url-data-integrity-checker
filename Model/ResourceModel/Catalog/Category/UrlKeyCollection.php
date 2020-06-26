@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Baldwin\UrlDataIntegrityChecker\Model\ResourceModel\Catalog\Category;
 
-use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Category\UrlPath as UrlPathChecker;
+use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Category\UrlKey as UrlKeyChecker;
 use Baldwin\UrlDataIntegrityChecker\Storage\StorageInterface;
 use Magento\Framework\Api\AttributeInterface;
 use Magento\Framework\Api\AttributeValue;
@@ -15,7 +15,7 @@ use Magento\Framework\Data\Collection\EntityFactoryInterface;
 use Magento\Framework\DataObject;
 use Magento\Framework\Exception\LocalizedException;
 
-class UrlPathCollection extends DataCollection implements SearchResultInterface
+class UrlKeyCollection extends DataCollection implements SearchResultInterface
 {
     private $storage;
 
@@ -32,14 +32,14 @@ class UrlPathCollection extends DataCollection implements SearchResultInterface
      * @param bool $printQuery
      * @param bool $logQuery
      *
-     * @return UrlPathCollection<DataObject>
+     * @return UrlKeyCollection<DataObject>
      */
     public function loadData($printQuery = false, $logQuery = false)
     {
         if (!$this->isLoaded()) {
-            $urlPaths = $this->storage->read(UrlPathChecker::STORAGE_IDENTIFIER);
-            foreach ($urlPaths as $urlPath) {
-                $this->addItem($this->createDataObject($urlPath));
+            $urlKeys = $this->storage->read(UrlKeyChecker::STORAGE_IDENTIFIER);
+            foreach ($urlKeys as $urlKey) {
+                $this->addItem($this->createDataObject($urlKey));
             }
 
             foreach ($this->_orders as $field => $direction) {
@@ -92,7 +92,7 @@ class UrlPathCollection extends DataCollection implements SearchResultInterface
     }
 
     /**
-     * @return UrlPathCollection<DataObject>
+     * @return UrlKeyCollection<DataObject>
      */
     public function setItems(array $items = null)
     {
@@ -105,7 +105,7 @@ class UrlPathCollection extends DataCollection implements SearchResultInterface
     }
 
     /**
-     * @return UrlPathCollection<DataObject>
+     * @return UrlKeyCollection<DataObject>
      */
     public function setAggregations($aggregations)
     {
@@ -118,7 +118,7 @@ class UrlPathCollection extends DataCollection implements SearchResultInterface
     }
 
     /**
-     * @return UrlPathCollection<DataObject>
+     * @return UrlKeyCollection<DataObject>
      */
     public function setSearchCriteria(SearchCriteriaInterface $searchCriteria)
     {
@@ -131,7 +131,7 @@ class UrlPathCollection extends DataCollection implements SearchResultInterface
     }
 
     /**
-     * @return UrlPathCollection<DataObject>
+     * @return UrlKeyCollection<DataObject>
      */
     public function setTotalCount($totalCount)
     {

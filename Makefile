@@ -25,9 +25,11 @@ checkquality:
 	xmllint --noout                                                                etc/di.xml # schema validation doesn't work here since the xsd includes another xsd ..
 	xmllint --noout --schema vendor/magento/framework/Module/etc/module.xsd        etc/module.xml
 
+	xmllint --noout                                                                view/adminhtml/layout/baldwin_urldataintegritychecker_catalog_category_urlkey_index.xml # schema validation doesn't work here since the xsd includes another xsd ..
 	xmllint --noout                                                                view/adminhtml/layout/baldwin_urldataintegritychecker_catalog_category_urlpath_index.xml # schema validation doesn't work here since the xsd includes another xsd ..
 	xmllint --noout                                                                view/adminhtml/layout/baldwin_urldataintegritychecker_catalog_product_urlkey_index.xml # schema validation doesn't work here since the xsd includes another xsd ..
 	xmllint --noout                                                                view/adminhtml/layout/baldwin_urldataintegritychecker_catalog_product_urlpath_index.xml # schema validation doesn't work here since the xsd includes another xsd ..
+	xmllint --noout                                                                view/adminhtml/ui_component/baldwin_urldataintegritychecker_grid_catalog_category_urlkey.xml # schema validation doesn't work here since the xsd includes another xsd ..
 	xmllint --noout                                                                view/adminhtml/ui_component/baldwin_urldataintegritychecker_grid_catalog_category_urlpath.xml # schema validation doesn't work here since the xsd includes another xsd ..
 	xmllint --noout                                                                view/adminhtml/ui_component/baldwin_urldataintegritychecker_grid_catalog_product_urlkey.xml # schema validation doesn't work here since the xsd includes another xsd ..
 	xmllint --noout                                                                view/adminhtml/ui_component/baldwin_urldataintegritychecker_grid_catalog_product_urlpath.xml # schema validation doesn't work here since the xsd includes another xsd ..

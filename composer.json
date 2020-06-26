@@ -23,13 +23,13 @@
     "require-dev": {
         "bitexpert/phpstan-magento": "^0.3.0",
         "ergebnis/composer-normalize": "^2.2",
-        "friendsofphp/php-cs-fixer": "^2.15",
+        "friendsofphp/php-cs-fixer": "^2.16",
         "magento/magento-coding-standard": "^5.0",
         "phpcompatibility/php-compatibility": "^9.2",
         "phpstan/extension-installer": "^1.0",
-        "phpstan/phpstan": "^0.12.0",
+        "phpstan/phpstan": "^0.12.26",
         "phpunit/phpunit": "^7.5",
-        "vimeo/psalm": "^3.9"
+        "vimeo/psalm": "^3.11"
     },
     "config": {
         "sort-packages": true

@@ -85,6 +85,41 @@ class CacheStorageTest extends TestCase
         $this->assertEquals($expectedData, $cacheStorage->read($identifier));
     }
 
+    public function testClear()
+    {
+        $identifier = 'identifier';
+        $existingData = [
+            'key1' => 'value1',
+            'key2' => 'value2',
+        ];
+
+        $expectedData = [];
+
+        /** @var AppCache&MockObject */
+        $cacheMock = $this
+            ->getMockBuilder(AppCache::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $cacheMock->expects($this->exactly(2))
+            ->method('save')
+            ->withConsecutive(
+                [$this->jsonEncode($existingData)],
+                [$this->jsonEncode($expectedData)]
+            )
+            ->willReturn(true);
+
+        $cacheMock->expects($this->exactly(1))
+            ->method('load')
+            ->willReturn($this->jsonEncode($expectedData));
+
+        $cacheStorage = new CacheStorage($cacheMock);
+        $cacheStorage->write($identifier, $existingData);
+        $cacheStorage->clear($identifier);
+
+        $this->assertEquals($expectedData, $cacheStorage->read($identifier));
+    }
+
     /**
      * @param array<string, string> $data
      */

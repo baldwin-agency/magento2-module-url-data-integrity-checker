@@ -91,6 +91,9 @@ class UrlKeyCollection extends DataCollection implements SearchResultInterface
         return $obj;
     }
 
+    /**
+     * @return UrlKeyCollection<DataObject>
+     */
     public function setItems(array $items = null)
     {
         throw new LocalizedException(__('Not implemented: setItems!'));
@@ -101,6 +104,9 @@ class UrlKeyCollection extends DataCollection implements SearchResultInterface
         throw new LocalizedException(__('Not implemented: getAggregations!'));
     }
 
+    /**
+     * @return UrlKeyCollection<DataObject>
+     */
     public function setAggregations($aggregations)
     {
         throw new LocalizedException(__('Not implemented: setAggregations!'));
@@ -111,6 +117,9 @@ class UrlKeyCollection extends DataCollection implements SearchResultInterface
         throw new LocalizedException(__('Not implemented: getSearchCriteria!'));
     }
 
+    /**
+     * @return UrlKeyCollection<DataObject>
+     */
     public function setSearchCriteria(SearchCriteriaInterface $searchCriteria)
     {
         throw new LocalizedException(__('Not implemented: setSearchCriteria!'));
@@ -121,6 +130,9 @@ class UrlKeyCollection extends DataCollection implements SearchResultInterface
         return $this->getSize();
     }
 
+    /**
+     * @return UrlKeyCollection<DataObject>
+     */
     public function setTotalCount($totalCount)
     {
         throw new LocalizedException(__('Not implemented: setTotalCount!'));

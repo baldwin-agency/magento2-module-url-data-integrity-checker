@@ -26,7 +26,7 @@ It should be up to the store owner to figure out how he/she wants to fix these p
 
 ## Compatibility
 
-This module should be compatible with Magento 2.1.x, 2.2.x, and 2.3.x versions.  
+This module should be compatible with Magento 2.1.x, 2.2.x, 2.3.x and 2.4.x versions.  
 Some code in this module is using old ways of doing things. It could have been written in a more modern way (using message queues instead of cronjobs, use newer syntax for UI components, ...). But we wanted this module to be compatible with older versions of Magento, so we've chosen this route for now.
 
 The module should be compatible with PHP 7.0, 7.1, 7.2, 7.3 and 7.4
@@ -62,7 +62,7 @@ There are also some cli commands you can execute, which will give you instant fe
 In the Magento admin, you can find the results in:
 
 - for Magento 2.1.x: Products > Data Integrity Checker
-- for Magento 2.2.x and 2.3.x: Catalog > Data Integrity Checker
+- for Magento 2.2.0 and higher: Catalog > Data Integrity Checker
 
 The results of the checkers are currently stored in the directory `var/tmp` as `.json` files.
 

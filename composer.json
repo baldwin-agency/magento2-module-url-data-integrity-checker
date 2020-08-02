@@ -29,7 +29,7 @@
         "phpstan/extension-installer": "^1.0",
         "phpstan/phpstan": "^0.12.26",
         "phpunit/phpunit": "^9.0",
-        "vimeo/psalm": "^3.11"
+        "vimeo/psalm": "^3.12"
     },
     "config": {
         "sort-packages": true

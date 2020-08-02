@@ -12,9 +12,9 @@
     ],
     "require": {
         "php": "~7.0.0 || ~7.1.0 || ~7.2.0 || ~7.3.0 || ~7.4.0",
-        "magento/framework": "^100.1 || ^101.0 || ^102.0",
-        "magento/module-backend": "^100.1 || ^101.0",
-        "magento/module-catalog": "^101.0 || ^102.0 || ^103.0",
+        "magento/framework": "^100.1 || ^101.0 || ^102.0 || ^103.0",
+        "magento/module-backend": "^100.1 || ^101.0 || ^102.0",
+        "magento/module-catalog": "^101.0 || ^102.0 || ^103.0 || ^104.0",
         "magento/module-cron": "^100.1",
         "magento/module-store": "^100.1 || ^101.0",
         "magento/module-ui": "^100.1 || ^101.0",
@@ -28,8 +28,8 @@
         "phpcompatibility/php-compatibility": "^9.2",
         "phpstan/extension-installer": "^1.0",
         "phpstan/phpstan": "^0.12.26",
-        "phpunit/phpunit": "^7.5",
-        "vimeo/psalm": "^3.11"
+        "phpunit/phpunit": "^9.0",
+        "vimeo/psalm": "^3.12"
     },
     "config": {
         "sort-packages": true

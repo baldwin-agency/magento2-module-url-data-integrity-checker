@@ -59,6 +59,10 @@ class UrlPathCollection extends DataCollection implements SearchResultInterface
 
             $this->_setIsLoaded();
 
+            // fill $this->_totalRecords by calling getSize
+            // if we don't do this and leave this up to Magento, it will do it too late in Magento 2.4.x
+            $this->getSize();
+
             // page the data, need to do this after setting the data as loaded,
             // otherwise the getCurPage would create a recursive problem
             $startIndex = ($this->getCurPage() - 1) * $this->getPageSize();

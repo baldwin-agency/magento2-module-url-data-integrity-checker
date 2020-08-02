@@ -21,7 +21,7 @@ class DuplicateUrlKeyTest extends TestCase
     /** @var ObjectManagerHelper */
     private $objectManagerHelper;
 
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->objectManagerHelper = new ObjectManagerHelper($this);
     }
@@ -56,6 +56,7 @@ class DuplicateUrlKeyTest extends TestCase
 
         $collectionsPerStoreId = array_map(
             function ($productsData) {
+                /** @var MockObject $productCollectionMock */
                 $productCollectionMock = $this->objectManagerHelper
                     ->getCollectionMock(ProductCollection::class, $productsData);
 

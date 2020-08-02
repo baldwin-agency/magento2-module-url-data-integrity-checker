@@ -1598,16 +1598,16 @@
         },
         {
             "name": "laminas/laminas-mail",
-            "version": "2.11.1",
+            "version": "2.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-mail.git",
-                "reference": "7f674afeb38100b1869ce8e56bf2ec3cba3c679c"
+                "reference": "5e8bc77db515c2a207ee25df5f3464f121daf225"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-mail/zipball/7f674afeb38100b1869ce8e56bf2ec3cba3c679c",
-                "reference": "7f674afeb38100b1869ce8e56bf2ec3cba3c679c",
+                "url": "https://api.github.com/repos/laminas/laminas-mail/zipball/5e8bc77db515c2a207ee25df5f3464f121daf225",
+                "reference": "5e8bc77db515c2a207ee25df5f3464f121daf225",
                 "shasum": ""
             },
             "require": {
@@ -1617,7 +1617,7 @@
                 "laminas/laminas-stdlib": "^2.7 || ^3.0",
                 "laminas/laminas-validator": "^2.10.2",
                 "laminas/laminas-zendframework-bridge": "^1.0",
-                "php": "^5.6 || ^7.0",
+                "php": "^7.1",
                 "true/punycode": "^2.1"
             },
             "replace": {
@@ -1627,8 +1627,8 @@
                 "laminas/laminas-coding-standard": "~1.0.0",
                 "laminas/laminas-config": "^2.6",
                 "laminas/laminas-crypt": "^2.6 || ^3.0",
-                "laminas/laminas-servicemanager": "^2.7.10 || ^3.3.1",
-                "phpunit/phpunit": "^5.7.25 || ^6.4.4 || ^7.1.4"
+                "laminas/laminas-servicemanager": "^3.2.1",
+                "phpunit/phpunit": "^7.5.20"
             },
             "suggest": {
                 "laminas/laminas-crypt": "Crammd5 support in SMTP Auth",
@@ -1637,8 +1637,8 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.11.x-dev",
-                    "dev-develop": "2.12.x-dev"
+                    "dev-master": "2.12.x-dev",
+                    "dev-develop": "2.13.x-dev"
                 },
                 "laminas": {
                     "component": "Laminas\\Mail",
@@ -1666,7 +1666,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2020-07-28T21:17:48+00:00"
+            "time": "2020-07-30T16:09:35+00:00"
         },
         {
             "name": "laminas/laminas-math",
@@ -6359,6 +6359,75 @@
             "time": "2020-05-29T07:35:23+00:00"
         },
         {
+            "name": "composer/package-versions-deprecated",
+            "version": "1.10.99",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/composer/package-versions-deprecated.git",
+                "reference": "dd51b4443d58b34b6d9344cf4c288e621c9a826f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/composer/package-versions-deprecated/zipball/dd51b4443d58b34b6d9344cf4c288e621c9a826f",
+                "reference": "dd51b4443d58b34b6d9344cf4c288e621c9a826f",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.1.0 || ^2.0",
+                "php": "^7"
+            },
+            "replace": {
+                "ocramius/package-versions": "1.10.99"
+            },
+            "require-dev": {
+                "composer/composer": "^1.9.3 || ^2.0@dev",
+                "ext-zip": "^1.13",
+                "phpunit/phpunit": "^6.5 || ^7"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "PackageVersions\\Installer",
+                "branch-alias": {
+                    "dev-master": "1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "PackageVersions\\": "src/PackageVersions"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Marco Pivetta",
+                    "email": "ocramius@gmail.com"
+                },
+                {
+                    "name": "Jordi Boggiano",
+                    "email": "j.boggiano@seld.be"
+                }
+            ],
+            "description": "Composer plugin that provides efficient querying for installed package versions (no runtime IO)",
+            "funding": [
+                {
+                    "url": "https://packagist.com",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/composer",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/composer/composer",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2020-07-15T08:39:18+00:00"
+        },
+        {
             "name": "doctrine/annotations",
             "version": "1.10.3",
             "source": {
@@ -7206,16 +7275,16 @@
         },
         {
             "name": "nette/neon",
-            "version": "v3.2.0",
+            "version": "v3.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/neon.git",
-                "reference": "72dd80316595d4b5c5312ea4e9beb53f3ba823d7"
+                "reference": "a5b3a60833d2ef55283a82d0c30b45d136b29e75"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/neon/zipball/72dd80316595d4b5c5312ea4e9beb53f3ba823d7",
-                "reference": "72dd80316595d4b5c5312ea4e9beb53f3ba823d7",
+                "url": "https://api.github.com/repos/nette/neon/zipball/a5b3a60833d2ef55283a82d0c30b45d136b29e75",
+                "reference": "a5b3a60833d2ef55283a82d0c30b45d136b29e75",
                 "shasum": ""
             },
             "require": {
@@ -7264,20 +7333,20 @@
                 "nette",
                 "yaml"
             ],
-            "time": "2020-05-15T20:57:55+00:00"
+            "time": "2020-07-31T12:28:05+00:00"
         },
         {
             "name": "nikic/php-parser",
-            "version": "v4.7.0",
+            "version": "v4.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/nikic/PHP-Parser.git",
-                "reference": "21dce06dfbf0365c6a7cc8fdbdc995926c6a9300"
+                "reference": "c346bbfafe2ff60680258b631afb730d186ed864"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/21dce06dfbf0365c6a7cc8fdbdc995926c6a9300",
-                "reference": "21dce06dfbf0365c6a7cc8fdbdc995926c6a9300",
+                "url": "https://api.github.com/repos/nikic/PHP-Parser/zipball/c346bbfafe2ff60680258b631afb730d186ed864",
+                "reference": "c346bbfafe2ff60680258b631afb730d186ed864",
                 "shasum": ""
             },
             "require": {
@@ -7294,7 +7363,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.7-dev"
+                    "dev-master": "4.3-dev"
                 }
             },
             "autoload": {
@@ -7316,68 +7385,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2020-07-25T13:18:53+00:00"
-        },
-        {
-            "name": "ocramius/package-versions",
-            "version": "1.9.0",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Ocramius/PackageVersions.git",
-                "reference": "94c9d42a466c57f91390cdd49c81313264f49d85"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Ocramius/PackageVersions/zipball/94c9d42a466c57f91390cdd49c81313264f49d85",
-                "reference": "94c9d42a466c57f91390cdd49c81313264f49d85",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.1.0 || ^2.0",
-                "php": "^7.4.0"
-            },
-            "require-dev": {
-                "composer/composer": "^1.9.3 || ^2.0@dev",
-                "doctrine/coding-standard": "^7.0.2",
-                "ext-zip": "^1.15.0",
-                "infection/infection": "^0.15.3",
-                "phpunit/phpunit": "^9.1.1",
-                "vimeo/psalm": "^3.9.3"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "PackageVersions\\Installer",
-                "branch-alias": {
-                    "dev-master": "1.99.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "PackageVersions\\": "src/PackageVersions"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Marco Pivetta",
-                    "email": "ocramius@gmail.com"
-                }
-            ],
-            "description": "Composer plugin that provides efficient querying for installed package versions (no runtime IO)",
-            "funding": [
-                {
-                    "url": "https://github.com/Ocramius",
-                    "type": "github"
-                },
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/ocramius/package-versions",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2020-06-22T14:15:44+00:00"
+            "time": "2020-07-02T17:12:47+00:00"
         },
         {
             "name": "openlss/lib-array2xml",
@@ -7895,16 +7903,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "0.12.33",
+            "version": "0.12.34",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "46e698a0452526a05c4a351d7c47c4b8c37a548d"
+                "reference": "ad75388d71fb0b4a954f71a852fd989915a51cb7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/46e698a0452526a05c4a351d7c47c4b8c37a548d",
-                "reference": "46e698a0452526a05c4a351d7c47c4b8c37a548d",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/ad75388d71fb0b4a954f71a852fd989915a51cb7",
+                "reference": "ad75388d71fb0b4a954f71a852fd989915a51cb7",
                 "shasum": ""
             },
             "require": {
@@ -7947,7 +7955,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2020-07-19T22:10:11+00:00"
+            "time": "2020-07-30T15:31:10+00:00"
         },
         {
             "name": "phpunit/php-code-coverage",
@@ -9590,21 +9598,22 @@
         },
         {
             "name": "vimeo/psalm",
-            "version": "3.12.2",
+            "version": "3.13.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/vimeo/psalm.git",
-                "reference": "7c7ebd068f8acaba211d4a2c707c4ba90874fa26"
+                "reference": "afd8874a9e4562eac42a02de90e42e430c3a1db1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/vimeo/psalm/zipball/7c7ebd068f8acaba211d4a2c707c4ba90874fa26",
-                "reference": "7c7ebd068f8acaba211d4a2c707c4ba90874fa26",
+                "url": "https://api.github.com/repos/vimeo/psalm/zipball/afd8874a9e4562eac42a02de90e42e430c3a1db1",
+                "reference": "afd8874a9e4562eac42a02de90e42e430c3a1db1",
                 "shasum": ""
             },
             "require": {
                 "amphp/amp": "^2.1",
                 "amphp/byte-stream": "^1.5",
+                "composer/package-versions-deprecated": "^1.8.0",
                 "composer/semver": "^1.4 || ^2.0 || ^3.0",
                 "composer/xdebug-handler": "^1.1",
                 "ext-dom": "*",
@@ -9614,9 +9623,8 @@
                 "ext-tokenizer": "*",
                 "felixfbecker/advanced-json-rpc": "^3.0.3",
                 "felixfbecker/language-server-protocol": "^1.4",
-                "netresearch/jsonmapper": "^1.0 || ^2.0",
-                "nikic/php-parser": "^4.3",
-                "ocramius/package-versions": "^1.2",
+                "netresearch/jsonmapper": "^1.0 || ^2.0 || ^3.0",
+                "nikic/php-parser": "4.3.* || 4.4.* || 4.5.* || 4.6.*",
                 "openlss/lib-array2xml": "^1.0",
                 "php": "^7.1.3|^8",
                 "sebastian/diff": "^3.0 || ^4.0",
@@ -9632,7 +9640,6 @@
                 "bamarni/composer-bin-plugin": "^1.2",
                 "brianium/paratest": "^4.0.0",
                 "ext-curl": "*",
-                "php-coveralls/php-coveralls": "^2.2",
                 "phpmyadmin/sql-parser": "5.1.0",
                 "phpspec/prophecy": ">=1.9.0",
                 "phpunit/phpunit": "^7.5.16 || ^8.5 || ^9.0",
@@ -9683,7 +9690,7 @@
                 "inspection",
                 "php"
             ],
-            "time": "2020-07-03T16:59:07+00:00"
+            "time": "2020-07-30T19:42:34+00:00"
         },
         {
             "name": "webmozart/assert",

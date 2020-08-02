@@ -56,7 +56,7 @@ class DuplicateUrlKeyTest extends TestCase
 
         $collectionsPerStoreId = array_map(
             function ($productsData) {
-                /** @var \PHPUnit\Framework\MockObject\MockObject $productCollectionMock */
+                /** @var MockObject $productCollectionMock */
                 $productCollectionMock = $this->objectManagerHelper
                     ->getCollectionMock(ProductCollection::class, $productsData);
 

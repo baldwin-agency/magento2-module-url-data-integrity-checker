@@ -10,8 +10,9 @@ use Baldwin\UrlDataIntegrityChecker\Util\Stores as StoresUtil;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Model\Attribute\ScopeOverriddenValueFactory as AttributeScopeOverriddenValueFactory;
 use Magento\Catalog\Model\Product as ProductModel;
-use Magento\Catalog\Model\ResourceModel\Product\Collection as ProductCollection;
+use Magento\Catalog\Model\ProductFactory;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
+use Magento\Framework\Model\ResourceModel\IteratorFactory as ResourceModelIteratorFactory;
 use Magento\Store\Model\Store;
 
 class DuplicateUrlKey
@@ -22,8 +23,10 @@ class DuplicateUrlKey
 
     private $storesUtil;
     private $progress;
+    private $iteratorFactory;
     private $progressIndex;
     private $productCollectionFactory;
+    private $productFactory;
     private $attributeScopeOverriddenValueFactory;
     private $cachedProductUrlKeyData;
     private $cachedProductSkusByIds;
@@ -31,12 +34,16 @@ class DuplicateUrlKey
     public function __construct(
         StoresUtil $storesUtil,
         Progress $progress,
+        ResourceModelIteratorFactory $iteratorFactory,
         ProductCollectionFactory $productCollectionFactory,
+        ProductFactory $productFactory,
         AttributeScopeOverriddenValueFactory $attributeScopeOverriddenValueFactory
     ) {
         $this->storesUtil = $storesUtil;
         $this->progress = $progress;
+        $this->iteratorFactory = $iteratorFactory;
         $this->productCollectionFactory = $productCollectionFactory;
+        $this->productFactory = $productFactory;
         $this->attributeScopeOverriddenValueFactory = $attributeScopeOverriddenValueFactory;
 
         $this->progressIndex = 0;
@@ -81,10 +88,6 @@ class DuplicateUrlKey
                 ->addAttributeToSelect(UrlKeyChecker::URL_KEY_ATTRIBUTE)
                 ->addAttributeToFilter(UrlKeyChecker::URL_KEY_ATTRIBUTE, ['notnull' => true], $joinType)
                 ->addAttributeToFilter(UrlKeyChecker::URL_KEY_ATTRIBUTE, ['neq' => ''], $joinType)
-                // TODO: remove!
-                // ->addAttributeToFilter('entity_id', [
-                //     'in' => [147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158],
-                // ])
             ;
 
             if ($this->progressIndex === 0) {
@@ -94,7 +97,15 @@ class DuplicateUrlKey
             $this->progress->updateExpectedSize($this->progressIndex++, $collection->getSize());
             $this->progress->setMessage("Fetching duplicated url key data for store $storeId");
 
-            $this->storeProductUrlKeyData($storeId, $collection);
+            $iterator = $this->iteratorFactory->create();
+            $iterator->walk(
+                $collection->getSelect(),
+                [function (array $queryResult) use ($storeId) {
+                    $product = $this->productFactory->create();
+                    $product->setData($queryResult['row']);
+                    $this->storeProductUrlKeyData($storeId, $product);
+                }]
+            );
 
             $this->progress->setMessage("Finished duplicated url key fetching data for store $storeId");
         }
@@ -106,33 +117,28 @@ class DuplicateUrlKey
         return $productsWithProblems;
     }
 
-    /**
-     * @param ProductCollection<ProductModel> $collection
-     */
-    private function storeProductUrlKeyData(int $storeId, ProductCollection $collection)
+    private function storeProductUrlKeyData(int $storeId, ProductModel $product)
     {
-        foreach ($collection as $product) {
-            $productId     = $product->getEntityId();
-            $productSku    = $product->getSku();
-            $productUrlKey = $product->getUrlKey();
+        $productId     = $product->getEntityId();
+        $productSku    = $product->getSku();
+        $productUrlKey = $product->getUrlKey();
 
-            $dataKey = "$storeId-$productId";
+        $dataKey = "$storeId-$productId";
 
-            // TODO: this is very slow, maybe there is a better way to determine this...
-            // (yes yes, raw sql queries, *sigh*)
-            $isOverridden = $this
-                ->attributeScopeOverriddenValueFactory
-                ->create()
-                ->containsValue(ProductInterface::class, $product, UrlKeyChecker::URL_KEY_ATTRIBUTE, $storeId)
-            ;
-            if ($isOverridden || $storeId === Store::DEFAULT_STORE_ID) {
-                $this->cachedProductUrlKeyData[$dataKey] = $productUrlKey;
-            }
-
-            $this->cachedProductSkusByIds[$productId] = $productSku;
-
-            $this->progress->advance();
+        // TODO: this is very slow, maybe there is a better way to determine this...
+        // (yes yes, raw sql queries, *sigh*)
+        $isOverridden = $this
+            ->attributeScopeOverriddenValueFactory
+            ->create()
+            ->containsValue(ProductInterface::class, $product, UrlKeyChecker::URL_KEY_ATTRIBUTE, $storeId)
+        ;
+        if ($isOverridden || $storeId === Store::DEFAULT_STORE_ID) {
+            $this->cachedProductUrlKeyData[$dataKey] = $productUrlKey;
         }
+
+        $this->cachedProductSkusByIds[$productId] = $productSku;
+
+        $this->progress->advance();
     }
 
     /**

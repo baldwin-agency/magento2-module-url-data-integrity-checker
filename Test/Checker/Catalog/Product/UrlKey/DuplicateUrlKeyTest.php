@@ -9,9 +9,13 @@ use Baldwin\UrlDataIntegrityChecker\Console\Progress;
 use Baldwin\UrlDataIntegrityChecker\Util\Stores as StoresUtil;
 use Magento\Catalog\Model\Attribute\ScopeOverriddenValue as AttributeScopeOverriddenValue;
 use Magento\Catalog\Model\Attribute\ScopeOverriddenValueFactory as AttributeScopeOverriddenValueFactory;
+use Magento\Catalog\Model\Product as ProductModel;
+use Magento\Catalog\Model\ProductFactory;
 use Magento\Catalog\Model\ResourceModel\Product\Collection as ProductCollection;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
 use Magento\Framework\DataObject;
+use Magento\Framework\Model\ResourceModel\Iterator as ResourceModelIterator;
+use Magento\Framework\Model\ResourceModel\IteratorFactory as ResourceModelIteratorFactory;
 use Magento\Framework\TestFramework\Unit\Helper\ObjectManager as ObjectManagerHelper;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -93,16 +97,44 @@ class DuplicateUrlKeyTest extends TestCase
             ->disableOriginalConstructor()
             ->getMock();
 
+        $iteratorMock = $this
+            ->getMockBuilder(ResourceModelIterator::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        /** @var ResourceModelIteratorFactory&MockObject */
+        $iteratorFactoryMock = $this
+            ->getMockBuilder(ResourceModelIteratorFactory::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['create'])
+            ->getMock();
+        $iteratorFactoryMock->expects($this->exactly(count($storeIds)))
+            ->method('create')
+            ->willReturn($iteratorMock);
+
         /** @var ProductCollectionFactory&MockObject */
         $productCollectionFactoryMock = $this
             ->getMockBuilder(ProductCollectionFactory::class)
             ->disableOriginalConstructor()
             ->setMethods(['create'])
             ->getMock();
-
         $productCollectionFactoryMock->expects($this->exactly(count($storeIds)))
             ->method('create')
             ->will($this->onConsecutiveCalls(...$collectionsPerStoreId)); // ... turns array into seperate arguments
+
+        $productMock = $this
+            ->getMockBuilder(ProductModel::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $productFactoryMock = $this
+            ->getMockBuilder(ProductFactory::class)
+            ->disableOriginalConstructor()
+            ->setMethods(['create'])
+            ->getMock();
+        $productFactoryMock->expects($this->exactly(count($dbData)))
+            ->method('create')
+            ->willReturn($productMock);
 
         $attributeScopeOverriddenValueMock = $this
             ->getMockBuilder(AttributeScopeOverriddenValue::class)
@@ -127,7 +159,9 @@ class DuplicateUrlKeyTest extends TestCase
         $urlKeyChecker = new UrlKeyChecker(
             $storesUtilMock,
             $progressMock,
+            $iteratorFactoryMock,
             $productCollectionFactoryMock,
+            $productFactoryMock,
             $attributeScopeOverriddenValueFactoryMock
         );
         $results = $urlKeyChecker->execute();

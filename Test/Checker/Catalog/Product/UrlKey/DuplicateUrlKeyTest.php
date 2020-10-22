@@ -82,7 +82,6 @@ class DuplicateUrlKeyTest extends TestCase
             $dataPerStoreId
         );
 
-        /** @var StoresUtil&MockObject */
         $storesUtilMock = $this
             ->getMockBuilder(StoresUtil::class)
             ->disableOriginalConstructor()
@@ -91,7 +90,6 @@ class DuplicateUrlKeyTest extends TestCase
             ->method('getAllStoreIds')
             ->willReturn($storeIds);
 
-        /** @var Progress&MockObject */
         $progressMock = $this
             ->getMockBuilder(Progress::class)
             ->disableOriginalConstructor()
@@ -100,9 +98,27 @@ class DuplicateUrlKeyTest extends TestCase
         $iteratorMock = $this
             ->getMockBuilder(ResourceModelIterator::class)
             ->disableOriginalConstructor()
+            ->setMethods(['walk'])
             ->getMock();
+        $iteratorMock->expects($this->exactly(count($storeIds)))
+            ->method('walk')
+            ->with($this->anything(), $this->callback(
+                function ($callbacks) {
+                    foreach ($callbacks as $callback) {
+                        // TODO: add real data here based on input
+                        $args = ['row' => [
+                            'entity_id' => 'test',
+                            'sku' => 'test',
+                            'url_key' => 'test',
+                        ]];
 
-        /** @var ResourceModelIteratorFactory&MockObject */
+                        $callback($args);
+                    }
+
+                    return true;
+                }
+            ));
+
         $iteratorFactoryMock = $this
             ->getMockBuilder(ResourceModelIteratorFactory::class)
             ->disableOriginalConstructor()
@@ -112,7 +128,6 @@ class DuplicateUrlKeyTest extends TestCase
             ->method('create')
             ->willReturn($iteratorMock);
 
-        /** @var ProductCollectionFactory&MockObject */
         $productCollectionFactoryMock = $this
             ->getMockBuilder(ProductCollectionFactory::class)
             ->disableOriginalConstructor()
@@ -146,7 +161,6 @@ class DuplicateUrlKeyTest extends TestCase
             ->method('containsValue')
             ->willReturn(true);
 
-        /** @var AttributeScopeOverriddenValueFactory&MockObject */
         $attributeScopeOverriddenValueFactoryMock = $this
             ->getMockBuilder(AttributeScopeOverriddenValueFactory::class)
             ->disableOriginalConstructor()

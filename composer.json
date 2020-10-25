@@ -25,6 +25,7 @@
         "ergebnis/composer-normalize": "^2.2",
         "friendsofphp/php-cs-fixer": "^2.16",
         "magento/magento-coding-standard": "^5.0",
+        "mikey179/vfsstream": "^1.6",
         "phpcompatibility/php-compatibility": "^9.2",
         "phpstan/extension-installer": "^1.0",
         "phpstan/phpstan": "^0.12.26",

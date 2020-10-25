@@ -7,5 +7,6 @@ parameters:
         - vendor/bitexpert/phpstan-magento/autoload.php
     excludes_analyse:
         - %currentWorkingDirectory%/vendor/*
+        - %currentWorkingDirectory%/Test/bootstrap.php
     ignoreErrors:
         - '/ has no return typehint specified./'

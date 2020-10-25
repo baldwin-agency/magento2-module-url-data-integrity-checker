@@ -6,10 +6,10 @@ namespace Baldwin\UrlDataIntegrityChecker\Test\Checker\Catalog\Product\UrlKey;
 
 use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product\UrlKey\DuplicateUrlKey as UrlKeyChecker;
 use Baldwin\UrlDataIntegrityChecker\Console\Progress;
+use Baldwin\UrlDataIntegrityChecker\Test\Checker\Catalog\MyProductClass;
 use Baldwin\UrlDataIntegrityChecker\Util\Stores as StoresUtil;
 use Magento\Catalog\Model\Attribute\ScopeOverriddenValue as AttributeScopeOverriddenValue;
 use Magento\Catalog\Model\Attribute\ScopeOverriddenValueFactory as AttributeScopeOverriddenValueFactory;
-use Magento\Catalog\Model\Product as ProductModel;
 use Magento\Catalog\Model\ProductFactory;
 use Magento\Catalog\Model\ResourceModel\Product\Collection as ProductCollection;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
@@ -100,20 +100,24 @@ class DuplicateUrlKeyTest extends TestCase
             ->disableOriginalConstructor()
             ->setMethods(['walk'])
             ->getMock();
+
+        $iteratorIndex = 0;
         $iteratorMock->expects($this->exactly(count($storeIds)))
             ->method('walk')
             ->with($this->anything(), $this->callback(
-                function ($callbacks) {
+                function ($callbacks) use ($dbData, &$iteratorIndex) {
+                    // TODO: this dbData way of working is probably not the right solution
                     foreach ($callbacks as $callback) {
-                        // TODO: add real data here based on input
                         $args = ['row' => [
-                            'entity_id' => 'test',
-                            'sku' => 'test',
-                            'url_key' => 'test',
+                            'entity_id' => $dbData[$iteratorIndex]->getEntityId(),
+                            'sku'       => $dbData[$iteratorIndex]->getSku(),
+                            'url_key'   => $dbData[$iteratorIndex]->getUrlKey(),
                         ]];
 
                         $callback($args);
                     }
+
+                    ++$iteratorIndex;
 
                     return true;
                 }
@@ -137,11 +141,7 @@ class DuplicateUrlKeyTest extends TestCase
             ->method('create')
             ->will($this->onConsecutiveCalls(...$collectionsPerStoreId)); // ... turns array into seperate arguments
 
-        $productMock = $this
-            ->getMockBuilder(ProductModel::class)
-            ->disableOriginalConstructor()
-            ->getMock();
-
+        $productModel = $this->objectManagerHelper->getObject(MyProductClass::class);
         $productFactoryMock = $this
             ->getMockBuilder(ProductFactory::class)
             ->disableOriginalConstructor()
@@ -149,7 +149,7 @@ class DuplicateUrlKeyTest extends TestCase
             ->getMock();
         $productFactoryMock->expects($this->exactly(count($dbData)))
             ->method('create')
-            ->willReturn($productMock);
+            ->willReturn($productModel);
 
         $attributeScopeOverriddenValueMock = $this
             ->getMockBuilder(AttributeScopeOverriddenValue::class)
@@ -301,39 +301,39 @@ class DuplicateUrlKeyTest extends TestCase
                 ],
                 [
                     [
-                        'productId' => '1',
+                        'productId' => 1,
                         'sku'       => 'sku 1',
-                        'storeId'   => '0',
+                        'storeId'   => 0,
                         'problem'   => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 'url_key_1', 2, 0),
                     ],
                     [
-                        'productId' => '1',
+                        'productId' => 1,
                         'sku'       => 'sku 1',
-                        'storeId'   => '0',
+                        'storeId'   => 0,
                         'problem'   => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 'url_key_1', 3, 0),
                     ],
                     [
-                        'productId' => '2',
+                        'productId' => 2,
                         'sku'       => 'sku 2',
-                        'storeId'   => '0',
+                        'storeId'   => 0,
                         'problem'   => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 'url_key_1', 1, 0),
                     ],
                     [
-                        'productId' => '2',
+                        'productId' => 2,
                         'sku'       => 'sku 2',
-                        'storeId'   => '0',
+                        'storeId'   => 0,
                         'problem'   => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 'url_key_1', 3, 0),
                     ],
                     [
-                        'productId' => '3',
+                        'productId' => 3,
                         'sku'       => 'sku 3',
-                        'storeId'   => '0',
+                        'storeId'   => 0,
                         'problem'   => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 'url_key_1', 1, 0),
                     ],
                     [
-                        'productId' => '3',
+                        'productId' => 3,
                         'sku'       => 'sku 3',
-                        'storeId'   => '0',
+                        'storeId'   => 0,
                         'problem'   => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 'url_key_1', 2, 0),
                     ],
                 ],
@@ -394,15 +394,15 @@ class DuplicateUrlKeyTest extends TestCase
                 ],
                 [
                     [
-                        'productId' => '1',
+                        'productId' => 1,
                         'sku'       => 'sku 1',
-                        'storeId'   => '0',
+                        'storeId'   => 0,
                         'problem'   => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 'url_key_1', 2, 1),
                     ],
                     [
-                        'productId' => '2',
+                        'productId' => 2,
                         'sku'       => 'sku 2',
-                        'storeId'   => '1',
+                        'storeId'   => 1,
                         'problem'   => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 'url_key_1', 1, 0),
                     ],
                 ],
@@ -438,15 +438,15 @@ class DuplicateUrlKeyTest extends TestCase
                 ],
                 [
                     [
-                        'productId' => '1',
+                        'productId' => 1,
                         'sku'       => 'sku 1',
-                        'storeId'   => '0',
+                        'storeId'   => 0,
                         'problem'   => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 'url_key_1', 2, 0),
                     ],
                     [
-                        'productId' => '2',
+                        'productId' => 2,
                         'sku'       => 'sku 2',
-                        'storeId'   => '0',
+                        'storeId'   => 0,
                         'problem'   => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 'url_key_1', 1, 0),
                     ],
                 ],
@@ -481,27 +481,27 @@ class DuplicateUrlKeyTest extends TestCase
                 ],
                 [
                     [
-                        'productId' => '1',
+                        'productId' => 1,
                         'sku'       => 'sku 1',
-                        'storeId'   => '0',
+                        'storeId'   => 0,
                         'problem'   => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 'url_key_1', 2, 0),
                     ],
                     [
-                        'productId' => '2',
+                        'productId' => 2,
                         'sku'       => 'sku 2',
-                        'storeId'   => '0',
+                        'storeId'   => 0,
                         'problem'   => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 'url_key_1', 1, 0),
                     ],
                     [
-                        'productId' => '1',
+                        'productId' => 1,
                         'sku'       => 'sku 1',
-                        'storeId'   => '1',
+                        'storeId'   => 1,
                         'problem'   => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 'url_key_1', 2, 1),
                     ],
                     [
-                        'productId' => '2',
+                        'productId' => 2,
                         'sku'       => 'sku 2',
-                        'storeId'   => '1',
+                        'storeId'   => 1,
                         'problem'   => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 'url_key_1', 1, 1),
                     ],
                 ],
@@ -536,15 +536,15 @@ class DuplicateUrlKeyTest extends TestCase
                 ],
                 [
                     [
-                        'productId' => '1',
+                        'productId' => 1,
                         'sku'       => 'sku 1',
-                        'storeId'   => '1',
+                        'storeId'   => 1,
                         'problem'   => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 'url_key_2', 2, 1),
                     ],
                     [
-                        'productId' => '2',
+                        'productId' => 2,
                         'sku'       => 'sku 2',
-                        'storeId'   => '1',
+                        'storeId'   => 1,
                         'problem'   => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 'url_key_2', 1, 1),
                     ],
                 ],
@@ -629,15 +629,15 @@ class DuplicateUrlKeyTest extends TestCase
                 ],
                 [
                     [
-                        'productId' => '1',
+                        'productId' => 1,
                         'sku'       => 'sku 1',
-                        'storeId'   => '0',
+                        'storeId'   => 0,
                         'problem'   => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 'url_key_1', 2, 0),
                     ],
                     [
-                        'productId' => '2',
+                        'productId' => 2,
                         'sku'       => 'sku 2',
-                        'storeId'   => '0',
+                        'storeId'   => 0,
                         'problem'   => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 'url_key_1', 1, 0),
                     ],
                 ],
@@ -666,15 +666,15 @@ class DuplicateUrlKeyTest extends TestCase
                 ],
                 [
                     [
-                        'productId' => '2',
+                        'productId' => 2,
                         'sku'       => 'sku 2',
-                        'storeId'   => '0',
+                        'storeId'   => 0,
                         'problem'   => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 'url_key_1', 1, 1),
                     ],
                     [
-                        'productId' => '1',
+                        'productId' => 1,
                         'sku'       => 'sku 1',
-                        'storeId'   => '1',
+                        'storeId'   => 1,
                         'problem'   => sprintf(UrlKeyChecker::DUPLICATED_PROBLEM_DESCRIPTION, 'url_key_1', 2, 0),
                     ],
                 ],

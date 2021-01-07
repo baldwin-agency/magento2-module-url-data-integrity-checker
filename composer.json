@@ -24,7 +24,7 @@
         "bitexpert/phpstan-magento": "^0.3.0",
         "ergebnis/composer-normalize": "^2.2",
         "friendsofphp/php-cs-fixer": "^2.17",
-        "magento/magento-coding-standard": "^5.0",
+        "magento/magento-coding-standard": "^6.0",
         "phpcompatibility/php-compatibility": "^9.2",
         "phpstan/extension-installer": "^1.0",
         "phpstan/phpstan": "^0.12.26",

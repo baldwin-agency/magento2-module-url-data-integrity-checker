@@ -18,6 +18,9 @@ checkstyle:
 
 .PHONY: checkquality
 checkquality:
+	vendor/bin/phpstan analyse
+	vendor/bin/psalm
+
 	xmllint --noout --schema vendor/magento/module-backend/etc/menu.xsd            etc/adminhtml/menu.xml
 	xmllint --noout --schema vendor/magento/framework/App/etc/routes.xsd           etc/adminhtml/routes.xml
 	xmllint --noout --schema vendor/magento/framework/Acl/etc/acl.xsd              etc/acl.xml
@@ -34,9 +37,6 @@ checkquality:
 	xmllint --noout                                                                view/adminhtml/ui_component/baldwin_urldataintegritychecker_grid_catalog_category_urlpath.xml # schema validation doesn't work here since the xsd includes another xsd ..
 	xmllint --noout                                                                view/adminhtml/ui_component/baldwin_urldataintegritychecker_grid_catalog_product_urlkey.xml # schema validation doesn't work here since the xsd includes another xsd ..
 	xmllint --noout                                                                view/adminhtml/ui_component/baldwin_urldataintegritychecker_grid_catalog_product_urlpath.xml # schema validation doesn't work here since the xsd includes another xsd ..
-
-	vendor/bin/phpstan analyse
-	vendor/bin/psalm
 
 .PHONY: test
 test:

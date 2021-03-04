@@ -9,3 +9,4 @@ parameters:
         - %currentWorkingDirectory%/vendor/*
     ignoreErrors:
         - '/ has no return typehint specified./'
+        - '/Use service contracts to persist entities in favour of Magento\\Cron\\Model\\Schedule\:\:save\(\) method/'

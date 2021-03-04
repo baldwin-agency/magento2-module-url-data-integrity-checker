@@ -6,7 +6,6 @@ namespace Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product;
 
 use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product\UrlKey\DuplicateUrlKey as DuplicateUrlKeyChecker;
 use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product\UrlKey\EmptyUrlKey as EmptyUrlKeyChecker;
-use Baldwin\UrlDataIntegrityChecker\Console\Progress;
 
 class UrlKey
 {
@@ -15,16 +14,13 @@ class UrlKey
 
     private $duplicateUrlKeyChecker;
     private $emptyUrlKeyChecker;
-    private $progress;
 
     public function __construct(
         DuplicateUrlKeyChecker $duplicateUrlKeyChecker,
-        EmptyUrlKeyChecker $emptyUrlKeyChecker,
-        Progress $progress
+        EmptyUrlKeyChecker $emptyUrlKeyChecker
     ) {
         $this->duplicateUrlKeyChecker = $duplicateUrlKeyChecker;
         $this->emptyUrlKeyChecker = $emptyUrlKeyChecker;
-        $this->progress = $progress;
     }
 
     /**

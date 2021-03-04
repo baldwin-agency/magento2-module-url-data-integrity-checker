@@ -85,7 +85,7 @@ class UrlPathCollection extends DataCollection implements SearchResultInterface
         foreach ($arguments as $key => $value) {
             $attribute = new AttributeValue([
                 AttributeInterface::ATTRIBUTE_CODE => $key,
-                AttributeInterface::VALUE => $value,
+                AttributeInterface::VALUE          => $value,
             ]);
 
             $attributes[] = $attribute;

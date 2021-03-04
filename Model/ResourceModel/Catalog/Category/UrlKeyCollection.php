@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Baldwin\UrlDataIntegrityChecker\Model\ResourceModel\Catalog\Category;
 
 use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Category\UrlKey as UrlKeyChecker;
+use Baldwin\UrlDataIntegrityChecker\MagentoCoreBugFixes\FakeSelectForMagentoIssue32292 as FakeSelect;
 use Baldwin\UrlDataIntegrityChecker\Storage\StorageInterface;
 use Magento\Framework\Api\AttributeInterface;
 use Magento\Framework\Api\AttributeValue;
@@ -18,14 +19,17 @@ use Magento\Framework\Exception\LocalizedException;
 class UrlKeyCollection extends DataCollection implements SearchResultInterface
 {
     private $storage;
+    private $fakeSelect;
 
     public function __construct(
         EntityFactoryInterface $entityFactory,
-        StorageInterface $storage
+        StorageInterface $storage,
+        FakeSelect $fakeSelect
     ) {
         parent::__construct($entityFactory);
 
         $this->storage = $storage;
+        $this->fakeSelect = $fakeSelect;
     }
 
     /**
@@ -85,7 +89,7 @@ class UrlKeyCollection extends DataCollection implements SearchResultInterface
         foreach ($arguments as $key => $value) {
             $attribute = new AttributeValue([
                 AttributeInterface::ATTRIBUTE_CODE => $key,
-                AttributeInterface::VALUE => $value,
+                AttributeInterface::VALUE          => $value,
             ]);
 
             $attributes[] = $attribute;
@@ -140,5 +144,10 @@ class UrlKeyCollection extends DataCollection implements SearchResultInterface
     public function setTotalCount($totalCount)
     {
         throw new LocalizedException(__('Not implemented: setTotalCount!'));
+    }
+
+    public function getSelect(): FakeSelect
+    {
+        return $this->fakeSelect;
     }
 }

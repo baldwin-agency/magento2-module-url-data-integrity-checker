@@ -82,11 +82,11 @@ class EmptyUrlKey
                 ->addAttributeToFilter([
                     [
                         'attribute' => UrlKeyChecker::URL_KEY_ATTRIBUTE,
-                        'null' => true,
+                        'null'      => true,
                     ],
                     [
                         'attribute' => UrlKeyChecker::URL_KEY_ATTRIBUTE,
-                        'eq' => '',
+                        'eq'        => '',
                     ],
                 ], null, $joinType)
             ;

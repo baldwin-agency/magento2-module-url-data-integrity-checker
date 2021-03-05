@@ -54,8 +54,9 @@ class CheckCategoryUrlKeys extends ConsoleCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         try {
-            $this->appState->setAreaCode(AppArea::AREA_CRONTAB);
-
+            if (!$this->appState->getAreaCode()) {
+                $this->appState->setAreaCode(AppArea::AREA_CRONTAB);
+            }
             $force = $input->getOption('force');
             if ($force === true) {
                 $this->metaStorage->clearStatus(UrlKeyChecker::STORAGE_IDENTIFIER);

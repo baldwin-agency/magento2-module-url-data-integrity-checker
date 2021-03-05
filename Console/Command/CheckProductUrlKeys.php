@@ -58,7 +58,9 @@ class CheckProductUrlKeys extends ConsoleCommand
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         try {
-            $this->appState->setAreaCode(AppArea::AREA_CRONTAB);
+            if (!$this->appState->getAreaCode()) {
+                $this->appState->setAreaCode(AppArea::AREA_CRONTAB);
+            }
             $this->progress->setOutput($output);
 
             $force = $input->getOption('force');

@@ -78,6 +78,8 @@ class DuplicateUrlKey
      */
     private function getCategoryUrlPathsByStoreId(int $storeId): array
     {
+        $this->urlPathsInfo = [];
+
         $urlPaths = [];
 
         $categories = $this->urlPathChecker->getAllVisibleCategoriesWithStoreId($storeId);

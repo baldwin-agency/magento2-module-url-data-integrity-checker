@@ -5,11 +5,11 @@ $finder = PhpCsFixer\Finder::create()
     ->exclude('vendor')
 ;
 
-return PhpCsFixer\Config::create()
+$config = new PhpCsFixer\Config();
+return $config
     ->setRules([
         '@Symfony'               => true,
         '@PSR12'                 => true,
-        'array_syntax'           => ['syntax' => 'short'],
         'binary_operator_spaces' => ['default' => null, 'operators' => ['=>' => 'align']],
         'concat_space'           => ['spacing' => 'one'],
         'declare_strict_types'   => true,
@@ -27,8 +27,8 @@ return PhpCsFixer\Config::create()
         'phpdoc_summary'         => false,
         'self_accessor'          => true,
         'single_line_throw'      => false,
-        'visibility_required'    => ['property', 'method'], // removed 'const' since we still support PHP 7.0 for now
-        'yoda_style'             => null,
+        'visibility_required'    => ['elements' => ['property', 'method']], // removed 'const' since we still support PHP 7.0 for now
+        'yoda_style'             => false,
     ])
     ->setFinder($finder)
 ;

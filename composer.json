@@ -21,7 +21,7 @@
         "symfony/console": "^2.5 || ^3.0 || ^4.0 || ^5.0"
     },
     "require-dev": {
-        "bitexpert/phpstan-magento": "^0.7.0",
+        "bitexpert/phpstan-magento": "^0.8.0",
         "ergebnis/composer-normalize": "^2.2",
         "friendsofphp/php-cs-fixer": "^3.0",
         "magento/magento-coding-standard": "^6.0",

@@ -70,10 +70,6 @@ class Progress
         }
     }
 
-    /**
-     * @psalm-suppress ReservedWord
-     * When we remove PHP 7.0 support from the composer.json file, we can remove this suppress line
-     */
     public function finish()
     {
         if ($this->canOutput()) {

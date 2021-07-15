@@ -35,7 +35,7 @@ class Refresh extends BackendAction
         $scheduled = $this->scheduleJob->schedule(CheckCategoryUrlKeyCron::JOB_NAME);
 
         if ($scheduled) {
-            $this->getMessageManager()->addSuccess(
+            $this->getMessageManager()->addSuccessMessage(
                 (string) __(
                     'The refresh job was scheduled, please check back in a few moments to see the updated results'
                 )
@@ -45,10 +45,10 @@ class Refresh extends BackendAction
                 $storageIdentifier = UrlKeyChecker::STORAGE_IDENTIFIER;
                 $this->metaStorage->setPending($storageIdentifier, MetaStorage::INITIATOR_CRON);
             } catch (AlreadyRefreshingException $ex) {
-                $this->getMessageManager()->addError($ex->getMessage());
+                $this->getMessageManager()->addErrorMessage($ex->getMessage());
             }
         } else {
-            $this->getMessageManager()->addError(
+            $this->getMessageManager()->addErrorMessage(
                 (string) __('Couldn\'t schedule refreshing due to some unknown error')
             );
         }

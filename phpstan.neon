@@ -9,4 +9,12 @@ parameters:
         - %currentWorkingDirectory%/vendor/*
     ignoreErrors:
         - '/ has no return typehint specified./'
-        - '/Use service contracts to persist entities in favour of Magento\\Cron\\Model\\Schedule\:\:save\(\) method/'
+
+        - message: '/Use service contracts to persist entities in favour of Magento\\Cron\\Model\\Schedule\:\:save\(\) method/'
+          path: Cron/ScheduleJob.php
+
+        - message: '/Call to deprecated method save\(\) of class Magento\\Framework\\Model\\AbstractModel/'
+          path: Cron/ScheduleJob.php
+
+        - message: '/Parameter \#1 \$autoload_function of function spl_autoload_register expects callable\(string\)\: void, array\(Magento\\Framework\\TestFramework\\Unit\\Autoloader\\GeneratedClassesAutoloader/'
+          path: Test/bootstrap.php

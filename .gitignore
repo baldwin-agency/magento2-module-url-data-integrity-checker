@@ -1,3 +1,4 @@
-.php_cs.cache
-auth.json
+/.php_cs.cache
+/auth.json
+/Test/.phpunit.result.cache
 /vendor/

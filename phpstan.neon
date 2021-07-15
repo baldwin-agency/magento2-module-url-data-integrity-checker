@@ -7,7 +7,11 @@ parameters:
         - vendor/bitexpert/phpstan-magento/autoload.php
     excludes_analyse:
         - %currentWorkingDirectory%/vendor/*
-        - %currentWorkingDirectory%/Test/bootstrap.php
     ignoreErrors:
         - '/ has no return typehint specified./'
-        - '/Use service contracts to persist entities in favour of Magento\\Cron\\Model\\Schedule\:\:save\(\) method/'
+
+        - message: '/Use service contracts to persist entities in favour of Magento\\Cron\\Model\\Schedule\:\:save\(\) method/'
+          path: Cron/ScheduleJob.php
+
+        - message: '/Parameter \#1 \$autoload_function of function spl_autoload_register expects callable\(string\)\: void, array\(Magento\\Framework\\TestFramework\\Unit\\Autoloader\\GeneratedClassesAutoloader/'
+          path: Test/bootstrap.php

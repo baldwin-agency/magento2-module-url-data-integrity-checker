@@ -1,0 +1,9 @@
+name: php-cs-fixer
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: PHP CS Fixer
+      run: docker run --rm -v $PWD:/code domw/php-cs-fixer php-cs-fixer fix --dry-run --diff --stop-on-violation --allow-risky=yes ./

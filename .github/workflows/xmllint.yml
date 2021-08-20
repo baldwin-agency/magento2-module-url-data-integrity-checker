@@ -12,4 +12,5 @@ jobs:
       with:
         args: install --prefer-dist --ignore-platform-reqs    
     - name: XML Lint
-      run: docker run --rm -v $PWD:/code mribeiro/xmllint --schema vendor/magento/module-backend/etc/menu.xsd ./etc/adminhtml/menu.xml
+      run: docker run --rm -v $PWD:/code domw/xmllint --noout ./etc/adminhtml/menu.xml --schema ./vendor/magento/module-backend/etc/menu.xsd
+      run: docker run --rm -v $PWD:/code domw/xmllint --noout ./etc/adminhtml/routes.xml --schema ./vendor/magento/framework/App/etc/routes.xsd

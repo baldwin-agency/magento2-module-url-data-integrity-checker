@@ -1,0 +1,15 @@
+name: PHPStan
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: MilesChou/composer-action@master
+      with:
+        args: config http-basic.repo.magento.com 7bdd660a63609d2af9fcbc033a9eae8d 77c0cedb4871620c63acbd82aeb92f38
+    - uses: MilesChou/composer-action@master
+      with:
+        args: install --prefer-dist --no-dev --ignore-platform-reqs
+    - name: PHPStan
+      run: docker run --rm -v $PWD:/code domw/phpstan phpstan analyze ./

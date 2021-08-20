@@ -3,7 +3,7 @@ parameters:
     excludes_analyse:
         - 'vendor'
     ignoreErrors:
-        - '#has no return typehint specified#'
+        - '#typehint#'
         - '#Use service contracts to persist entities#'
         - '#Call to deprecated method save#'
         - '#Parameter \#1 \$autoload_function of function spl_autoload_register#'

@@ -1,0 +1,15 @@
+name: PHPUnit
+on: ["push", "pull_request"]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: MilesChou/composer-action@master
+      with:
+        args: config http-basic.repo.magento.com 7bdd660a63609d2af9fcbc033a9eae8d 77c0cedb4871620c63acbd82aeb92f38
+    - uses: MilesChou/composer-action@master
+      with:
+        args: install --prefer-dist --ignore-platform-reqs 
+    - name: PHPUnit
+      run: vendor/bin/phpunit -c Test/phpunit.xml Test/

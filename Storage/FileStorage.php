@@ -5,23 +5,30 @@ declare(strict_types=1);
 namespace Baldwin\UrlDataIntegrityChecker\Storage;
 
 use Baldwin\UrlDataIntegrityChecker\Exception\SerializationException;
+use Magento\Framework\App\Config\ScopeConfigInterface;
+use Magento\Store\Model\ScopeInterface;
 use Magento\Framework\App\Filesystem\DirectoryList;
 use Magento\Framework\Exception\FileSystemException;
 use Magento\Framework\Filesystem;
 
 class FileStorage extends AbstractStorage implements StorageInterface
 {
+    const CONFIG_PATH = 'url/checker/path';
+
     private $filesystem;
+    private $scopeConfig;
 
     public function __construct(
-        Filesystem $filesystem
+        Filesystem $filesystem,
+        ScopeConfigInterface $scopeConfig
     ) {
         $this->filesystem = $filesystem;
+        $this->scopeConfig = $scopeConfig;
     }
 
     public function write(string $identifier, array $data): bool
     {
-        $directory = $this->filesystem->getDirectoryWrite(DirectoryList::TMP);
+        $directory = $this->filesystem->getDirectoryWrite($this->getPath() ?: DirectoryList::TMP);
         $directory->create();
         $filename = $this->getFilename($identifier);
 
@@ -39,7 +46,7 @@ class FileStorage extends AbstractStorage implements StorageInterface
 
     public function read(string $identifier): array
     {
-        $directory = $this->filesystem->getDirectoryRead(DirectoryList::TMP);
+        $directory = $this->filesystem->getDirectoryRead($this->getPath() ?: DirectoryList::TMP);
         $filename = $this->getFilename($identifier);
 
         $data = '';
@@ -56,5 +63,13 @@ class FileStorage extends AbstractStorage implements StorageInterface
     private function getFilename(string $identifier): string
     {
         return 'baldwin-url-data-integrity-checker-' . $identifier . '.json';
+    }
+
+    private function getPath(): string
+    {
+        return $this->scopeConfig->getValue(
+            self::CONFIG_PATH,
+            ScopeInterface::SCOPE_STORE
+        );
     }
 }

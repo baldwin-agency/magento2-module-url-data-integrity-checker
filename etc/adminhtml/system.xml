@@ -1,0 +1,20 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="baldwin" translate="label" sortOrder="500">
+            <label>Baldwin</label>
+        </tab>
+        <section id="url" sortOrder="10" showInWebsite="0" showInStore="0" showInDefault="1" translate="label">
+            <label>Url Data Integrity Checker</label>
+            <tab>baldwin</tab>
+            <resource>Baldwin_UrlDataIntegrityChecker::config_baldwin_urldataintegritychecker</resource>
+            <group id="checker" sortOrder="10" showInWebsite="0" showInStore="0" showInDefault="1" translate="label">
+                <label>Config</label>
+                <field id="path" type="text" sortOrder="10" showInWebsite="0" showInStore="0" showInDefault="1" translate="label">
+                    <label>Path</label>
+                    <comment>Path where to store json files eg tmp or media</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

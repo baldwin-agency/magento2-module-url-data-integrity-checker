@@ -6,6 +6,13 @@
                 <resource id="Magento_Catalog::catalog">
                     <resource id="Baldwin_UrlDataIntegrityChecker::catalog_data_integrity" title="Data Integrity Checker" translate="title" sortOrder="100"/>
                 </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Baldwin_UrlDataIntegrityChecker::config_baldwin_urldataintegritychecker" title="url"/>
+                        </resource>
+                    </resource>
+                </resource>
             </resource>
         </resources>
     </acl>

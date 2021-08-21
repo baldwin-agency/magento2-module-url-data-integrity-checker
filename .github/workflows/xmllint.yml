@@ -13,8 +13,10 @@ jobs:
         args: install --prefer-dist --ignore-platform-reqs    
     - name: XML Lint
       run: |
+       docker run --rm -v $PWD:/code domw/xmllint --noout ./etc/config.xml --schema ./vendor/magento/module-store/etc/config.xsd
        docker run --rm -v $PWD:/code domw/xmllint --noout ./etc/adminhtml/menu.xml --schema ./vendor/magento/module-backend/etc/menu.xsd
        docker run --rm -v $PWD:/code domw/xmllint --noout ./etc/adminhtml/routes.xml --schema ./vendor/magento/framework/App/etc/routes.xsd
+       docker run --rm -v $PWD:/code domw/xmllint --noout ./etc/adminhtml/system.xml --schema vendor/magento/module-config/etc/system.xsd
        docker run --rm -v $PWD:/code domw/xmllint --noout ./etc/acl.xml --schema ./vendor/magento/framework/Acl/etc/acl.xsd
        docker run --rm -v $PWD:/code domw/xmllint --noout ./etc/cron_groups.xml --schema ./vendor/magento/module-cron/etc/cron_groups.xsd
        docker run --rm -v $PWD:/code domw/xmllint --noout ./etc/crontab.xml --schema ./vendor/magento/module-cron/etc/crontab.xsd

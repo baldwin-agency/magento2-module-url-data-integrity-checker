@@ -1,0 +1,9 @@
+name: phpcs
+on: [push]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - name: Magento 2 Ruleset
+      run: docker run --rm -v $PWD:/code domw/phpcs phpcs --colors --standard=Magento2 ./

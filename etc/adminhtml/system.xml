@@ -1,18 +1,15 @@
 <?xml version="1.0" ?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
     <system>
-        <tab id="baldwin" translate="label" sortOrder="500">
-            <label>Baldwin</label>
-        </tab>
-        <section id="url" sortOrder="10" showInWebsite="0" showInStore="0" showInDefault="1" translate="label">
+        <section id="url_data_integrity_checker" sortOrder="200" showInDefault="1" showInWebsite="0" showInStore="0" translate="label">
             <label>Url Data Integrity Checker</label>
-            <tab>baldwin</tab>
-            <resource>Baldwin_UrlDataIntegrityChecker::config_baldwin_urldataintegritychecker</resource>
-            <group id="checker" sortOrder="10" showInWebsite="0" showInStore="0" showInDefault="1" translate="label">
-                <label>Config</label>
-                <field id="path" type="text" sortOrder="10" showInWebsite="0" showInStore="0" showInDefault="1" translate="label">
-                    <label>Path</label>
-                    <comment>Path where to store json files eg tmp or media</comment>
+            <tab>catalog</tab>
+            <resource>Baldwin_UrlDataIntegrityChecker::config_data_integrity</resource>
+            <group id="configuration" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0" translate="label">
+                <label>Configuration</label>
+                <field id="filestorage_path" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0" translate="label">
+                    <label>Path to store results</label>
+                    <comment>Path where to store json files, can be either an absolute or a relative path</comment>
                 </field>
             </group>
         </section>

@@ -23,7 +23,7 @@ checkquality:
 	xmllint --noout --schema vendor/magento/module-store/etc/config.xsd            etc/config.xml
 	xmllint --noout --schema vendor/magento/module-backend/etc/menu.xsd            etc/adminhtml/menu.xml
 	xmllint --noout --schema vendor/magento/framework/App/etc/routes.xsd           etc/adminhtml/routes.xml
-	xmllint --noout --schema vendor/magento/module-config/etc/system.xsd           etc/adminhtml/system.xml
+	xmllint --noout --schema vendor/magento/module-config/etc/system_file.xsd      etc/adminhtml/system.xml
 	xmllint --noout --schema vendor/magento/framework/Acl/etc/acl.xsd              etc/acl.xml
 	xmllint --noout --schema vendor/magento/module-cron/etc/cron_groups.xsd        etc/cron_groups.xml
 	xmllint --noout --schema vendor/magento/module-cron/etc/crontab.xsd            etc/crontab.xml

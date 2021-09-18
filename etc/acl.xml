@@ -9,7 +9,7 @@
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-                            <resource id="Baldwin_UrlDataIntegrityChecker::config_baldwin_urldataintegritychecker" title="url"/>
+                            <resource id="Baldwin_UrlDataIntegrityChecker::config_data_integrity" title="Data Integrity Checker Config"/>
                         </resource>
                     </resource>
                 </resource>

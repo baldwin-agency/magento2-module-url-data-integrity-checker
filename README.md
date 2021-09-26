@@ -64,7 +64,8 @@ In the Magento admin, you can find the results in:
 - for Magento 2.1.x: Products > Data Integrity Checker
 - for Magento 2.2.0 and higher: Catalog > Data Integrity Checker
 
-The results of the checkers are currently stored in the directory `var/tmp` as `.json` files.
+The results of the checkers are currently stored by default in the directory `var/tmp` as `.json` files.  
+But you can change the path in the backend settings under Stores > Configuration > Catalog > Url Data Integrity Checker by entering a relative path starting from the Magento installation directory or an absolute path. The directory you enter there needs to exist before it will work.
 
 ## Some screenshots
 

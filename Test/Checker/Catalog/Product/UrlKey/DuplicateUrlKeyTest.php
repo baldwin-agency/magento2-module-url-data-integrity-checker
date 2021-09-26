@@ -12,20 +12,11 @@ use Magento\Catalog\Model\Attribute\ScopeOverriddenValueFactory as AttributeScop
 use Magento\Catalog\Model\ResourceModel\Product\Collection as ProductCollection;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
 use Magento\Framework\DataObject;
-use Magento\Framework\TestFramework\Unit\Helper\ObjectManager as ObjectManagerHelper;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class DuplicateUrlKeyTest extends TestCase
 {
-    /** @var ObjectManagerHelper */
-    private $objectManagerHelper;
-
-    protected function setUp(): void
-    {
-        $this->objectManagerHelper = new ObjectManagerHelper($this);
-    }
-
     /**
      * @dataProvider duplicatedProductUrlKeyValuesDataProvider
      *
@@ -57,8 +48,12 @@ class DuplicateUrlKeyTest extends TestCase
         $collectionsPerStoreId = array_map(
             function ($productsData) {
                 /** @var MockObject $productCollectionMock */
-                $productCollectionMock = $this->objectManagerHelper
-                    ->getCollectionMock(ProductCollection::class, $productsData);
+                $productCollectionMock = $this->getMockBuilder(ProductCollection::class)
+                    ->disableOriginalConstructor()
+                    ->getMock();
+                $productCollectionMock->expects($this->any())
+                    ->method('getIterator')
+                    ->will($this->returnValue(new \ArrayIterator($productsData)));
 
                 $productCollectionMock->expects($this->once())
                     ->method('setStoreId')
@@ -97,7 +92,7 @@ class DuplicateUrlKeyTest extends TestCase
         $productCollectionFactoryMock = $this
             ->getMockBuilder(ProductCollectionFactory::class)
             ->disableOriginalConstructor()
-            ->setMethods(['create'])
+            ->onlyMethods(['create'])
             ->getMock();
 
         $productCollectionFactoryMock->expects($this->exactly(count($storeIds)))
@@ -118,7 +113,7 @@ class DuplicateUrlKeyTest extends TestCase
         $attributeScopeOverriddenValueFactoryMock = $this
             ->getMockBuilder(AttributeScopeOverriddenValueFactory::class)
             ->disableOriginalConstructor()
-            ->setMethods(['create'])
+            ->onlyMethods(['create'])
             ->getMock();
         $attributeScopeOverriddenValueFactoryMock->expects($this->exactly(count($dbData)))
             ->method('create')

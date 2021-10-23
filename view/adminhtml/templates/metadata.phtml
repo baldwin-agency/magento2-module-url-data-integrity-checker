@@ -41,7 +41,7 @@
         <dd><?= $block->escapeHtml($metadata['initiator'] ?? '') ?></dd>
         <?php if (isset($metadata['error']) && $metadata['error'] !== ''): ?>
             <dt><?= $block->escapeHtml(__('Error')) ?>:</dt>
-            <dd><?= $block->escapeHtml($metadata['error'] ?? '') ?></dd>
+            <dd style="color: red;"><?= $block->escapeHtml($metadata['error'] ?? '') ?></dd>
         <?php endif; ?>
     </dl>
     <?php endif; ?>

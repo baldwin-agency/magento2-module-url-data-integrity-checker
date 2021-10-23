@@ -44,10 +44,17 @@ class UrlKey
         $this->metaStorage->setErrorMessage($storageIdentifier, '');
         $this->metaStorage->setStartRefreshing($storageIdentifier, $initiator);
 
-        $categoryData = $this->urlKeyChecker->execute();
-        $this->storage->write($storageIdentifier, $categoryData);
+        try {
+            $categoryData = $this->urlKeyChecker->execute();
+            $this->storage->write($storageIdentifier, $categoryData);
 
-        $this->metaStorage->setFinishedRefreshing($storageIdentifier);
+            $this->metaStorage->setFinishedRefreshing($storageIdentifier);
+        } catch (\Throwable $ex) {
+            $this->metaStorage->clearStatus($storageIdentifier);
+            $this->metaStorage->setErrorMessage($storageIdentifier, $ex->getMessage());
+
+            throw $ex;
+        }
 
         return $categoryData;
     }

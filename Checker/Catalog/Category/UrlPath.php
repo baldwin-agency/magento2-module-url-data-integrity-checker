@@ -163,7 +163,9 @@ class UrlPath
                     if (array_key_exists($id, $tempCatData)) {
                         $calculatedUrlPath[] = $tempCatData[$id]['url_key'];
                     } else {
-                        throw new LocalizedException(__("Can't find category with id: '$id'"));
+                        throw new LocalizedException(__(
+                            "Can't find category with id: '$id' (this id comes from a category's path attribute)"
+                        ));
                     }
                 }
 

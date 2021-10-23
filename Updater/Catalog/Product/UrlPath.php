@@ -44,10 +44,17 @@ class UrlPath
         $this->metaStorage->setErrorMessage($storageIdentifier, '');
         $this->metaStorage->setStartRefreshing($storageIdentifier, $initiator);
 
-        $productData = $this->urlPathChecker->execute();
-        $this->storage->write($storageIdentifier, $productData);
+        try {
+            $productData = $this->urlPathChecker->execute();
+            $this->storage->write($storageIdentifier, $productData);
 
-        $this->metaStorage->setFinishedRefreshing($storageIdentifier);
+            $this->metaStorage->setFinishedRefreshing($storageIdentifier);
+        } catch (\Throwable $ex) {
+            $this->metaStorage->clearStatus($storageIdentifier);
+            $this->metaStorage->setErrorMessage($storageIdentifier, $ex->getMessage());
+
+            throw $ex;
+        }
 
         return $productData;
     }

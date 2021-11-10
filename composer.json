@@ -28,8 +28,8 @@
         "mikey179/vfsstream": "^1.6",
         "phpcompatibility/php-compatibility": "^9.2",
         "phpstan/extension-installer": "^1.0",
-        "phpstan/phpstan": "^0.12.26",
-        "phpstan/phpstan-deprecation-rules": "^0.12.6",
+        "phpstan/phpstan": "1.1.2 as 0.12.99",
+        "phpstan/phpstan-deprecation-rules": "^1.0",
         "phpunit/phpunit": "^9.0"
     },
     "config": {

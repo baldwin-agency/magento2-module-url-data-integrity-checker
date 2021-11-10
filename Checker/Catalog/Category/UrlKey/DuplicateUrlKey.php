@@ -6,6 +6,7 @@ namespace Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Category\UrlKey;
 
 use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Category\UrlPath as UrlPathChecker;
 use Baldwin\UrlDataIntegrityChecker\Util\Stores as StoresUtil;
+use Magento\Catalog\Model\Category;
 
 class DuplicateUrlKey
 {
@@ -15,6 +16,8 @@ class DuplicateUrlKey
 
     private $storesUtil;
     private $urlPathChecker;
+
+    /** @var array<string, array<Category>> */
     private $urlPathsInfo;
 
     public function __construct(

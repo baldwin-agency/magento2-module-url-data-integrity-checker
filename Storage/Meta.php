@@ -124,7 +124,9 @@ class Meta
     {
         $metaData = $this->storage->read($storageIdentifier);
         if (!empty($metaData) && array_key_exists('started', $metaData)) {
-            return $metaData['started'];
+            assert(is_numeric($metaData['started']));
+
+            return (int) $metaData['started'];
         }
 
         return 0;

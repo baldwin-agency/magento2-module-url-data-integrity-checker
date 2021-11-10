@@ -59,6 +59,8 @@ class DuplicateUrlKey
                 $categories = $this->urlPathsInfo[$urlPath];
 
                 foreach ($categories as $category) {
+                    assert(is_numeric($category->getEntityId()));
+
                     $categoriesWithProblems[] = [
                         'catId'   => (int) $category->getEntityId(),
                         'name'    => $category->getName(),

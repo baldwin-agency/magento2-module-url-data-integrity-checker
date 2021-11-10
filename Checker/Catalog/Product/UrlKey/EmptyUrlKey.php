@@ -122,6 +122,8 @@ class EmptyUrlKey
             ;
 
             if ($isOverridden || $storeId === Store::DEFAULT_STORE_ID) {
+                assert(is_numeric($product->getEntityId()));
+
                 $problems[] = [
                     'productId' => (int) $product->getEntityId(),
                     'sku'       => $product->getSku(),

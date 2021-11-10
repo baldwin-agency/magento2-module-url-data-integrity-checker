@@ -43,7 +43,9 @@ class UrlPathCollection extends DataCollection implements SearchResultInterface
         if (!$this->isLoaded()) {
             $urlPaths = $this->storage->read(UrlPathChecker::STORAGE_IDENTIFIER);
             foreach ($urlPaths as $urlPath) {
-                $this->addItem($this->createDataObject($urlPath));
+                if (is_array($urlPath)) {
+                    $this->addItem($this->createDataObject($urlPath));
+                }
             }
 
             foreach ($this->_orders as $field => $direction) {
@@ -83,6 +85,7 @@ class UrlPathCollection extends DataCollection implements SearchResultInterface
     {
         $arguments['hash'] = sha1(json_encode($arguments) ?: '');
 
+        /** @var DataObject */
         $obj = $this->_entityFactory->create($this->_itemObjectClass, ['data' => $arguments]);
 
         $attributes = [];

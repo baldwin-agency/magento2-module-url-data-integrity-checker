@@ -25,6 +25,7 @@ class DuplicateUrlKey
     private $progressIndex;
     private $productCollectionFactory;
     private $attributeScopeOverriddenValueFactory;
+    /** @var array<string, string> */
     private $cachedProductUrlKeyData;
     private $cachedProductSkusByIds;
 
@@ -112,6 +113,8 @@ class DuplicateUrlKey
     private function storeProductUrlKeyData(int $storeId, ProductCollection $collection)
     {
         foreach ($collection as $product) {
+            assert(is_numeric($product->getEntityId()));
+
             $productId     = $product->getEntityId();
             $productSku    = $product->getSku();
             $productUrlKey = $product->getUrlKey();

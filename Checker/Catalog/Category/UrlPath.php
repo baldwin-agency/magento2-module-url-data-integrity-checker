@@ -75,6 +75,8 @@ class UrlPath
                 if (!$this->doesCategoryUrlPathMatchCalculatedUrlPath($category, $storeId)) {
                     $correctUrlPath = $this->getCalculatedUrlPathForCategory($category, $storeId);
 
+                    assert(is_numeric($category->getId()));
+
                     $problems[] = [
                         'catId'   => (int) $category->getId(),
                         'name'    => $category->getName(),
@@ -117,6 +119,8 @@ class UrlPath
             $this->fetchAllCategoriesWithUrlPathCalculatedByUrlKey();
         }
 
+        assert(is_numeric($category->getId()));
+
         $categoryId = (int) $category->getId();
         $key = $this->getArrayKeyForCategoryAndStoreId($categoryId, $storeId);
 
@@ -140,6 +144,8 @@ class UrlPath
 
             $allCategories = $this->getAllVisibleCategoriesWithStoreId($storeId);
             foreach ($allCategories as $category) {
+                assert(is_numeric($category->getId()));
+
                 $categoryId = (int) $category->getId();
 
                 $path = $category->getPath() ?: '';

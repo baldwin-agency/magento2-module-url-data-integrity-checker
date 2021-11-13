@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "28335be4704c60e07e59482555ec198a",
+    "content-hash": "e16afc38f3985e15e4b1f841e0423010",
     "packages": [
         {
             "name": "brick/math",
@@ -8412,39 +8412,39 @@
     "packages-dev": [
         {
             "name": "bitexpert/phpstan-magento",
-            "version": "v0.9.0",
+            "version": "v0.11.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bitExpert/phpstan-magento.git",
-                "reference": "8d56fd0b9635d6c8737bde60101851b0c811ee4c"
+                "reference": "9e44b29c2f70fbf16f3a84af3dc0d0c59ff7ffb6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bitExpert/phpstan-magento/zipball/8d56fd0b9635d6c8737bde60101851b0c811ee4c",
-                "reference": "8d56fd0b9635d6c8737bde60101851b0c811ee4c",
+                "url": "https://api.github.com/repos/bitExpert/phpstan-magento/zipball/9e44b29c2f70fbf16f3a84af3dc0d0c59ff7ffb6",
+                "reference": "9e44b29c2f70fbf16f3a84af3dc0d0c59ff7ffb6",
                 "shasum": ""
             },
             "require": {
-                "nette/neon": "^3.1",
-                "php": "^7.2.0",
-                "phpstan/phpstan": "^0.12.23"
+                "nette/neon": "^3.3.1",
+                "php": "^7.2.0 | ^8.0.0",
+                "phpstan/phpstan": "^1.1.0"
             },
             "conflict": {
                 "magento/framework": "<101.0.0"
             },
             "require-dev": {
-                "captainhook/captainhook": "^5.10.1",
-                "captainhook/plugin-composer": "^5.3.1",
+                "captainhook/captainhook": "^5.10.4",
+                "captainhook/plugin-composer": "^5.3.2",
                 "madewithlove/license-checker": "^0.10.0",
                 "magento/framework": ">=101.0.0",
-                "mikey179/vfsstream": "^1.6.8",
-                "nikic/php-parser": "^4.10.5",
+                "mikey179/vfsstream": "^1.6.10",
+                "nikic/php-parser": "^4.13.1",
                 "phpstan/extension-installer": "^1.1.0",
-                "phpstan/phpstan-phpunit": "^0.12.20",
-                "phpstan/phpstan-strict-rules": "^0.12.9",
-                "phpunit/phpunit": "^9.5.5",
+                "phpstan/phpstan-phpunit": "^1.0.0",
+                "phpstan/phpstan-strict-rules": "^1.0.0",
+                "phpunit/phpunit": "^9.5.10",
                 "roave/security-advisories": "dev-latest",
-                "squizlabs/php_codesniffer": "^3.6.0"
+                "squizlabs/php_codesniffer": "^3.6.1"
             },
             "type": "phpstan-extension",
             "extra": {
@@ -8473,9 +8473,9 @@
             "description": "PHPStan Magento Extension",
             "support": {
                 "issues": "https://github.com/bitExpert/phpstan-magento/issues",
-                "source": "https://github.com/bitExpert/phpstan-magento/tree/v0.9.0"
+                "source": "https://github.com/bitExpert/phpstan-magento/tree/v0.11.0"
             },
-            "time": "2021-08-07T08:00:32+00:00"
+            "time": "2021-11-13T14:14:08+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -10798,16 +10798,16 @@
         },
         {
             "name": "sebastian/exporter",
-            "version": "4.0.3",
+            "version": "4.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/exporter.git",
-                "reference": "d89cc98761b8cb5a1a235a6b703ae50d34080e65"
+                "reference": "65e8b7db476c5dd267e65eea9cab77584d3cfff9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/d89cc98761b8cb5a1a235a6b703ae50d34080e65",
-                "reference": "d89cc98761b8cb5a1a235a6b703ae50d34080e65",
+                "url": "https://api.github.com/repos/sebastianbergmann/exporter/zipball/65e8b7db476c5dd267e65eea9cab77584d3cfff9",
+                "reference": "65e8b7db476c5dd267e65eea9cab77584d3cfff9",
                 "shasum": ""
             },
             "require": {
@@ -10856,14 +10856,14 @@
                 }
             ],
             "description": "Provides the functionality to export PHP variables for visualization",
-            "homepage": "http://www.github.com/sebastianbergmann/exporter",
+            "homepage": "https://www.github.com/sebastianbergmann/exporter",
             "keywords": [
                 "export",
                 "exporter"
             ],
             "support": {
                 "issues": "https://github.com/sebastianbergmann/exporter/issues",
-                "source": "https://github.com/sebastianbergmann/exporter/tree/4.0.3"
+                "source": "https://github.com/sebastianbergmann/exporter/tree/4.0.4"
             },
             "funding": [
                 {
@@ -10871,7 +10871,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2020-09-28T05:24:23+00:00"
+            "time": "2021-11-11T14:18:36+00:00"
         },
         {
             "name": "sebastian/global-state",
@@ -11633,14 +11633,7 @@
             "time": "2020-07-02T05:49:25+00:00"
         }
     ],
-    "aliases": [
-        {
-            "package": "phpstan/phpstan",
-            "version": "1.1.2.0",
-            "alias": "0.12.99",
-            "alias_normalized": "0.12.99.0"
-        }
-    ],
+    "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": [],
     "prefer-stable": false,

@@ -61,11 +61,7 @@ class UrlPath
             $allCategories = $this->getAllVisibleCategoriesWithStoreId($storeId);
 
             foreach ($allCategories as $category) {
-                $isOverridden = $this
-                    ->attributeScopeOverriddenValueFactory
-                    ->create()
-                    ->containsValue(CategoryInterface::class, $category, self::URL_PATH_ATTRIBUTE, $storeId)
-                ;
+                $isOverridden = $this->getIsUrlPathOverridden($category, $storeId);
 
                 // we don't care about non overwritten values
                 if (!$isOverridden && $storeId !== Store::DEFAULT_STORE_ID) {
@@ -88,6 +84,43 @@ class UrlPath
         }
 
         return $problems;
+    }
+
+    private function getIsUrlPathOverridden(Category $category, int $storeId): bool
+    {
+        $isOverridden =  $this
+            ->attributeScopeOverriddenValueFactory
+            ->create()
+            ->containsValue(CategoryInterface::class, $category, self::URL_PATH_ATTRIBUTE, $storeId)
+        ;
+
+        // if the current category isn't using an overridden url path, the parent category's still could,
+        // so we need to check those as well ...
+        if ($isOverridden === false) {
+            // phpcs:disable Magento2.CodeAnalysis.EmptyBlock.DetectedCatch
+            try {
+                $isParentOverridden = false;
+                $parentCat = $category;
+
+                do {
+                    $parentCat = $parentCat->getParentCategory();
+                    $isParentOverridden = $this
+                        ->attributeScopeOverriddenValueFactory
+                        ->create()
+                        ->containsValue(CategoryInterface::class, $parentCat, self::URL_PATH_ATTRIBUTE, $storeId)
+                    ;
+                } while ($isParentOverridden === false && $parentCat->getLevel() > 1);
+
+                if ($isParentOverridden === true) {
+                    $isOverridden = true;
+                }
+            } catch (\Throwable $ex) {
+                // do nothing
+            }
+            // phpcs:enable Magento2.CodeAnalysis.EmptyBlock.DetectedCatch
+        }
+
+        return $isOverridden;
     }
 
     /**

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e16afc38f3985e15e4b1f841e0423010",
+    "content-hash": "4969ffe1b9764e46aadde267453e0aa0",
     "packages": [
         {
             "name": "brick/math",
@@ -8501,39 +8501,43 @@
     "packages-dev": [
         {
             "name": "bitexpert/phpstan-magento",
-            "version": "v0.11.0",
+            "version": "v0.17.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bitExpert/phpstan-magento.git",
-                "reference": "9e44b29c2f70fbf16f3a84af3dc0d0c59ff7ffb6"
+                "reference": "f845cd4dbdc49d2e005ec2646176ddfcf7d55d38"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bitExpert/phpstan-magento/zipball/9e44b29c2f70fbf16f3a84af3dc0d0c59ff7ffb6",
-                "reference": "9e44b29c2f70fbf16f3a84af3dc0d0c59ff7ffb6",
+                "url": "https://api.github.com/repos/bitExpert/phpstan-magento/zipball/f845cd4dbdc49d2e005ec2646176ddfcf7d55d38",
+                "reference": "f845cd4dbdc49d2e005ec2646176ddfcf7d55d38",
                 "shasum": ""
             },
             "require": {
-                "nette/neon": "^3.3.1",
-                "php": "^7.2.0 | ^8.0.0",
-                "phpstan/phpstan": "^1.1.0"
+                "ext-dom": "*",
+                "laminas/laminas-code": "~3.3.0 || ~3.4.1 || ~3.5.1",
+                "php": "^7.2.0 || ^8.0.0",
+                "phpstan/phpstan": "^1.4.0",
+                "symfony/finder": "^3.0 || ^4.0 || ^5.0"
             },
             "conflict": {
-                "magento/framework": "<101.0.0"
+                "magento/framework": "<102.0.0"
             },
             "require-dev": {
-                "captainhook/captainhook": "^5.10.4",
+                "captainhook/captainhook": "^5.10.6",
                 "captainhook/plugin-composer": "^5.3.2",
+                "league/commonmark": "^2.1",
                 "madewithlove/license-checker": "^0.10.0",
-                "magento/framework": ">=101.0.0",
+                "magento/framework": ">=102.0.0",
                 "mikey179/vfsstream": "^1.6.10",
-                "nikic/php-parser": "^4.13.1",
+                "nette/neon": "^3.3.2",
+                "nikic/php-parser": "^4.13.2",
                 "phpstan/extension-installer": "^1.1.0",
                 "phpstan/phpstan-phpunit": "^1.0.0",
-                "phpstan/phpstan-strict-rules": "^1.0.0",
-                "phpunit/phpunit": "^9.5.10",
+                "phpstan/phpstan-strict-rules": "^1.1.0",
+                "phpunit/phpunit": "^9.5.11",
                 "roave/security-advisories": "dev-latest",
-                "squizlabs/php_codesniffer": "^3.6.1"
+                "squizlabs/php_codesniffer": "^3.6.2"
             },
             "type": "phpstan-extension",
             "extra": {
@@ -8562,9 +8566,9 @@
             "description": "PHPStan Magento Extension",
             "support": {
                 "issues": "https://github.com/bitExpert/phpstan-magento/issues",
-                "source": "https://github.com/bitExpert/phpstan-magento/tree/v0.11.0"
+                "source": "https://github.com/bitExpert/phpstan-magento/tree/v0.17.0"
             },
-            "time": "2021-11-13T14:14:08+00:00"
+            "time": "2022-01-15T16:19:40+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -9296,74 +9300,6 @@
             "time": "2020-11-13T09:40:50+00:00"
         },
         {
-            "name": "nette/neon",
-            "version": "v3.3.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/nette/neon.git",
-                "reference": "54b287d8c2cdbe577b02e28ca1713e275b05ece2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/nette/neon/zipball/54b287d8c2cdbe577b02e28ca1713e275b05ece2",
-                "reference": "54b287d8c2cdbe577b02e28ca1713e275b05ece2",
-                "shasum": ""
-            },
-            "require": {
-                "ext-json": "*",
-                "php": ">=7.1"
-            },
-            "require-dev": {
-                "nette/tester": "^2.0",
-                "phpstan/phpstan": "^0.12",
-                "tracy/tracy": "^2.7"
-            },
-            "bin": [
-                "bin/neon-lint"
-            ],
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.3-dev"
-                }
-            },
-            "autoload": {
-                "classmap": [
-                    "src/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "BSD-3-Clause",
-                "GPL-2.0-only",
-                "GPL-3.0-only"
-            ],
-            "authors": [
-                {
-                    "name": "David Grudl",
-                    "homepage": "https://davidgrudl.com"
-                },
-                {
-                    "name": "Nette Community",
-                    "homepage": "https://nette.org/contributors"
-                }
-            ],
-            "description": "🍸 Nette NEON: encodes and decodes NEON file format.",
-            "homepage": "https://ne-on.org",
-            "keywords": [
-                "export",
-                "import",
-                "neon",
-                "nette",
-                "yaml"
-            ],
-            "support": {
-                "issues": "https://github.com/nette/neon/issues",
-                "source": "https://github.com/nette/neon/tree/v3.3.2"
-            },
-            "time": "2021-11-25T15:57:41+00:00"
-        },
-        {
             "name": "phar-io/manifest",
             "version": "2.0.3",
             "source": {
@@ -9862,16 +9798,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.1.2",
+            "version": "1.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "bcea0ae85868a89d5789c75f012c93129f842934"
+                "reference": "72b04d97b5e6e60a081f17c416fef35bd521120b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/bcea0ae85868a89d5789c75f012c93129f842934",
-                "reference": "bcea0ae85868a89d5789c75f012c93129f842934",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/72b04d97b5e6e60a081f17c416fef35bd521120b",
+                "reference": "72b04d97b5e6e60a081f17c416fef35bd521120b",
                 "shasum": ""
             },
             "require": {
@@ -9887,7 +9823,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0-dev"
+                    "dev-master": "1.4-dev"
                 }
             },
             "autoload": {
@@ -9902,7 +9838,7 @@
             "description": "PHPStan - PHP Static Analysis Tool",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.1.2"
+                "source": "https://github.com/phpstan/phpstan/tree/1.4.0"
             },
             "funding": [
                 {
@@ -9922,7 +9858,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2021-11-09T12:41:09+00:00"
+            "time": "2022-01-14T15:58:47+00:00"
         },
         {
             "name": "phpstan/phpstan-deprecation-rules",

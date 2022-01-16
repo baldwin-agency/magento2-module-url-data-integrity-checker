@@ -14,5 +14,5 @@ parameters:
         - message: '/Call to deprecated method save\(\) of class Magento\\Framework\\Model\\AbstractModel/'
           path: Cron/ScheduleJob.php
 
-        - message: '/Parameter \#1 \$autoload_function of function spl_autoload_register expects callable\(string\)\: void, array\{Magento\\Framework\\TestFramework\\Unit\\Autoloader\\GeneratedClassesAutoloader/'
+        - message: '/Parameter \#1 \$(autoload_function|callback) of function spl_autoload_register expects/'
           path: Test/bootstrap.php

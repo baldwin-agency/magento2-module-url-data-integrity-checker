@@ -1,8 +1,8 @@
 {
     "name": "baldwin/magento2-module-url-data-integrity-checker",
-    "type": "magento2-module",
     "description": "Magento 2 module which can find potential url related problems in your catalog data",
     "license": "MIT",
+    "type": "magento2-module",
     "authors": [
         {
             "name": "Pieter Hoste",
@@ -32,13 +32,12 @@
         "phpstan/phpstan-deprecation-rules": "^1.0",
         "phpunit/phpunit": "^9.0"
     },
-    "config": {
-        "allow-plugins": {
-            "ergebnis/composer-normalize": true,
-            "phpstan/extension-installer": true
-        },
-        "sort-packages": true
-    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://repo.magento.com/"
+        }
+    ],
     "autoload": {
         "psr-4": {
             "Baldwin\\UrlDataIntegrityChecker\\": ""
@@ -47,12 +46,13 @@
             "registration.php"
         ]
     },
-    "repositories": [
-        {
-            "type": "composer",
-            "url": "https://repo.magento.com/"
-        }
-    ],
+    "config": {
+        "allow-plugins": {
+            "ergebnis/composer-normalize": true,
+            "phpstan/extension-installer": true
+        },
+        "sort-packages": true
+    },
     "scripts": {
         "post-install-cmd": [
             "([ $COMPOSER_DEV_MODE -eq 0 ] || vendor/bin/phpcs --config-set installed_paths vendor/magento/magento-coding-standard,vendor/phpcompatibility/php-compatibility)"

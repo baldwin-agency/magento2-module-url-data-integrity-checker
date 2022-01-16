@@ -42,8 +42,8 @@ class ScheduleJob
         $schedule
             ->setJobCode($jobCode)
             ->setStatus(CronScheduleModel::STATUS_PENDING)
-            ->setCreatedAt(strftime('%Y-%m-%d %H:%M:%S', $createdAtTime) ?: '')
-            ->setScheduledAt(strftime('%Y-%m-%d %H:%M', $scheduledAtTime) ?: '')
+            ->setCreatedAt(date('Y-m-d H:i:s', $createdAtTime) ?: '')
+            ->setScheduledAt(date('Y-m-d H:i', $scheduledAtTime) ?: '')
             ->save();
 
         return true;

@@ -3,12 +3,10 @@ parameters:
     inferPrivatePropertyTypeFromConstructor: true
     paths:
         - .
-    bootstrapFiles:
-        - vendor/bitexpert/phpstan-magento/autoload.php
-    excludes_analyse:
-        - %currentWorkingDirectory%/vendor/*
+    excludePaths:
+        - vendor/*
     ignoreErrors:
-        - '/ has no return typehint specified./'
+        - '/ has no return type specified./'
 
         - message: '/Use service contracts to persist entities in favour of Magento\\Cron\\Model\\Schedule\:\:save\(\) method/'
           path: Cron/ScheduleJob.php
@@ -16,5 +14,5 @@ parameters:
         - message: '/Call to deprecated method save\(\) of class Magento\\Framework\\Model\\AbstractModel/'
           path: Cron/ScheduleJob.php
 
-        - message: '/Parameter \#1 \$autoload_function of function spl_autoload_register expects callable\(string\)\: void, array\(Magento\\Framework\\TestFramework\\Unit\\Autoloader\\GeneratedClassesAutoloader/'
+        - message: '/Parameter \#1 \$(autoload_function|callback) of function spl_autoload_register expects/'
           path: Test/bootstrap.php

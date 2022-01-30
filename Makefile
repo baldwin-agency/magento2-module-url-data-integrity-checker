@@ -11,10 +11,10 @@ check: checkstyle checkquality test
 .PHONY: checkstyle
 checkstyle:
 	vendor/bin/php-cs-fixer fix --dry-run --diff --stop-on-violation --allow-risky=yes
-	vendor/bin/phpcs -s --standard=Magento2 --ignore=./vendor/ .
+	vendor/bin/phpcs -s --standard=Magento2 --exclude=Magento2.Security.InsecureFunction --ignore=./vendor/ .
 	vendor/bin/phpcs -s --standard=PHPCompatibility --runtime-set testVersion 7.0- --ignore=./vendor/,./Test/ .
 	vendor/bin/phpcs -s --standard=PHPCompatibility --runtime-set testVersion 7.1- ./Test/
-	composer normalize --dry-run
+	vendor/bin/composer normalize --dry-run
 
 .PHONY: checkquality
 checkquality:

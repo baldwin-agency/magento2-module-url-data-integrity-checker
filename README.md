@@ -67,6 +67,8 @@ In the Magento admin, you can find the results in:
 The results of the checkers are currently stored by default in the directory `var/tmp` as `.json` files.  
 But you can change the path in the backend settings under Stores > Configuration > Catalog > Url Data Integrity Checker by entering a relative path starting from the Magento installation directory or an absolute path. The directory you enter there needs to exist before it will work.
 
+You can configure this module to ignore problems with invisible products (via Stores > Configuration > Catalog > Url Data Integrity Checker). Because in recent versions of Magento, url rewrites for invisible products are not being generated, so if there are problems with the `url_path` or `url_key` attributes of such products, they should not cause issues with url rewrites. An additional benefit of this option is that it will use less time and less memory to run the product checkers. This option is disabled by default, so you'll need to enable it.
+
 ## Some screenshots
 
 ### Example of backend report for product url key problems

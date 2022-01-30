@@ -61,15 +61,15 @@ class UrlPath
             $allCategories = $this->getAllVisibleCategoriesWithStoreId($storeId);
 
             foreach ($allCategories as $category) {
-                $isOverridden = $this->getIsUrlPathOverridden($category, $storeId);
-
                 // we don't care about non overwritten values
-                if (!$isOverridden && $storeId !== Store::DEFAULT_STORE_ID) {
+                if ($storeId !== Store::DEFAULT_STORE_ID && !$this->getIsUrlPathOverridden($category, $storeId)) {
                     continue;
                 }
 
                 if (!$this->doesCategoryUrlPathMatchCalculatedUrlPath($category, $storeId)) {
                     $correctUrlPath = $this->getCalculatedUrlPathForCategory($category, $storeId);
+
+                    assert(is_numeric($category->getId()));
 
                     $problems[] = [
                         'catId'   => (int) $category->getId(),
@@ -150,6 +150,8 @@ class UrlPath
             $this->fetchAllCategoriesWithUrlPathCalculatedByUrlKey();
         }
 
+        assert(is_numeric($category->getId()));
+
         $categoryId = (int) $category->getId();
         $key = $this->getArrayKeyForCategoryAndStoreId($categoryId, $storeId);
 
@@ -173,6 +175,8 @@ class UrlPath
 
             $allCategories = $this->getAllVisibleCategoriesWithStoreId($storeId);
             foreach ($allCategories as $category) {
+                assert(is_numeric($category->getId()));
+
                 $categoryId = (int) $category->getId();
 
                 $path = $category->getPath() ?: '';

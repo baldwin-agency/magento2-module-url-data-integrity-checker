@@ -68,7 +68,12 @@ class FileStorage extends AbstractStorage implements StorageInterface
             $data = '{}';
         }
 
-        return json_decode($data, true);
+        $data = json_decode($data, true);
+        if ($data === null || !is_array($data)) {
+            $data = [];
+        }
+
+        return $data;
     }
 
     private function getFilename(string $identifier): string
@@ -82,7 +87,7 @@ class FileStorage extends AbstractStorage implements StorageInterface
             self::CONFIG_PATH
         );
 
-        if ($path === '' || $path === null) {
+        if ($path === '' || $path === null || !is_string($path)) {
             $path = 'var/tmp';
         }
 

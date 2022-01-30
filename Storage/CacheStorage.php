@@ -33,7 +33,13 @@ class CacheStorage extends AbstractStorage implements StorageInterface
     {
         $data = $this->cache->load($this->getModuleCacheIdentifier($identifier)) ?: '{}';
 
-        return json_decode($data, true);
+        $data = json_decode($data, true);
+
+        if ($data === null || !is_array($data)) {
+            $data = [];
+        }
+
+        return $data;
     }
 
     private function getModuleCacheIdentifier(string $identifier): string

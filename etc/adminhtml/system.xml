@@ -11,6 +11,11 @@
                     <label>Path to store results</label>
                     <comment>Path where to store json files, can be either an absolute or a relative path</comment>
                 </field>
+                <field id="only_check_visible_products" type="select" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0" translate="label">
+                    <label>Don't check for problems with invisible products</label>
+                    <comment>Sometimes you want to focus on products that are visible only, because Magento (at least in recent versions) only generated url rewrites for products that are visible. Be aware, after switching this config setting that you should re-run the checkers.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
             </group>
         </section>
     </system>

@@ -43,7 +43,9 @@ class UrlKeyCollection extends DataCollection implements SearchResultInterface
         if (!$this->isLoaded()) {
             $urlKeys = $this->storage->read(UrlKeyChecker::STORAGE_IDENTIFIER);
             foreach ($urlKeys as $urlKey) {
-                $this->addItem($this->createDataObject($urlKey));
+                if (is_array($urlKey)) {
+                    $this->addItem($this->createDataObject($urlKey));
+                }
             }
 
             foreach ($this->_orders as $field => $direction) {
@@ -83,6 +85,7 @@ class UrlKeyCollection extends DataCollection implements SearchResultInterface
     {
         $arguments['hash'] = sha1(json_encode($arguments) ?: '');
 
+        /** @var DataObject */
         $obj = $this->_entityFactory->create($this->_itemObjectClass, ['data' => $arguments]);
 
         $attributes = [];

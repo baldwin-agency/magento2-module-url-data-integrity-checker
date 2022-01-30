@@ -100,6 +100,8 @@ class EmptyUrlKey
             ;
 
             if ($isOverridden || $storeId === Store::DEFAULT_STORE_ID) {
+                assert(is_numeric($category->getEntityId()));
+
                 $problems[] = [
                     'catId'   => (int) $category->getEntityId(),
                     'name'    => $category->getName(),

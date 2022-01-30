@@ -6,10 +6,12 @@ namespace Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product\UrlKey;
 
 use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product\UrlKey as UrlKeyChecker;
 use Baldwin\UrlDataIntegrityChecker\Console\Progress;
+use Baldwin\UrlDataIntegrityChecker\Util\Configuration as ConfigUtil;
 use Baldwin\UrlDataIntegrityChecker\Util\Stores as StoresUtil;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Model\Attribute\ScopeOverriddenValueFactory as AttributeScopeOverriddenValueFactory;
 use Magento\Catalog\Model\Product as ProductModel;
+use Magento\Catalog\Model\Product\Visibility as ProductVisibility;
 use Magento\Catalog\Model\ResourceModel\Product\Collection as ProductCollection;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
 use Magento\Store\Model\Store;
@@ -28,17 +30,20 @@ class DuplicateUrlKey
     /** @var array<string, string> */
     private $cachedProductUrlKeyData;
     private $cachedProductSkusByIds;
+    private $configUtil;
 
     public function __construct(
         StoresUtil $storesUtil,
         Progress $progress,
         ProductCollectionFactory $productCollectionFactory,
-        AttributeScopeOverriddenValueFactory $attributeScopeOverriddenValueFactory
+        AttributeScopeOverriddenValueFactory $attributeScopeOverriddenValueFactory,
+        ConfigUtil $configUtil
     ) {
         $this->storesUtil = $storesUtil;
         $this->progress = $progress;
         $this->productCollectionFactory = $productCollectionFactory;
         $this->attributeScopeOverriddenValueFactory = $attributeScopeOverriddenValueFactory;
+        $this->configUtil = $configUtil;
 
         $this->progressIndex = 0;
         $this->cachedProductUrlKeyData = [];
@@ -82,11 +87,14 @@ class DuplicateUrlKey
                 ->addAttributeToSelect(UrlKeyChecker::URL_KEY_ATTRIBUTE)
                 ->addAttributeToFilter(UrlKeyChecker::URL_KEY_ATTRIBUTE, ['notnull' => true], $joinType)
                 ->addAttributeToFilter(UrlKeyChecker::URL_KEY_ATTRIBUTE, ['neq' => ''], $joinType)
-                // TODO: remove!
-                // ->addAttributeToFilter('entity_id', [
-                //     'in' => [147, 148, 149, 150, 151, 152, 153, 154, 155, 156, 157, 158],
-                // ])
             ;
+
+            if ($this->configUtil->getOnlyCheckVisibleProducts()) {
+                $collection->addAttributeToFilter(
+                    ProductInterface::VISIBILITY,
+                    ['neq' => ProductVisibility::VISIBILITY_NOT_VISIBLE]
+                );
+            }
 
             if ($this->progressIndex === 0) {
                 $this->progress->setGuestimatedSize(count($storeIds), $collection->getSize());

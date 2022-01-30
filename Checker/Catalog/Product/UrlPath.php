@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product;
 
+use Baldwin\UrlDataIntegrityChecker\Util\Configuration as ConfigUtil;
 use Baldwin\UrlDataIntegrityChecker\Util\Stores as StoresUtil;
 use Magento\Catalog\Api\Data\ProductInterface;
 use Magento\Catalog\Model\Attribute\ScopeOverriddenValueFactory as AttributeScopeOverriddenValueFactory;
 use Magento\Catalog\Model\Product as ProductModel;
+use Magento\Catalog\Model\Product\Visibility as ProductVisibility;
 use Magento\Catalog\Model\ResourceModel\Product\Collection as ProductCollection;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
 use Magento\Store\Model\Store;
@@ -23,15 +25,18 @@ class UrlPath
     private $storesUtil;
     private $productCollectionFactory;
     private $attributeScopeOverriddenValueFactory;
+    private $configUtil;
 
     public function __construct(
         StoresUtil $storesUtil,
         ProductCollectionFactory $productCollectionFactory,
-        AttributeScopeOverriddenValueFactory $attributeScopeOverriddenValueFactory
+        AttributeScopeOverriddenValueFactory $attributeScopeOverriddenValueFactory,
+        ConfigUtil $configUtil
     ) {
         $this->storesUtil = $storesUtil;
         $this->productCollectionFactory = $productCollectionFactory;
         $this->attributeScopeOverriddenValueFactory = $attributeScopeOverriddenValueFactory;
+        $this->configUtil = $configUtil;
     }
 
     /**
@@ -63,6 +68,13 @@ class UrlPath
                 ->addAttributeToSelect(self::URL_PATH_ATTRIBUTE)
                 ->addAttributeToFilter(self::URL_PATH_ATTRIBUTE, ['notnull' => true], $joinType)
             ;
+
+            if ($this->configUtil->getOnlyCheckVisibleProducts()) {
+                $collection->addAttributeToFilter(
+                    ProductInterface::VISIBILITY,
+                    ['neq' => ProductVisibility::VISIBILITY_NOT_VISIBLE]
+                );
+            }
 
             $productsWithProblems[] = $this->getProductsWithProblems($storeId, $collection);
         }

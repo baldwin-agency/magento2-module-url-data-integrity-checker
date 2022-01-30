@@ -6,6 +6,7 @@ namespace Baldwin\UrlDataIntegrityChecker\Test\Checker\Catalog\Product\UrlKey;
 
 use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product\UrlKey\DuplicateUrlKey as UrlKeyChecker;
 use Baldwin\UrlDataIntegrityChecker\Console\Progress;
+use Baldwin\UrlDataIntegrityChecker\Util\Configuration as ConfigUtil;
 use Baldwin\UrlDataIntegrityChecker\Util\Stores as StoresUtil;
 use Magento\Catalog\Model\Attribute\ScopeOverriddenValue as AttributeScopeOverriddenValue;
 use Magento\Catalog\Model\Attribute\ScopeOverriddenValueFactory as AttributeScopeOverriddenValueFactory;
@@ -119,11 +120,18 @@ class DuplicateUrlKeyTest extends TestCase
             ->method('create')
             ->willReturn($attributeScopeOverriddenValueMock);
 
+        /** @var ConfigUtil&MockObject */
+        $configUtilMock = $this
+            ->getMockBuilder(ConfigUtil::class)
+            ->disableOriginalConstructor()
+            ->getMock();
+
         $urlKeyChecker = new UrlKeyChecker(
             $storesUtilMock,
             $progressMock,
             $productCollectionFactoryMock,
-            $attributeScopeOverriddenValueFactoryMock
+            $attributeScopeOverriddenValueFactoryMock,
+            $configUtilMock
         );
         $results = $urlKeyChecker->execute();
 

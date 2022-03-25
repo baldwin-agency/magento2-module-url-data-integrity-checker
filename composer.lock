@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "b9728c7f9ef44c8c8f73278b935b8c03",
+    "content-hash": "b492c7065990457b7b602cabd5193fe6",
     "packages": [
         {
             "name": "brick/math",
@@ -111,20 +111,23 @@
         },
         {
             "name": "colinmollenhour/credis",
-            "version": "v1.12.1",
+            "version": "v1.12.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/colinmollenhour/credis.git",
-                "reference": "c27faa11724229986335c23f4b6d0f1d8d6547fb"
+                "reference": "77e6ede2e01c4cfaade114fe1e07d2f9756949f1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/colinmollenhour/credis/zipball/c27faa11724229986335c23f4b6d0f1d8d6547fb",
-                "reference": "c27faa11724229986335c23f4b6d0f1d8d6547fb",
+                "url": "https://api.github.com/repos/colinmollenhour/credis/zipball/77e6ede2e01c4cfaade114fe1e07d2f9756949f1",
+                "reference": "77e6ede2e01c4cfaade114fe1e07d2f9756949f1",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.4.0"
+                "php": ">=5.6.0"
+            },
+            "suggest": {
+                "ext-redis": "Improved performance for communicating with redis"
             },
             "type": "library",
             "autoload": {
@@ -149,9 +152,9 @@
             "homepage": "https://github.com/colinmollenhour/credis",
             "support": {
                 "issues": "https://github.com/colinmollenhour/credis/issues",
-                "source": "https://github.com/colinmollenhour/credis/tree/v1.12.1"
+                "source": "https://github.com/colinmollenhour/credis/tree/v1.12.2"
             },
-            "time": "2020-11-06T16:09:14+00:00"
+            "time": "2022-03-08T18:12:43+00:00"
         },
         {
             "name": "colinmollenhour/php-redis-session-abstract",
@@ -8476,41 +8479,41 @@
     "packages-dev": [
         {
             "name": "bitexpert/phpstan-magento",
-            "version": "v0.17.0",
+            "version": "v0.19.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bitExpert/phpstan-magento.git",
-                "reference": "f845cd4dbdc49d2e005ec2646176ddfcf7d55d38"
+                "reference": "4f65c4bb0d087ad757e21d2cd0b2c28a7e07735b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bitExpert/phpstan-magento/zipball/f845cd4dbdc49d2e005ec2646176ddfcf7d55d38",
-                "reference": "f845cd4dbdc49d2e005ec2646176ddfcf7d55d38",
+                "url": "https://api.github.com/repos/bitExpert/phpstan-magento/zipball/4f65c4bb0d087ad757e21d2cd0b2c28a7e07735b",
+                "reference": "4f65c4bb0d087ad757e21d2cd0b2c28a7e07735b",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
                 "laminas/laminas-code": "~3.3.0 || ~3.4.1 || ~3.5.1",
                 "php": "^7.2.0 || ^8.0.0",
-                "phpstan/phpstan": "^1.4.0",
+                "phpstan/phpstan": "^1.5.0",
                 "symfony/finder": "^3.0 || ^4.0 || ^5.0"
             },
             "conflict": {
                 "magento/framework": "<102.0.0"
             },
             "require-dev": {
-                "captainhook/captainhook": "^5.10.6",
-                "captainhook/plugin-composer": "^5.3.2",
-                "league/commonmark": "^2.1",
+                "captainhook/captainhook": "^5.10.8",
+                "captainhook/plugin-composer": "^5.3.3",
+                "league/commonmark": "^2.2.3",
                 "madewithlove/license-checker": "^0.10.0",
                 "magento/framework": ">=102.0.0",
                 "mikey179/vfsstream": "^1.6.10",
-                "nette/neon": "^3.3.2",
+                "nette/neon": "^3.3.3",
                 "nikic/php-parser": "^4.13.2",
                 "phpstan/extension-installer": "^1.1.0",
                 "phpstan/phpstan-phpunit": "^1.0.0",
                 "phpstan/phpstan-strict-rules": "^1.1.0",
-                "phpunit/phpunit": "^9.5.11",
+                "phpunit/phpunit": "^9.5.19",
                 "roave/security-advisories": "dev-latest",
                 "squizlabs/php_codesniffer": "^3.6.2"
             },
@@ -8541,9 +8544,9 @@
             "description": "PHPStan Magento Extension",
             "support": {
                 "issues": "https://github.com/bitExpert/phpstan-magento/issues",
-                "source": "https://github.com/bitExpert/phpstan-magento/tree/v0.17.0"
+                "source": "https://github.com/bitExpert/phpstan-magento/tree/v0.19.0"
             },
-            "time": "2022-01-15T16:19:40+00:00"
+            "time": "2022-03-25T16:01:33+00:00"
         },
         {
             "name": "doctrine/annotations",
@@ -9838,20 +9841,20 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.4.10",
+            "version": "1.5.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "898c479c39caa727bedf4311dd294a8f4e250e72"
+                "reference": "2be8dd6dfa09ab1a21c49956ff591979cd5ab29e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/898c479c39caa727bedf4311dd294a8f4e250e72",
-                "reference": "898c479c39caa727bedf4311dd294a8f4e250e72",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/2be8dd6dfa09ab1a21c49956ff591979cd5ab29e",
+                "reference": "2be8dd6dfa09ab1a21c49956ff591979cd5ab29e",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1|^8.0"
+                "php": "^7.2|^8.0"
             },
             "conflict": {
                 "phpstan/phpstan-shim": "*"
@@ -9873,7 +9876,7 @@
             "description": "PHPStan - PHP Static Analysis Tool",
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.4.10"
+                "source": "https://github.com/phpstan/phpstan/tree/1.5.0"
             },
             "funding": [
                 {
@@ -9893,7 +9896,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-03-14T10:25:45+00:00"
+            "time": "2022-03-24T18:18:00+00:00"
         },
         {
             "name": "phpstan/phpstan-deprecation-rules",

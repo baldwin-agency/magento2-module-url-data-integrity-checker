@@ -69,5 +69,10 @@
                 </item>
             </argument>
         </column>
+        <actionsColumn name="actions" class="Baldwin\UrlDataIntegrityChecker\Ui\Component\Listing\Columns\CategoryActions">
+            <settings>
+                <indexField>catId</indexField>
+            </settings>
+        </actionsColumn>
     </columns>
 </listing>

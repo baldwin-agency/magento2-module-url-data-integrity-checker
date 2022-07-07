@@ -69,10 +69,13 @@
                 </item>
             </argument>
         </column>
-        <actionsColumn name="actions" class="Baldwin\UrlDataIntegrityChecker\Ui\Component\Listing\Columns\CategoryActions">
-            <settings>
-                <indexField>catId</indexField>
-            </settings>
+        <actionsColumn name="actions" class="Baldwin\UrlDataIntegrityChecker\Ui\Component\Listing\Column\EditAction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="indexField" xsi:type="string">catId</item>
+                    <item name="editUrlPath" xsi:type="string">catalog/category/edit</item>
+                </item>
+            </argument>
         </actionsColumn>
     </columns>
 </listing>

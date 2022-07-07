@@ -1,6 +1,7 @@
 parameters:
     level: max
     inferPrivatePropertyTypeFromConstructor: true
+    checkDynamicProperties: true
     paths:
         - .
     excludePaths:

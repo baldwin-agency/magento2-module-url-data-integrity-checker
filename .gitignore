@@ -1,4 +1,5 @@
 /.php-cs-fixer.cache
 /auth.json
 /Test/.phpunit.result.cache
+/vendor-bin/*/vendor
 /vendor/

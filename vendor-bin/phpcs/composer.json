@@ -1,0 +1,9 @@
+{
+    "require": {
+        "magento/magento-coding-standard": ">=6",
+        "phpcompatibility/php-compatibility": "^9.2"
+    },
+    "config": {
+        "sort-packages": true
+    }
+}

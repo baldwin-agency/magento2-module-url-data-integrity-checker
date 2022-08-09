@@ -10,10 +10,10 @@ check: checkstyle checkquality test
 
 .PHONY: checkstyle
 checkstyle:
-	vendor/bin/php-cs-fixer fix --dry-run --diff --stop-on-violation --allow-risky=yes
-	vendor/bin/phpcs -s --standard=Magento2 --exclude=Magento2.Security.InsecureFunction,Magento2.Commenting.ClassPropertyPHPDocFormatting,Magento2.Annotation.MethodAnnotationStructure,Magento2.Annotation.MethodArguments,PSR12.Properties.ConstantVisibility --ignore=./vendor/,./vendor-bin/ .
-	vendor/bin/phpcs -s --standard=PHPCompatibility --runtime-set testVersion 7.0- --ignore=./vendor/,./vendor-bin/,./Test/ .
-	vendor/bin/phpcs -s --standard=PHPCompatibility --runtime-set testVersion 7.1- ./Test/
+	vendor-bin/php-cs-fixer/vendor/friendsofphp/php-cs-fixer/php-cs-fixer fix --dry-run --diff --stop-on-violation --allow-risky=yes
+	vendor-bin/phpcs/vendor/squizlabs/php_codesniffer/bin/phpcs -s --standard=Magento2 --exclude=Magento2.Security.InsecureFunction,Magento2.Commenting.ClassPropertyPHPDocFormatting,Magento2.Annotation.MethodAnnotationStructure,Magento2.Annotation.MethodArguments,PSR12.Properties.ConstantVisibility --ignore=./vendor/,./vendor-bin/ .
+	vendor-bin/phpcs/vendor/squizlabs/php_codesniffer/bin/phpcs -s --standard=PHPCompatibility --runtime-set testVersion 7.0- --ignore=./vendor/,./vendor-bin/,./Test/ .
+	vendor-bin/phpcs/vendor/squizlabs/php_codesniffer/bin/phpcs -s --standard=PHPCompatibility --runtime-set testVersion 7.1- ./Test/
 	vendor/bin/composer normalize --dry-run
 
 .PHONY: checkquality

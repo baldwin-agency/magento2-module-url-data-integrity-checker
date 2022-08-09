@@ -52,15 +52,8 @@
     },
     "extra": {
         "bamarni-bin": {
+            "bin-links": false,
             "forward-command": true
         }
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "([ $COMPOSER_DEV_MODE -eq 0 ] || vendor/bin/phpcs --config-set installed_paths vendor-bin/phpcs/vendor/magento/magento-coding-standard,vendor-bin/phpcs/vendor/phpcompatibility/php-compatibility)"
-        ],
-        "post-update-cmd": [
-            "([ $COMPOSER_DEV_MODE -eq 0 ] || vendor/bin/phpcs --config-set installed_paths vendor-bin/phpcs/vendor/magento/magento-coding-standard,vendor-bin/phpcs/vendor/phpcompatibility/php-compatibility)"
-        ]
     }
 }

@@ -1,9 +1,9 @@
 {
     "require": {
-        "bitexpert/phpstan-magento": "^0.23.0",
+        "bitexpert/phpstan-magento": "^0.24.0",
         "phpstan/extension-installer": "^1.0",
         "phpstan/phpstan-deprecation-rules": "^1.0",
-        "phpstan/phpstan": "^1.1 <=1.7.4 || ^1.8"
+        "phpstan/phpstan": "^1.8"
     },
     "config": {
         "allow-plugins": {

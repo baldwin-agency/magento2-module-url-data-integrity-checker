@@ -23,15 +23,9 @@
         "symfony/console": "^2.5 || ^3.0 || ^4.0 || ^5.0"
     },
     "require-dev": {
-        "bitexpert/phpstan-magento": "^0.23.0",
+        "bamarni/composer-bin-plugin": "^1.7",
         "ergebnis/composer-normalize": "^2.17",
-        "friendsofphp/php-cs-fixer": "^3.0",
-        "magento/magento-coding-standard": ">=6",
         "mikey179/vfsstream": "^1.6",
-        "phpcompatibility/php-compatibility": "^9.2",
-        "phpstan/extension-installer": "^1.0",
-        "phpstan/phpstan": "^1.1",
-        "phpstan/phpstan-deprecation-rules": "^1.0",
         "phpunit/phpunit": "^9.0"
     },
     "repositories": [
@@ -50,18 +44,16 @@
     },
     "config": {
         "allow-plugins": {
+            "bamarni/composer-bin-plugin": true,
             "ergebnis/composer-normalize": true,
-            "magento/composer-dependency-version-audit-plugin": true,
-            "phpstan/extension-installer": true
+            "magento/composer-dependency-version-audit-plugin": true
         },
         "sort-packages": true
     },
-    "scripts": {
-        "post-install-cmd": [
-            "([ $COMPOSER_DEV_MODE -eq 0 ] || vendor/bin/phpcs --config-set installed_paths vendor/magento/magento-coding-standard,vendor/phpcompatibility/php-compatibility)"
-        ],
-        "post-update-cmd": [
-            "([ $COMPOSER_DEV_MODE -eq 0 ] || vendor/bin/phpcs --config-set installed_paths vendor/magento/magento-coding-standard,vendor/phpcompatibility/php-compatibility)"
-        ]
+    "extra": {
+        "bamarni-bin": {
+            "bin-links": false,
+            "forward-command": true
+        }
     }
 }

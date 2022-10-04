@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9a0426535fb977c9f7712c29c9b8a948",
+    "content-hash": "c8b3fa4a4525302da09029d1c59698dc",
     "packages": [
         {
             "name": "bitexpert/phpstan-magento",
-            "version": "v0.24.0",
+            "version": "v0.25.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bitExpert/phpstan-magento.git",
-                "reference": "ed74d2528b419e07d978a52321a4370b42985b5a"
+                "reference": "bb1fec15bf8b72d7b5412d1169e59223956a21cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bitExpert/phpstan-magento/zipball/ed74d2528b419e07d978a52321a4370b42985b5a",
-                "reference": "ed74d2528b419e07d978a52321a4370b42985b5a",
+                "url": "https://api.github.com/repos/bitExpert/phpstan-magento/zipball/bb1fec15bf8b72d7b5412d1169e59223956a21cd",
+                "reference": "bb1fec15bf8b72d7b5412d1169e59223956a21cd",
                 "shasum": ""
             },
             "require": {
@@ -31,18 +31,18 @@
                 "magento/framework": "<102.0.0"
             },
             "require-dev": {
-                "captainhook/captainhook": "^5.10.8",
+                "captainhook/captainhook": "^5.10.9",
                 "captainhook/plugin-composer": "^5.3.3",
-                "league/commonmark": "^2.2.3",
-                "madewithlove/license-checker": "^0.10.0 || ^1.2",
+                "league/commonmark": "^2.3.1",
+                "madewithlove/license-checker": "^0.10.0 || ^1.4",
                 "magento/framework": ">=102.0.0",
                 "mikey179/vfsstream": "^1.6.10",
                 "nette/neon": "^3.3.3",
                 "nikic/php-parser": "^4.13.2",
                 "phpstan/extension-installer": "^1.1.0",
                 "phpstan/phpstan-phpunit": "^1.1.1",
-                "phpstan/phpstan-strict-rules": "^1.2.0",
-                "phpunit/phpunit": "^9.5.19",
+                "phpstan/phpstan-strict-rules": "^1.2.3",
+                "phpunit/phpunit": "^9.5.20",
                 "squizlabs/php_codesniffer": "^3.6.2"
             },
             "type": "phpstan-extension",
@@ -72,9 +72,9 @@
             "description": "PHPStan Magento Extension",
             "support": {
                 "issues": "https://github.com/bitExpert/phpstan-magento/issues",
-                "source": "https://github.com/bitExpert/phpstan-magento/tree/v0.24.0"
+                "source": "https://github.com/bitExpert/phpstan-magento/tree/v0.25.0"
             },
-            "time": "2022-08-13T08:42:09+00:00"
+            "time": "2022-10-04T17:08:22+00:00"
         },
         {
             "name": "laminas/laminas-code",
@@ -189,16 +189,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.8.5",
+            "version": "1.8.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "f6598a5ff12ca4499a836815e08b4d77a2ddeb20"
+                "reference": "536ff0ed719b5679e9f09c17aeaee9b31969cb8e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f6598a5ff12ca4499a836815e08b4d77a2ddeb20",
-                "reference": "f6598a5ff12ca4499a836815e08b4d77a2ddeb20",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/536ff0ed719b5679e9f09c17aeaee9b31969cb8e",
+                "reference": "536ff0ed719b5679e9f09c17aeaee9b31969cb8e",
                 "shasum": ""
             },
             "require": {
@@ -228,7 +228,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.8.5"
+                "source": "https://github.com/phpstan/phpstan/tree/1.8.7"
             },
             "funding": [
                 {
@@ -244,7 +244,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-09-07T16:05:32+00:00"
+            "time": "2022-10-04T14:09:33+00:00"
         },
         {
             "name": "phpstan/phpstan-deprecation-rules",

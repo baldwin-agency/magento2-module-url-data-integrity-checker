@@ -1,6 +1,7 @@
 {
     "require": {
         "bitexpert/phpstan-magento": "^0.27.0",
+        "laminas/laminas-code": "4.8.0 as 4.5.2",
         "phpstan/extension-installer": "^1.0",
         "phpstan/phpstan": "^1.8",
         "phpstan/phpstan-deprecation-rules": "^1.0"

@@ -1,6 +1,6 @@
 {
     "require": {
-        "dealerdirect/phpcodesniffer-composer-installer": "^0.7.2",
+        "dealerdirect/phpcodesniffer-composer-installer": "^1.0",
         "magento/magento-coding-standard": ">=6",
         "phpcompatibility/php-compatibility": "^9.2"
     },

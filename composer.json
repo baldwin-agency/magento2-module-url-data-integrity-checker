@@ -34,7 +34,6 @@
             "url": "https://repo.magento.com/"
         }
     ],
-    "minimum-stability": "beta",
     "autoload": {
         "psr-4": {
             "Baldwin\\UrlDataIntegrityChecker\\": ""

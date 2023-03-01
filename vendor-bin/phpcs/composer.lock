@@ -255,16 +255,16 @@
         },
         {
             "name": "rector/rector",
-            "version": "0.15.18",
+            "version": "0.15.19",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rectorphp/rector.git",
-                "reference": "2c4708affb035af01f6b4a3b4a82f75cc306b039"
+                "reference": "4b3a85382e890963a6d00e0ace8d09465f96e370"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rectorphp/rector/zipball/2c4708affb035af01f6b4a3b4a82f75cc306b039",
-                "reference": "2c4708affb035af01f6b4a3b4a82f75cc306b039",
+                "url": "https://api.github.com/repos/rectorphp/rector/zipball/4b3a85382e890963a6d00e0ace8d09465f96e370",
+                "reference": "4b3a85382e890963a6d00e0ace8d09465f96e370",
                 "shasum": ""
             },
             "require": {
@@ -298,7 +298,7 @@
             "description": "Instant Upgrade and Automated Refactoring of any PHP code",
             "support": {
                 "issues": "https://github.com/rectorphp/rector/issues",
-                "source": "https://github.com/rectorphp/rector/tree/0.15.18"
+                "source": "https://github.com/rectorphp/rector/tree/0.15.19"
             },
             "funding": [
                 {
@@ -306,7 +306,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2023-02-22T12:06:55+00:00"
+            "time": "2023-02-28T10:47:53+00:00"
         },
         {
             "name": "squizlabs/php_codesniffer",
@@ -367,16 +367,16 @@
         },
         {
             "name": "webonyx/graphql-php",
-            "version": "v15.2.0",
+            "version": "v15.2.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webonyx/graphql-php.git",
-                "reference": "b9cfc95ca5119bc8021ec1cd52899b66f9c20f5f"
+                "reference": "6b02da9313065889eb783d623567476500a572ef"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/b9cfc95ca5119bc8021ec1cd52899b66f9c20f5f",
-                "reference": "b9cfc95ca5119bc8021ec1cd52899b66f9c20f5f",
+                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/6b02da9313065889eb783d623567476500a572ef",
+                "reference": "6b02da9313065889eb783d623567476500a572ef",
                 "shasum": ""
             },
             "require": {
@@ -392,8 +392,8 @@
                 "nyholm/psr7": "^1.5",
                 "phpbench/phpbench": "^1.2",
                 "phpstan/extension-installer": "^1.1",
-                "phpstan/phpstan": "1.10.2",
-                "phpstan/phpstan-phpunit": "1.3.7",
+                "phpstan/phpstan": "1.10.3",
+                "phpstan/phpstan-phpunit": "1.3.8",
                 "phpstan/phpstan-strict-rules": "1.5.0",
                 "phpunit/phpunit": "^9.5",
                 "psr/http-message": "^1",
@@ -425,7 +425,7 @@
             ],
             "support": {
                 "issues": "https://github.com/webonyx/graphql-php/issues",
-                "source": "https://github.com/webonyx/graphql-php/tree/v15.2.0"
+                "source": "https://github.com/webonyx/graphql-php/tree/v15.2.1"
             },
             "funding": [
                 {
@@ -433,7 +433,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2023-02-24T10:52:01+00:00"
+            "time": "2023-02-28T13:00:18+00:00"
         }
     ],
     "packages-dev": [],

@@ -48,7 +48,7 @@ class EditAction extends ColumnEditAction
 
                     $item[$this->getData('name')] = [
                         'edit' => [
-                            'href' => $this->urlBuilder->getUrl(
+                            'href'  => $this->urlBuilder->getUrl(
                                 $editUrlPath,
                                 [
                                     'id'    => $entityId,

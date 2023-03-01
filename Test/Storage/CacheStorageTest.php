@@ -6,7 +6,6 @@ namespace Baldwin\UrlDataIntegrityChecker\Test\Storage;
 
 use Baldwin\UrlDataIntegrityChecker\Storage\CacheStorage;
 use Magento\Framework\App\Cache as AppCache;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class CacheStorageTest extends TestCase
@@ -19,7 +18,6 @@ class CacheStorageTest extends TestCase
             'key2' => 'value2',
         ];
 
-        /** @var AppCache&MockObject */
         $cacheMock = $this
             ->getMockBuilder(AppCache::class)
             ->disableOriginalConstructor()
@@ -57,7 +55,6 @@ class CacheStorageTest extends TestCase
             'key3' => 'value3',
         ];
 
-        /** @var AppCache&MockObject */
         $cacheMock = $this
             ->getMockBuilder(AppCache::class)
             ->disableOriginalConstructor()
@@ -95,7 +92,6 @@ class CacheStorageTest extends TestCase
 
         $expectedData = [];
 
-        /** @var AppCache&MockObject */
         $cacheMock = $this
             ->getMockBuilder(AppCache::class)
             ->disableOriginalConstructor()

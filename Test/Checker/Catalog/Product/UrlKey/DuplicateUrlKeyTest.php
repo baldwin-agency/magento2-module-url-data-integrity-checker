@@ -13,7 +13,6 @@ use Magento\Catalog\Model\Attribute\ScopeOverriddenValueFactory as AttributeScop
 use Magento\Catalog\Model\ResourceModel\Product\Collection as ProductCollection;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
 use Magento\Framework\DataObject;
-use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class DuplicateUrlKeyTest extends TestCase
@@ -48,7 +47,6 @@ class DuplicateUrlKeyTest extends TestCase
 
         $collectionsPerStoreId = array_map(
             function ($productsData) {
-                /** @var MockObject $productCollectionMock */
                 $productCollectionMock = $this->getMockBuilder(ProductCollection::class)
                     ->disableOriginalConstructor()
                     ->getMock();
@@ -74,7 +72,6 @@ class DuplicateUrlKeyTest extends TestCase
             $dataPerStoreId
         );
 
-        /** @var StoresUtil&MockObject */
         $storesUtilMock = $this
             ->getMockBuilder(StoresUtil::class)
             ->disableOriginalConstructor()
@@ -83,13 +80,11 @@ class DuplicateUrlKeyTest extends TestCase
             ->method('getAllStoreIds')
             ->willReturn($storeIds);
 
-        /** @var Progress&MockObject */
         $progressMock = $this
             ->getMockBuilder(Progress::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        /** @var ProductCollectionFactory&MockObject */
         $productCollectionFactoryMock = $this
             ->getMockBuilder(ProductCollectionFactory::class)
             ->disableOriginalConstructor()
@@ -110,7 +105,6 @@ class DuplicateUrlKeyTest extends TestCase
             ->method('containsValue')
             ->willReturn(true);
 
-        /** @var AttributeScopeOverriddenValueFactory&MockObject */
         $attributeScopeOverriddenValueFactoryMock = $this
             ->getMockBuilder(AttributeScopeOverriddenValueFactory::class)
             ->disableOriginalConstructor()
@@ -120,7 +114,6 @@ class DuplicateUrlKeyTest extends TestCase
             ->method('create')
             ->willReturn($attributeScopeOverriddenValueMock);
 
-        /** @var ConfigUtil&MockObject */
         $configUtilMock = $this
             ->getMockBuilder(ConfigUtil::class)
             ->disableOriginalConstructor()

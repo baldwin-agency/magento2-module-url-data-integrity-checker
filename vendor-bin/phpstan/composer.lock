@@ -4,25 +4,25 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "730db5c6b62e582ca534b32f59a40765",
+    "content-hash": "c008e34c459c6e34452f49b4bc897698",
     "packages": [
         {
             "name": "bitexpert/phpstan-magento",
-            "version": "v0.27.0",
+            "version": "v0.28.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/bitExpert/phpstan-magento.git",
-                "reference": "d50c840ea0b29029b596cf3b55311ee616bf22d2"
+                "reference": "27559f34cf21e08cbe07f974a774d570d6cd454c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bitExpert/phpstan-magento/zipball/d50c840ea0b29029b596cf3b55311ee616bf22d2",
-                "reference": "d50c840ea0b29029b596cf3b55311ee616bf22d2",
+                "url": "https://api.github.com/repos/bitExpert/phpstan-magento/zipball/27559f34cf21e08cbe07f974a774d570d6cd454c",
+                "reference": "27559f34cf21e08cbe07f974a774d570d6cd454c",
                 "shasum": ""
             },
             "require": {
                 "ext-dom": "*",
-                "laminas/laminas-code": "~3.3.0 || ~3.4.1 || ~3.5.1 || ~4.5.0 || ~4.5.2",
+                "laminas/laminas-code": "~3.3.0 || ~3.4.1 || ~3.5.1 || ^4.5",
                 "php": "^7.2.0 || ^8.1.0",
                 "phpstan/phpstan": "~1.9.2",
                 "symfony/finder": "^3.0 || ^4.0 || ^5.0 || ^6.0"
@@ -72,35 +72,35 @@
             "description": "PHPStan Magento Extension",
             "support": {
                 "issues": "https://github.com/bitExpert/phpstan-magento/issues",
-                "source": "https://github.com/bitExpert/phpstan-magento/tree/v0.27.0"
+                "source": "https://github.com/bitExpert/phpstan-magento/tree/v0.28.0"
             },
-            "time": "2022-11-12T19:54:18+00:00"
+            "time": "2023-01-22T07:50:24+00:00"
         },
         {
             "name": "laminas/laminas-code",
-            "version": "4.5.2",
+            "version": "4.8.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laminas/laminas-code.git",
-                "reference": "da01fb74c08f37e20e7ae49f1e3ee09aa401ebad"
+                "reference": "dd19fe8e07cc3f374308565667eecd4958c22106"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laminas/laminas-code/zipball/da01fb74c08f37e20e7ae49f1e3ee09aa401ebad",
-                "reference": "da01fb74c08f37e20e7ae49f1e3ee09aa401ebad",
+                "url": "https://api.github.com/repos/laminas/laminas-code/zipball/dd19fe8e07cc3f374308565667eecd4958c22106",
+                "reference": "dd19fe8e07cc3f374308565667eecd4958c22106",
                 "shasum": ""
             },
             "require": {
-                "php": ">=7.4, <8.2"
+                "php": "~8.1.0 || ~8.2.0"
             },
             "require-dev": {
-                "doctrine/annotations": "^1.13.2",
+                "doctrine/annotations": "^1.13.3",
                 "ext-phar": "*",
                 "laminas/laminas-coding-standard": "^2.3.0",
                 "laminas/laminas-stdlib": "^3.6.1",
-                "phpunit/phpunit": "^9.5.10",
-                "psalm/plugin-phpunit": "^0.16.1",
-                "vimeo/psalm": "^4.13.1"
+                "phpunit/phpunit": "^9.5.26",
+                "psalm/plugin-phpunit": "^0.18.0",
+                "vimeo/psalm": "^5.1.0"
             },
             "suggest": {
                 "doctrine/annotations": "Doctrine\\Common\\Annotations >=1.0 for annotation features",
@@ -108,9 +108,6 @@
             },
             "type": "library",
             "autoload": {
-                "files": [
-                    "polyfill/ReflectionEnumPolyfill.php"
-                ],
                 "psr-4": {
                     "Laminas\\Code\\": "src/"
                 }
@@ -140,7 +137,7 @@
                     "type": "community_bridge"
                 }
             ],
-            "time": "2022-06-06T11:26:02+00:00"
+            "time": "2022-12-08T02:08:23+00:00"
         },
         {
             "name": "phpstan/extension-installer",
@@ -188,16 +185,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.9.12",
+            "version": "1.9.18",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "44a338ff0d5572c13fd77dfd91addb96e48c29f8"
+                "reference": "f2d5cf71be91172a57c649770b73c20ebcffb0bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/44a338ff0d5572c13fd77dfd91addb96e48c29f8",
-                "reference": "44a338ff0d5572c13fd77dfd91addb96e48c29f8",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/f2d5cf71be91172a57c649770b73c20ebcffb0bf",
+                "reference": "f2d5cf71be91172a57c649770b73c20ebcffb0bf",
                 "shasum": ""
             },
             "require": {
@@ -227,7 +224,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.9.12"
+                "source": "https://github.com/phpstan/phpstan/tree/1.9.18"
             },
             "funding": [
                 {
@@ -243,7 +240,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-01-17T10:44:04+00:00"
+            "time": "2023-02-17T15:01:27+00:00"
         },
         {
             "name": "phpstan/phpstan-deprecation-rules",
@@ -295,16 +292,16 @@
         },
         {
             "name": "symfony/finder",
-            "version": "v6.2.3",
+            "version": "v6.2.7",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/finder.git",
-                "reference": "81eefbddfde282ee33b437ba5e13d7753211ae8e"
+                "reference": "20808dc6631aecafbe67c186af5dcb370be3a0eb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/81eefbddfde282ee33b437ba5e13d7753211ae8e",
-                "reference": "81eefbddfde282ee33b437ba5e13d7753211ae8e",
+                "url": "https://api.github.com/repos/symfony/finder/zipball/20808dc6631aecafbe67c186af5dcb370be3a0eb",
+                "reference": "20808dc6631aecafbe67c186af5dcb370be3a0eb",
                 "shasum": ""
             },
             "require": {
@@ -339,7 +336,7 @@
             "description": "Finds files and directories via an intuitive fluent interface",
             "homepage": "https://symfony.com",
             "support": {
-                "source": "https://github.com/symfony/finder/tree/v6.2.3"
+                "source": "https://github.com/symfony/finder/tree/v6.2.7"
             },
             "funding": [
                 {
@@ -355,7 +352,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-12-22T17:55:15+00:00"
+            "time": "2023-02-16T09:57:23+00:00"
         }
     ],
     "packages-dev": [],

@@ -196,16 +196,16 @@
         },
         {
             "name": "phpstan/phpstan",
-            "version": "1.10.4",
+            "version": "1.10.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/phpstan/phpstan.git",
-                "reference": "8d39218664b45a4a42d5be66d2b63dcf8c149982"
+                "reference": "50d089a3e0904b0fe7e2cf2d4fd37d427d64235a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/8d39218664b45a4a42d5be66d2b63dcf8c149982",
-                "reference": "8d39218664b45a4a42d5be66d2b63dcf8c149982",
+                "url": "https://api.github.com/repos/phpstan/phpstan/zipball/50d089a3e0904b0fe7e2cf2d4fd37d427d64235a",
+                "reference": "50d089a3e0904b0fe7e2cf2d4fd37d427d64235a",
                 "shasum": ""
             },
             "require": {
@@ -235,7 +235,7 @@
             ],
             "support": {
                 "issues": "https://github.com/phpstan/phpstan/issues",
-                "source": "https://github.com/phpstan/phpstan/tree/1.10.4"
+                "source": "https://github.com/phpstan/phpstan/tree/1.10.6"
             },
             "funding": [
                 {
@@ -251,7 +251,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2023-03-06T13:39:20+00:00"
+            "time": "2023-03-09T16:55:12+00:00"
         },
         {
             "name": "rector/rector",
@@ -373,16 +373,16 @@
         },
         {
             "name": "webonyx/graphql-php",
-            "version": "v15.2.1",
+            "version": "v15.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/webonyx/graphql-php.git",
-                "reference": "6b02da9313065889eb783d623567476500a572ef"
+                "reference": "5ec0b8fbdcdb6b1be9345a43f927af0ecc9bd3b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/6b02da9313065889eb783d623567476500a572ef",
-                "reference": "6b02da9313065889eb783d623567476500a572ef",
+                "url": "https://api.github.com/repos/webonyx/graphql-php/zipball/5ec0b8fbdcdb6b1be9345a43f927af0ecc9bd3b0",
+                "reference": "5ec0b8fbdcdb6b1be9345a43f927af0ecc9bd3b0",
                 "shasum": ""
             },
             "require": {
@@ -398,13 +398,14 @@
                 "nyholm/psr7": "^1.5",
                 "phpbench/phpbench": "^1.2",
                 "phpstan/extension-installer": "^1.1",
-                "phpstan/phpstan": "1.10.3",
-                "phpstan/phpstan-phpunit": "1.3.8",
+                "phpstan/phpstan": "1.10.5",
+                "phpstan/phpstan-phpunit": "1.3.10",
                 "phpstan/phpstan-strict-rules": "1.5.0",
                 "phpunit/phpunit": "^9.5",
                 "psr/http-message": "^1",
                 "react/http": "^1.6",
                 "react/promise": "^2.9",
+                "rector/rector": "^0.15.18",
                 "symfony/polyfill-php81": "^1.23",
                 "symfony/var-exporter": "^5 || ^6",
                 "thecodingmachine/safe": "^1.3 || ^2"
@@ -431,7 +432,7 @@
             ],
             "support": {
                 "issues": "https://github.com/webonyx/graphql-php/issues",
-                "source": "https://github.com/webonyx/graphql-php/tree/v15.2.1"
+                "source": "https://github.com/webonyx/graphql-php/tree/v15.2.3"
             },
             "funding": [
                 {
@@ -439,7 +440,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2023-02-28T13:00:18+00:00"
+            "time": "2023-03-08T11:44:02+00:00"
         }
     ],
     "packages-dev": [],

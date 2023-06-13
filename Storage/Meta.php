@@ -91,9 +91,9 @@ class Meta
 
         $metaData = $this->storage->read($storageIdentifier);
 
-        if (!empty($metaData) &&
-            array_key_exists('status', $metaData) &&
-            $metaData['status'] === self::STATUS_REFRESHING
+        if (!empty($metaData)
+            && array_key_exists('status', $metaData)
+            && $metaData['status'] === self::STATUS_REFRESHING
         ) {
             return true;
         }

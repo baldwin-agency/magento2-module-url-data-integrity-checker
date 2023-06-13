@@ -214,9 +214,10 @@ class DuplicateUrlKey
                                 $conflictingStoreId
                             ),
                         ];
-                    // if same product id, we don't care,
-                    // since it wouldn't be a conflict if they exist in another storeview
                     } elseif ($productId !== $conflictingProductId) {
+                        // ^^^ if same product id, we don't care,
+                        // since it wouldn't be a conflict if they exist in another storeview
+
                         if (array_key_exists("$conflictingStoreId-$productId", $inheritedProductUrlKeyData)
                             && $inheritedProductUrlKeyData["$conflictingStoreId-$productId"] === $urlKey
                         ) {

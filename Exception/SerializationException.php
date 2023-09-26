@@ -6,6 +6,4 @@ namespace Baldwin\UrlDataIntegrityChecker\Exception;
 
 use Magento\Framework\Exception\LocalizedException;
 
-class SerializationException extends LocalizedException
-{
-}
+class SerializationException extends LocalizedException {}

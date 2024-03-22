@@ -11,7 +11,7 @@
         }
     ],
     "require": {
-        "php": "~7.0.0 || ~7.1.0 || ~7.2.0 || ~7.3.0 || ~7.4.0 || ~8.1.0 || ~8.2.0",
+        "php": "~7.0.0 || ~7.1.0 || ~7.2.0 || ~7.3.0 || ~7.4.0 || ~8.1.0 || ~8.2.0 || ~8.3.0",
         "magento/framework": "^100.1 || ^101.0 || ^102.0 || ^103.0",
         "magento/module-backend": "^100.1 || ^101.0 || ^102.0",
         "magento/module-catalog": "^101.0 || ^102.0 || ^103.0 || ^104.0",
@@ -20,7 +20,7 @@
         "magento/module-store": "^100.1 || ^101.0",
         "magento/module-theme": "^100.1 || ^101.0",
         "magento/module-ui": "^100.1 || ^101.0",
-        "symfony/console": "^2.5 || ^3.0 || ^4.0 || ^5.0"
+        "symfony/console": "^2.5 || ^3.0 || ^4.0 || ^5.0 || ^6.0"
     },
     "require-dev": {
         "bamarni/composer-bin-plugin": "^1.7",

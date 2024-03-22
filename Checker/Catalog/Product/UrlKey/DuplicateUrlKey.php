@@ -19,7 +19,7 @@ use Magento\Store\Model\Store;
 class DuplicateUrlKey
 {
     const DUPLICATED_PROBLEM_DESCRIPTION =
-          'Product has a duplicated url_key value (%s). It\'s the same as another product (ID: %s, Store: %s).'
+        'Product has a duplicated url_key value (%s). It\'s the same as another product (ID: %s, Store: %s).'
         . ' Please fix because this will cause problems.';
 
     private $storesUtil;
@@ -214,9 +214,10 @@ class DuplicateUrlKey
                                 $conflictingStoreId
                             ),
                         ];
-                    // if same product id, we don't care,
-                    // since it wouldn't be a conflict if they exist in another storeview
                     } elseif ($productId !== $conflictingProductId) {
+                        // ^^^ if same product id, we don't care,
+                        // since it wouldn't be a conflict if they exist in another storeview
+
                         if (array_key_exists("$conflictingStoreId-$productId", $inheritedProductUrlKeyData)
                             && $inheritedProductUrlKeyData["$conflictingStoreId-$productId"] === $urlKey
                         ) {

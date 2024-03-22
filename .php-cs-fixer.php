@@ -9,27 +9,17 @@ $finder = PhpCsFixer\Finder::create()
 $config = new PhpCsFixer\Config();
 return $config
     ->setRules([
-        '@Symfony'               => true,
-        '@PSR12'                 => true,
-        'binary_operator_spaces' => ['default' => null, 'operators' => ['=>' => 'align']],
-        'concat_space'           => ['spacing' => 'one'],
-        'declare_strict_types'   => true,
-        'no_alias_functions'     => true,
-        'no_useless_sprintf'     => true,
-        'ordered_imports'        => [
-            'imports_order' => [
-                'class',
-                'function',
-                'const',
-            ],
-            'sort_algorithm' => 'alpha'
-        ],
-        'phpdoc_align'           => ['align' => 'left'],
-        'phpdoc_summary'         => false,
-        'self_accessor'          => true,
-        'single_line_throw'      => false,
-        'visibility_required'    => ['elements' => ['property', 'method']], // removed 'const' since we still support PHP 7.0 for now
-        'yoda_style'             => false,
+        '@PER-CS'                                          => true,
+        'binary_operator_spaces'                           => ['default' => 'at_least_single_space', 'operators' => ['=>' => 'align']],
+        'declare_strict_types'                             => true,
+        'no_alias_functions'                               => true,
+        'no_useless_sprintf'                               => true,
+        'nullable_type_declaration_for_default_null_value' => false, // should be 'true' when we drop support for PHP 7.0 which didn't support nullable types yet
+        'ordered_imports'                                  => ['sort_algorithm' => 'alpha'],
+        'phpdoc_align'                                     => ['align' => 'vertical'],
+        'phpdoc_separation'                                => ['skip_unlisted_annotations' => true],
+        'self_accessor'                                    => true,
+        'visibility_required'                              => ['elements' => ['property', 'method']], // removed 'const' since we still support PHP 7.0 for now
     ])
     ->setFinder($finder)
 ;

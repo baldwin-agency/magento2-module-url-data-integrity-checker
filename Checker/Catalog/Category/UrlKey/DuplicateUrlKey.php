@@ -11,7 +11,7 @@ use Magento\Catalog\Model\Category;
 class DuplicateUrlKey
 {
     const DUPLICATED_PROBLEM_DESCRIPTION =
-          '%s categories were found which have a duplicated url_key value: "%s" within the same parent.'
+        '%s categories were found which have a duplicated url_key value: "%s" within the same parent.'
         . ' Please fix because this will cause problems.';
 
     private $storesUtil;

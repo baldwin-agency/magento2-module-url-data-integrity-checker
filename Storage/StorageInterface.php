@@ -7,12 +7,12 @@ namespace Baldwin\UrlDataIntegrityChecker\Storage;
 interface StorageInterface
 {
     /**
-     * @param array<string, mixed> $data
+     * @param array<string, mixed>|array<array<string, mixed>> $data
      */
     public function write(string $identifier, array $data): bool;
 
     /**
-     * @return array<string, mixed>
+     * @return array<string, mixed>|array<array<string, mixed>>
      */
     public function read(string $identifier): array;
 

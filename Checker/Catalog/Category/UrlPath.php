@@ -70,6 +70,7 @@ class UrlPath
                     $correctUrlPath = $this->getCalculatedUrlPathForCategory($category, $storeId);
 
                     assert(is_numeric($category->getId()));
+                    assert(is_string($category->getUrlPath()));
 
                     $problems[] = [
                         'catId'   => (int) $category->getId(),

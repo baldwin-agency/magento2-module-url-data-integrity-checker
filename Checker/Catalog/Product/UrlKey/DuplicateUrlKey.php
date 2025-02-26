@@ -122,6 +122,7 @@ class DuplicateUrlKey
     {
         foreach ($collection as $product) {
             assert(is_numeric($product->getEntityId()));
+            assert(is_string($product->getUrlKey()));
 
             $productId     = $product->getEntityId();
             $productSku    = $product->getSku();

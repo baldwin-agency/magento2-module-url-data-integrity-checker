@@ -1,7 +1,11 @@
+includes:
+    - phpstan-baseline.neon
+
 parameters:
     level: max
     inferPrivatePropertyTypeFromConstructor: true
     checkDynamicProperties: true
+    treatPhpDocTypesAsCertain: false
     paths:
         - .
     excludePaths:

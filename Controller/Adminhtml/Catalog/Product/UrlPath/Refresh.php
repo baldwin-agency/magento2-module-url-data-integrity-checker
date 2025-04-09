@@ -14,7 +14,7 @@ use Magento\Backend\App\Action\Context as BackendContext;
 
 class Refresh extends BackendAction
 {
-    const ADMIN_RESOURCE = 'Baldwin_UrlDataIntegrityChecker::catalog_data_integrity';
+    public const ADMIN_RESOURCE = 'Baldwin_UrlDataIntegrityChecker::catalog_data_integrity';
 
     private $scheduleJob;
     private $metaStorage;

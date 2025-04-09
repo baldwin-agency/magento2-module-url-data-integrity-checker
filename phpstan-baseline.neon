@@ -1,0 +1,37 @@
+parameters:
+	ignoreErrors:
+		-
+			message: '#^Method Baldwin\\UrlDataIntegrityChecker\\Checker\\Catalog\\Category\\UrlPath\:\:getAllInvisibleRootIds\(\) should return array\<string\> but returns array\.$#'
+			identifier: return.type
+			count: 1
+			path: Checker/Catalog/Category/UrlPath.php
+
+		-
+			message: '#^Parameter \#1 \$arguments of method Baldwin\\UrlDataIntegrityChecker\\Model\\ResourceModel\\Catalog\\Category\\UrlKeyCollection\:\:createDataObject\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Model/ResourceModel/Catalog/Category/UrlKeyCollection.php
+
+		-
+			message: '#^Parameter \#1 \$arguments of method Baldwin\\UrlDataIntegrityChecker\\Model\\ResourceModel\\Catalog\\Category\\UrlPathCollection\:\:createDataObject\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Model/ResourceModel/Catalog/Category/UrlPathCollection.php
+
+		-
+			message: '#^Parameter \#1 \$arguments of method Baldwin\\UrlDataIntegrityChecker\\Model\\ResourceModel\\Catalog\\Product\\UrlKeyCollection\:\:createDataObject\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Model/ResourceModel/Catalog/Product/UrlKeyCollection.php
+
+		-
+			message: '#^Parameter \#1 \$arguments of method Baldwin\\UrlDataIntegrityChecker\\Model\\ResourceModel\\Catalog\\Product\\UrlPathCollection\:\:createDataObject\(\) expects array\<string, mixed\>, array\<mixed, mixed\> given\.$#'
+			identifier: argument.type
+			count: 1
+			path: Model/ResourceModel/Catalog/Product/UrlPathCollection.php
+
+		-
+			message: '#^Method Baldwin\\UrlDataIntegrityChecker\\Storage\\Meta\:\:getData\(\) should return array\<string, mixed\> but returns array\<mixed\>\.$#'
+			identifier: return.type
+			count: 1
+			path: Storage/Meta.php

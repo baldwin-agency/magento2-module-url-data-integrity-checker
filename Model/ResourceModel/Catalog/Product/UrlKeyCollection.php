@@ -105,7 +105,7 @@ class UrlKeyCollection extends DataCollection implements SearchResultInterface
     /**
      * @return UrlKeyCollection<DataObject>
      */
-    public function setItems(array $items = null)
+    public function setItems(?array $items = null)
     {
         throw new LocalizedException(__('Not implemented: setItems!'));
     }

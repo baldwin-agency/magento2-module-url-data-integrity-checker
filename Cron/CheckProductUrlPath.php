@@ -9,7 +9,7 @@ use Baldwin\UrlDataIntegrityChecker\Updater\Catalog\Product\UrlPath as UrlPathUp
 
 class CheckProductUrlPath
 {
-    const JOB_NAME = 'baldwin_urldataintegritychecker_cron_checkproducturlpath';
+    public const JOB_NAME = 'baldwin_urldataintegritychecker_cron_checkproducturlpath';
 
     private $urlPathUpdater;
 
@@ -19,7 +19,7 @@ class CheckProductUrlPath
         $this->urlPathUpdater = $urlPathUpdater;
     }
 
-    public function execute()
+    public function execute(): void
     {
         $this->urlPathUpdater->refresh(MetaStorage::INITIATOR_CRON);
     }

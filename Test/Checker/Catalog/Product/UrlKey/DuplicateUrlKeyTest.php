@@ -13,17 +13,17 @@ use Magento\Catalog\Model\Attribute\ScopeOverriddenValueFactory as AttributeScop
 use Magento\Catalog\Model\ResourceModel\Product\Collection as ProductCollection;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
 use Magento\Framework\DataObject;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\TestCase;
 
 class DuplicateUrlKeyTest extends TestCase
 {
     /**
-     * @dataProvider duplicatedProductUrlKeyValuesDataProvider
-     *
      * @param array<array<string, mixed>> $dbData
      * @param array<array<string, mixed>> $expectedResults
      */
-    public function testDuplicatedProductUrlKeyValues(array $dbData, array $expectedResults)
+    #[DataProvider('duplicatedProductUrlKeyValuesDataProvider')]
+    public function testDuplicatedProductUrlKeyValues(array $dbData, array $expectedResults): void
     {
         $dbData = array_map(function ($productData) {
             return new DataObject($productData);
@@ -52,7 +52,7 @@ class DuplicateUrlKeyTest extends TestCase
                     ->getMock();
                 $productCollectionMock->expects($this->any())
                     ->method('getIterator')
-                    ->will($this->returnValue(new \ArrayIterator($productsData)));
+                    ->willReturn(new \ArrayIterator($productsData));
 
                 $productCollectionMock->expects($this->once())
                     ->method('setStoreId')
@@ -93,7 +93,7 @@ class DuplicateUrlKeyTest extends TestCase
 
         $productCollectionFactoryMock->expects($this->exactly(count($storeIds)))
             ->method('create')
-            ->will($this->onConsecutiveCalls(...$collectionsPerStoreId)); // ... turns array into seperate arguments
+            ->willReturn(...$collectionsPerStoreId); // ... turns array into seperate arguments
 
         $attributeScopeOverriddenValueMock = $this
             ->getMockBuilder(AttributeScopeOverriddenValue::class)
@@ -134,7 +134,7 @@ class DuplicateUrlKeyTest extends TestCase
     /**
      * @return array<array<array<array<string, mixed>>>>
      */
-    public function duplicatedProductUrlKeyValuesDataProvider(): array
+    public static function duplicatedProductUrlKeyValuesDataProvider(): array
     {
         return [
             // 0. two products having different url key, is ok!

@@ -24,12 +24,12 @@ class Progress
         $this->format = '';
     }
 
-    public function setOutput(OutputInterface $output)
+    public function setOutput(OutputInterface $output): void
     {
         $this->output = $output;
     }
 
-    public function initProgressBar(int $redrawFequency, string $format, string $message)
+    public function initProgressBar(int $redrawFequency, string $format, string $message): void
     {
         if ($this->canOutput()) {
             $this->progressBar = new ProgressBar($this->output);
@@ -42,7 +42,7 @@ class Progress
         }
     }
 
-    public function setGuestimatedSize(int $nrOfIndexes, int $sizePerIndex)
+    public function setGuestimatedSize(int $nrOfIndexes, int $sizePerIndex): void
     {
         for ($i = 0; $i < $nrOfIndexes; ++$i) {
             $this->sizeByIndex[$i] = $sizePerIndex;
@@ -50,27 +50,27 @@ class Progress
         $this->updateMaxSteps();
     }
 
-    public function updateExpectedSize(int $index, int $size)
+    public function updateExpectedSize(int $index, int $size): void
     {
         $this->sizeByIndex[$index] = $size;
         $this->updateMaxSteps();
     }
 
-    public function advance()
+    public function advance(): void
     {
         if ($this->canOutput()) {
             $this->progressBar->advance();
         }
     }
 
-    public function setMessage(string $message)
+    public function setMessage(string $message): void
     {
         if ($this->canOutput()) {
             $this->progressBar->setMessage($message);
         }
     }
 
-    public function finish()
+    public function finish(): void
     {
         if ($this->canOutput()) {
             $this->progressBar->finish();
@@ -82,7 +82,7 @@ class Progress
         return $this->output !== null;
     }
 
-    private function updateMaxSteps()
+    private function updateMaxSteps(): void
     {
         if ($this->canOutput()) {
             $newMaxStepsValue = (int) array_sum($this->sizeByIndex);

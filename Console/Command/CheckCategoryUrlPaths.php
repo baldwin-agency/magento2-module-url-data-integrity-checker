@@ -37,7 +37,7 @@ class CheckCategoryUrlPaths extends ConsoleCommand
         parent::__construct();
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this->setName('catalog:category:integrity:urlpath');
         $this->setDescription('Checks data integrity of the values of the url_path category attribute.');

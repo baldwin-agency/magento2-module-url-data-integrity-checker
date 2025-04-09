@@ -35,6 +35,7 @@ class Metadata extends Template
         if ($storageIdentifier === null || $storageIdentifier === '') {
             throw new MissingConfigurationException(__('No storage identifier was setup for this block!'));
         }
+        assert(is_string($storageIdentifier));
 
         $metaData = $this->metaStorage->getData($storageIdentifier);
         $metaData = $this->format($metaData);

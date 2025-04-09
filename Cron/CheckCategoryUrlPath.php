@@ -9,7 +9,7 @@ use Baldwin\UrlDataIntegrityChecker\Updater\Catalog\Category\UrlPath as UrlPathU
 
 class CheckCategoryUrlPath
 {
-    const JOB_NAME = 'baldwin_urldataintegritychecker_cron_checkcategoryurlpath';
+    public const JOB_NAME = 'baldwin_urldataintegritychecker_cron_checkcategoryurlpath';
 
     private $urlPathUpdater;
 
@@ -19,7 +19,7 @@ class CheckCategoryUrlPath
         $this->urlPathUpdater = $urlPathUpdater;
     }
 
-    public function execute()
+    public function execute(): void
     {
         $this->urlPathUpdater->refresh(MetaStorage::INITIATOR_CRON);
     }

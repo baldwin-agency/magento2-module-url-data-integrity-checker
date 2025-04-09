@@ -18,7 +18,7 @@ use Magento\Store\Model\Store;
 
 class EmptyUrlKey
 {
-    const EMPTY_PROBLEM_DESCRIPTION = 'Product has an empty url_key value. This needs to be fixed.';
+    public const EMPTY_PROBLEM_DESCRIPTION = 'Product has an empty url_key value. This needs to be fixed.';
 
     private $storesUtil;
     private $progress;

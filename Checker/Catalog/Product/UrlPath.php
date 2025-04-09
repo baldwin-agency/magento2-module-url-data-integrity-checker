@@ -16,11 +16,11 @@ use Magento\Store\Model\Store;
 
 class UrlPath
 {
-    const URL_PATH_ATTRIBUTE = 'url_path';
-    const PROBLEM_DESCRIPTION =
+    public const URL_PATH_ATTRIBUTE = 'url_path';
+    public const PROBLEM_DESCRIPTION =
         'Product has a non-null url_path attribute, this is known to cause problems with url rewrites in Magento.'
         . ' It\'s advised to remove this value from the database.';
-    const STORAGE_IDENTIFIER = 'product-url-path';
+    public const STORAGE_IDENTIFIER = 'product-url-path';
 
     private $storesUtil;
     private $productCollectionFactory;

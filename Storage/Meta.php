@@ -9,14 +9,14 @@ use Magento\Framework\Stdlib\DateTime\DateTime;
 
 class Meta
 {
-    const STORAGE_SUFFIX = '-meta';
+    public const STORAGE_SUFFIX = '-meta';
 
-    const STATUS_PENDING = 'pending';
-    const STATUS_REFRESHING = 'refreshing';
-    const STATUS_FINISHED = 'finished';
+    public const STATUS_PENDING = 'pending';
+    public const STATUS_REFRESHING = 'refreshing';
+    public const STATUS_FINISHED = 'finished';
 
-    const INITIATOR_CRON = 'cron';
-    const INITIATOR_CLI = 'CLI';
+    public const INITIATOR_CRON = 'cron';
+    public const INITIATOR_CLI = 'CLI';
 
     private $storage;
     private $dateTime;
@@ -29,7 +29,7 @@ class Meta
         $this->dateTime = $dateTime;
     }
 
-    public function setPending(string $storageIdentifier, string $initiator)
+    public function setPending(string $storageIdentifier, string $initiator): void
     {
         if ($this->isRefreshing($storageIdentifier)) {
             throw new AlreadyRefreshingException(__(
@@ -49,7 +49,7 @@ class Meta
         ]);
     }
 
-    public function setStartRefreshing(string $storageIdentifier, string $initiator)
+    public function setStartRefreshing(string $storageIdentifier, string $initiator): void
     {
         $storageIdentifier .= self::STORAGE_SUFFIX;
 
@@ -61,7 +61,7 @@ class Meta
         ]);
     }
 
-    public function setFinishedRefreshing(string $storageIdentifier)
+    public function setFinishedRefreshing(string $storageIdentifier): void
     {
         $storageIdentifier .= self::STORAGE_SUFFIX;
 
@@ -76,7 +76,7 @@ class Meta
         ]);
     }
 
-    public function setErrorMessage(string $storageIdentifier, string $message)
+    public function setErrorMessage(string $storageIdentifier, string $message): void
     {
         $storageIdentifier .= self::STORAGE_SUFFIX;
 

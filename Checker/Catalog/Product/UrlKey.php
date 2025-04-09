@@ -9,8 +9,8 @@ use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product\UrlKey\EmptyUrlKey a
 
 class UrlKey
 {
-    const URL_KEY_ATTRIBUTE = 'url_key';
-    const STORAGE_IDENTIFIER = 'product-url-key';
+    public const URL_KEY_ATTRIBUTE = 'url_key';
+    public const STORAGE_IDENTIFIER = 'product-url-key';
 
     private $duplicateUrlKeyChecker;
     private $emptyUrlKeyChecker;

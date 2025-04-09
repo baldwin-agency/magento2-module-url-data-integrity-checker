@@ -37,7 +37,7 @@ class CheckCategoryUrlKeys extends ConsoleCommand
         parent::__construct();
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this->setName('catalog:category:integrity:urlkey');
         $this->setDescription('Checks data integrity of the values of the url_key category attribute.');

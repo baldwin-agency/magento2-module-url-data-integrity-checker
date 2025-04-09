@@ -105,7 +105,7 @@ class UrlPathCollection extends DataCollection implements SearchResultInterface
     /**
      * @return UrlPathCollection<DataObject>
      */
-    public function setItems(array $items = null)
+    public function setItems(?array $items = null)
     {
         throw new LocalizedException(__('Not implemented: setItems!'));
     }

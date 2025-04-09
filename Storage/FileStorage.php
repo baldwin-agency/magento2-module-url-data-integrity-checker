@@ -15,7 +15,7 @@ use Magento\Framework\Filesystem\Driver\File as FileDriver;
 
 class FileStorage extends AbstractStorage implements StorageInterface
 {
-    const CONFIG_PATH = 'url_data_integrity_checker/configuration/filestorage_path';
+    public const CONFIG_PATH = 'url_data_integrity_checker/configuration/filestorage_path';
 
     private $filesystem;
     private $scopeConfig;

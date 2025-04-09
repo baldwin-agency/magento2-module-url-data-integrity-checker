@@ -8,7 +8,8 @@ use Magento\Framework\App\Config\ScopeConfigInterface;
 
 class Configuration
 {
-    const CONFIG_ONLY_CHECK_VISIBLE_PRODUCTS = 'url_data_integrity_checker/configuration/only_check_visible_products';
+    public const CONFIG_ONLY_CHECK_VISIBLE_PRODUCTS =
+        'url_data_integrity_checker/configuration/only_check_visible_products';
 
     private $scopeConfig;
 

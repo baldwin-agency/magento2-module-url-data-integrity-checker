@@ -22,6 +22,7 @@ return $config
         'no_useless_sprintf'                               => true,
         'nullable_type_declaration_for_default_null_value' => true,
         'ordered_imports'                                  => ['sort_algorithm' => 'alpha'],
+        'operator_linebreak'                               => ['only_booleans' => true],
         'phpdoc_align'                                     => ['align' => 'vertical'],
         'phpdoc_separation'                                => ['skip_unlisted_annotations' => true],
         'self_accessor'                                    => true,

@@ -11,6 +11,8 @@ use Baldwin\UrlDataIntegrityChecker\Exception\AlreadyRefreshingException;
 use Baldwin\UrlDataIntegrityChecker\Storage\Meta as MetaStorage;
 use Magento\Backend\App\Action as BackendAction;
 use Magento\Backend\App\Action\Context as BackendContext;
+use Magento\Framework\Controller\Result\RedirectFactory as ResultRedirectFactory;
+use Magento\Framework\Message\ManagerInterface as MessageManagerInterface;
 
 class Refresh extends BackendAction
 {
@@ -18,16 +20,22 @@ class Refresh extends BackendAction
 
     private $scheduleJob;
     private $metaStorage;
+    private $messagesManager;
+    private $redirectResultFactory;
 
     public function __construct(
         BackendContext $context,
         ScheduleJob $scheduleJob,
-        MetaStorage $metaStorage
+        MetaStorage $metaStorage,
+        MessageManagerInterface $messagesManager,
+        ResultRedirectFactory $redirectResultFactory
     ) {
         parent::__construct($context);
 
         $this->scheduleJob = $scheduleJob;
         $this->metaStorage = $metaStorage;
+        $this->messagesManager = $messagesManager;
+        $this->redirectResultFactory = $redirectResultFactory;
     }
 
     public function execute()
@@ -35,7 +43,7 @@ class Refresh extends BackendAction
         $scheduled = $this->scheduleJob->schedule(CheckCategoryUrlKeyCron::JOB_NAME);
 
         if ($scheduled) {
-            $this->getMessageManager()->addSuccessMessage(
+            $this->messagesManager->addSuccessMessage(
                 (string) __(
                     'The refresh job was scheduled, please check back in a few moments to see the updated results'
                 )
@@ -45,15 +53,15 @@ class Refresh extends BackendAction
                 $storageIdentifier = UrlKeyChecker::STORAGE_IDENTIFIER;
                 $this->metaStorage->setPending($storageIdentifier, MetaStorage::INITIATOR_CRON);
             } catch (AlreadyRefreshingException $ex) {
-                $this->getMessageManager()->addErrorMessage($ex->getMessage());
+                $this->messagesManager->addErrorMessage($ex->getMessage());
             }
         } else {
-            $this->getMessageManager()->addErrorMessage(
+            $this->messagesManager->addErrorMessage(
                 (string) __('Couldn\'t schedule refreshing due to some unknown error')
             );
         }
 
-        $redirect = $this->resultRedirectFactory->create();
+        $redirect = $this->redirectResultFactory->create();
         $redirect->setRefererUrl();
 
         return $redirect;

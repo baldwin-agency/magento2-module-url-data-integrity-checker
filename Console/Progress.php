@@ -92,7 +92,9 @@ class Progress
             $reflection     = new \ReflectionObject($this->progressBar);
             $maxStepsMethod = $reflection->getMethod('setMaxSteps');
             if ($maxStepsMethod->isPrivate()) {
-                $maxStepsMethod->setAccessible(true);
+                if (PHP_VERSION_ID < 80100) {
+                    $maxStepsMethod->setAccessible(true);
+                }
                 $maxStepsMethod->invoke($this->progressBar, $newMaxStepsValue);
             } else {
                 $this->progressBar->setMaxSteps($newMaxStepsValue);

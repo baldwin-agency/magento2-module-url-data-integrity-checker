@@ -41,4 +41,4 @@ checkquality:
 
 .PHONY: test
 test:
-	vendor/bin/phpunit -c Test/phpunit.xml Test/
+	vendor/bin/phpunit --display-all-issues -c Test/phpunit.xml Test/

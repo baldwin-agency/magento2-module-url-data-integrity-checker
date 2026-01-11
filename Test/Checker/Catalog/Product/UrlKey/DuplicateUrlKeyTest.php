@@ -80,10 +80,7 @@ class DuplicateUrlKeyTest extends TestCase
             ->method('getAllStoreIds')
             ->willReturn($storeIds);
 
-        $progressMock = $this
-            ->getMockBuilder(Progress::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $progressStub = $this->createStub(Progress::class);
 
         $productCollectionFactoryMock = $this
             ->getMockBuilder(ProductCollectionFactory::class)
@@ -114,17 +111,14 @@ class DuplicateUrlKeyTest extends TestCase
             ->method('create')
             ->willReturn($attributeScopeOverriddenValueMock);
 
-        $configUtilMock = $this
-            ->getMockBuilder(ConfigUtil::class)
-            ->disableOriginalConstructor()
-            ->getMock();
+        $configUtilStub = $this->createStub(ConfigUtil::class);
 
         $urlKeyChecker = new UrlKeyChecker(
             $storesUtilMock,
-            $progressMock,
+            $progressStub,
             $productCollectionFactoryMock,
             $attributeScopeOverriddenValueFactoryMock,
-            $configUtilMock
+            $configUtilStub
         );
         $results = $urlKeyChecker->execute();
 

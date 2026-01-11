@@ -51,7 +51,7 @@ class CheckCategoryUrlKeys extends ConsoleCommand
         parent::configure();
     }
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(InputInterface $input, OutputInterface $output): int
     {
         try {
             $this->appState->setAreaCode(AppArea::AREA_CRONTAB);

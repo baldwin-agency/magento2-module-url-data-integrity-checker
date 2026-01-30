@@ -50,7 +50,7 @@ class DuplicateUrlKeyTest extends TestCase
                 $productCollectionMock = $this->getMockBuilder(ProductCollection::class)
                     ->disableOriginalConstructor()
                     ->getMock();
-                $productCollectionMock->expects($this->any())
+                $productCollectionMock->expects($this->once())
                     ->method('getIterator')
                     ->willReturn(new \ArrayIterator($productsData));
 

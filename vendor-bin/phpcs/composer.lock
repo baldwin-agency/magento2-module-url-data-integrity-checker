@@ -108,12 +108,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPCompatibility/PHPCompatibility.git",
-                "reference": "f57fdf5a9ae3d3016060d1beee0e9558e44dce0c"
+                "reference": "aba7b5d3aec1ea5311e912efece301e2ef0b6338"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPCompatibility/PHPCompatibility/zipball/f57fdf5a9ae3d3016060d1beee0e9558e44dce0c",
-                "reference": "f57fdf5a9ae3d3016060d1beee0e9558e44dce0c",
+                "url": "https://api.github.com/repos/PHPCompatibility/PHPCompatibility/zipball/aba7b5d3aec1ea5311e912efece301e2ef0b6338",
+                "reference": "aba7b5d3aec1ea5311e912efece301e2ef0b6338",
                 "shasum": ""
             },
             "require": {
@@ -191,7 +191,7 @@
                     "type": "thanks_dev"
                 }
             ],
-            "time": "2026-02-05T23:19:35+00:00"
+            "time": "2026-04-06T00:21:12+00:00"
         },
         {
             "name": "phpcsstandards/phpcsutils",

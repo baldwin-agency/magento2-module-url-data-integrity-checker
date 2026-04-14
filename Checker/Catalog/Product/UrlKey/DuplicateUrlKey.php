@@ -124,7 +124,7 @@ class DuplicateUrlKey
             assert(is_numeric($product->getEntityId()));
             assert(is_string($product->getUrlKey()));
 
-            $productId     = $product->getEntityId();
+            $productId     = (int) $product->getEntityId();
             $productSku    = $product->getSku();
             $productUrlKey = $product->getUrlKey();
 

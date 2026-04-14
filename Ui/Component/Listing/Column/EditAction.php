@@ -46,7 +46,9 @@ class EditAction extends ColumnEditAction
                         $storeId = $item['storeId'];
                     }
 
-                    $item[$this->getData('name')] = [
+                    assert(is_string($this->getData('name')));
+
+                    $item[(string) $this->getData('name')] = [
                         'edit' => [
                             'href'  => $this->urlBuilder->getUrl(
                                 $editUrlPath,

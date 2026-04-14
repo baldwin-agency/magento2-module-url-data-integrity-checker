@@ -14,23 +14,25 @@ use Magento\Catalog\Model\ResourceModel\Product\Collection as ProductCollection;
 use Magento\Catalog\Model\ResourceModel\Product\CollectionFactory as ProductCollectionFactory;
 use Magento\Framework\DataObject;
 use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 
 class DuplicateUrlKeyTest extends TestCase
 {
     /**
-     * @param array<array<string, mixed>> $dbData
-     * @param array<array<string, mixed>> $expectedResults
+     * @param array<array<string, int|string>> $dbData
+     * @param array<array<string, int|string>> $expectedResults
      */
     #[DataProvider('duplicatedProductUrlKeyValuesDataProvider')]
     public function testDuplicatedProductUrlKeyValues(array $dbData, array $expectedResults): void
     {
-        $dbData = array_map(function ($productData) {
+        $dbData = array_map(function ($productData): DataObject {
             return new DataObject($productData);
         }, $dbData);
 
         $storeIds = array_unique(
-            array_map(function ($productData) {
+            array_map(function ($productData): int {
+                assert(is_int($productData->getStoreId()));
                 return $productData->getStoreId();
             }, $dbData)
         );
@@ -39,14 +41,14 @@ class DuplicateUrlKeyTest extends TestCase
         foreach ($storeIds as $storeId) {
             $dataPerStoreId[] = array_filter(
                 $dbData,
-                function ($productData) use ($storeId) {
+                function ($productData) use ($storeId): bool {
                     return $productData->getStoreId() === $storeId;
                 }
             );
         }
 
         $collectionsPerStoreId = array_map(
-            function ($productsData) {
+            function ($productsData): ProductCollection&MockObject {
                 $productCollectionMock = $this->getMockBuilder(ProductCollection::class)
                     ->disableOriginalConstructor()
                     ->getMock();

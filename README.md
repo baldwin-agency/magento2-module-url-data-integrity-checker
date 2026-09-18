@@ -69,6 +69,8 @@ But you can change the path in the backend settings under Stores > Configuration
 
 You can configure this module to ignore problems with invisible products (via Stores > Configuration > Catalog > Url Data Integrity Checker). Because in recent versions of Magento, url rewrites for invisible products are not being generated, so if there are problems with the `url_path` or `url_key` attributes of such products, they should not cause issues with url rewrites. An additional benefit of this option is that it will use less time and less memory to run the product checkers. This option is disabled by default, so you'll need to enable it.
 
+When the process running a checker is killed before it can finish (it runs out of memory, it gets killed by a deploy, ...), that checker keeps being marked as refreshing, and every run after that stops with a message like `We are already refreshing the product url key's, just have a little patience`, until it is cleared manually with the `--force` flag of the cli commands. To avoid this blocking a checker forever, a refresh which has been running for longer than 6 hours is considered gone, and a new refresh is allowed to start. You can change this number of seconds, or disable the behaviour by entering `0`, via Stores > Configuration > Catalog > Url Data Integrity Checker. Make sure the value you choose is higher than the time a checker normally needs on your catalog, otherwise a refresh which is still running can be started a second time.
+
 ## Some screenshots
 
 ### Example of backend report for product url key problems

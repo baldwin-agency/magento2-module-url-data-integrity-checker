@@ -4,6 +4,7 @@
         <url_data_integrity_checker>
             <configuration>
                 <filestorage_path>var/tmp</filestorage_path>
+                <refresh_timeout>21600</refresh_timeout>
             </configuration>
         </url_data_integrity_checker>
     </default>

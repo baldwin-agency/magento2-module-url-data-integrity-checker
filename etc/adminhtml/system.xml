@@ -16,6 +16,10 @@
                     <comment>Sometimes you want to focus on products that are visible only, because Magento (at least in recent versions) only generated url rewrites for products that are visible. Be aware, after switching this config setting that you should re-run the checkers.</comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
                 </field>
+                <field id="refresh_timeout" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0" translate="label">
+                    <label>Refresh timeout</label>
+                    <comment>Number of seconds after which a refresh which never finished (because the process running it was killed, it ran out of memory, ...) is considered gone, so a new refresh can be started. Make sure this is higher than the time a checker normally needs on your catalog. Use 0 to disable this and keep such a refresh blocked until it is cleared with the '--force' flag on the command line.</comment>
+                </field>
             </group>
         </section>
     </system>

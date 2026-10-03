@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Baldwin\UrlDataIntegrityChecker\Console\Command;
 
-use Baldwin\UrlDataIntegrityChecker\Checker\Catalog\Product\UrlPath as UrlPathChecker;
 use Baldwin\UrlDataIntegrityChecker\Console\ProductResultOutput;
 use Baldwin\UrlDataIntegrityChecker\Storage\Meta as MetaStorage;
 use Baldwin\UrlDataIntegrityChecker\Updater\Catalog\Product\UrlPath as UrlPathUpdater;
@@ -21,18 +20,15 @@ class CheckProductUrlPaths extends ConsoleCommand
     private $appState;
     private $resultOutput;
     private $urlPathUpdater;
-    private $metaStorage;
 
     public function __construct(
         AppState $appState,
         ProductResultOutput $resultOutput,
-        UrlPathUpdater $urlPathUpdater,
-        MetaStorage $metaStorage
+        UrlPathUpdater $urlPathUpdater
     ) {
         $this->appState = $appState;
         $this->resultOutput = $resultOutput;
         $this->urlPathUpdater = $urlPathUpdater;
-        $this->metaStorage = $metaStorage;
 
         parent::__construct();
     }
@@ -45,7 +41,7 @@ class CheckProductUrlPaths extends ConsoleCommand
             'force',
             'f',
             InputOption::VALUE_NONE,
-            'Force the command to run, even if it is already marked as already running'
+            '[Deprecated] this option doesn\'t do anything anymore'
         );
 
         parent::configure();
@@ -55,11 +51,6 @@ class CheckProductUrlPaths extends ConsoleCommand
     {
         try {
             $this->appState->setAreaCode(AppArea::AREA_CRONTAB);
-
-            $force = $input->getOption('force');
-            if ($force === true) {
-                $this->metaStorage->clearStatus(UrlPathChecker::STORAGE_IDENTIFIER);
-            }
 
             $productData = $this->urlPathUpdater->refresh(MetaStorage::INITIATOR_CLI);
             $cliResult = $this->resultOutput->outputResult($productData, $output);

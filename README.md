@@ -26,10 +26,13 @@ It should be up to the store owner to figure out how he/she wants to fix these p
 
 ## Compatibility
 
-This module should be compatible with Magento 2.1.x, 2.2.x, 2.3.x and 2.4.x versions.  
+This module should be compatible with Magento 2.2.5 and higher.  
+
+We recently introduced a locking mechanism so that jobs can't run simultaneously at the same time, however, this locking mechanism has an issue during cronjob runs if you run a Magento version older then 2.4.0 where you'll see an error `'Current connection is already holding lock for $1, only single lock allowed'`. If you want to fix that, switch from the default database locking to file based locking using `bin/magento setup:config:set --lock-provider=file --lock-file-path={some-path}`, or altneratively apply a patch to the file `lib/internal/Magento/Framework/Lock/Backend/Database.php` from [over here](https://github.com/magento/magento2/commit/0423eae63cdb427078c75df9badfba348451017c#diff-e11c0a12525e02a8222062def818ee743f64e3aad74c6ea4bd50fefdf9bd0849).
+
 Some code in this module is using old ways of doing things. It could have been written in a more modern way (using message queues instead of cronjobs, use newer syntax for UI components, ...). But we wanted this module to be compatible with older versions of Magento, so we've chosen this route for now.
 
-The module should be compatible with PHP 7.1, 7.2, 7.3, 7.4, 8.1, 8.2, 8.3 and 8.4
+The module should be compatible with PHP 7.1, 7.2, 7.3, 7.4, 8.1, 8.2, 8.3, 8.4 and 8.5
 
 ## Installation
 
@@ -59,10 +62,7 @@ There are also some cli commands you can execute, which will give you instant fe
 - `bin/magento catalog:product:integrity:urlkey`
 - `bin/magento catalog:product:integrity:urlpath`
 
-In the Magento admin, you can find the results in:
-
-- for Magento 2.1.x: Products > Data Integrity Checker
-- for Magento 2.2.0 and higher: Catalog > Data Integrity Checker
+In the Magento admin, you can find the results in: Catalog > Data Integrity Checker
 
 The results of the checkers are currently stored by default in the directory `var/tmp` as `.json` files.  
 But you can change the path in the backend settings under Stores > Configuration > Catalog > Url Data Integrity Checker by entering a relative path starting from the Magento installation directory or an absolute path. The directory you enter there needs to exist before it will work.

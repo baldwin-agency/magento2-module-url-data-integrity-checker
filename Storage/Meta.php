@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Baldwin\UrlDataIntegrityChecker\Storage;
 
 use Baldwin\UrlDataIntegrityChecker\Exception\AlreadyRefreshingException;
+use Magento\Framework\Lock\LockManagerInterface;
 use Magento\Framework\Stdlib\DateTime\DateTime;
 
 class Meta
@@ -20,23 +21,22 @@ class Meta
 
     private $storage;
     private $dateTime;
+    private $lockManager;
 
     public function __construct(
         StorageInterface $storage,
-        DateTime $dateTime
+        DateTime $dateTime,
+        LockManagerInterface $lockManager
     ) {
         $this->storage = $storage;
         $this->dateTime = $dateTime;
+        $this->lockManager = $lockManager;
     }
 
     public function setPending(string $storageIdentifier, string $initiator): void
     {
         if ($this->isRefreshing($storageIdentifier)) {
-            throw new AlreadyRefreshingException(__(
-                'We are already refreshing this checker. '
-                . 'If you believe this is an error, clear it by providing the \'--force\' flag using the command line '
-                . 'in the appropriate integrity check command'
-            ));
+            throw new AlreadyRefreshingException(__('We are already refreshing this checker.'));
         }
 
         $storageIdentifier .= self::STORAGE_SUFFIX;
@@ -51,6 +51,11 @@ class Meta
 
     public function setStartRefreshing(string $storageIdentifier, string $initiator): void
     {
+        $lockName = $this->getLockName($storageIdentifier);
+        if ($this->lockManager->lock($lockName, 0) === false) {
+            throw new AlreadyRefreshingException(__('We are already refreshing this checker.'));
+        }
+
         $storageIdentifier .= self::STORAGE_SUFFIX;
 
         $this->storage->update($storageIdentifier, [
@@ -63,6 +68,7 @@ class Meta
 
     public function setFinishedRefreshing(string $storageIdentifier): void
     {
+        $lockName = $this->getLockName($storageIdentifier);
         $storageIdentifier .= self::STORAGE_SUFFIX;
 
         $startTime = $this->getStartTime($storageIdentifier);
@@ -74,6 +80,8 @@ class Meta
             'execution_time' => $executionTime,
             'status'         => self::STATUS_FINISHED,
         ]);
+
+        $this->lockManager->unlock($lockName);
     }
 
     public function setErrorMessage(string $storageIdentifier, string $message): void
@@ -87,18 +95,9 @@ class Meta
 
     public function isRefreshing(string $storageIdentifier): bool
     {
-        $storageIdentifier .= self::STORAGE_SUFFIX;
+        $lockName = $this->getLockName($storageIdentifier);
 
-        $metaData = $this->storage->read($storageIdentifier);
-
-        if (!empty($metaData)
-            && array_key_exists('status', $metaData)
-            && $metaData['status'] === self::STATUS_REFRESHING
-        ) {
-            return true;
-        }
-
-        return false;
+        return $this->lockManager->isLocked($lockName);
     }
 
     /**
@@ -135,5 +134,10 @@ class Meta
     private function getCurrentTimestamp(): int
     {
         return $this->dateTime->gmtTimestamp();
+    }
+
+    private function getLockName(string $storageIdentifier): string
+    {
+        return sprintf('Baldwin_UrlDataIntegrityChecker_%s', $storageIdentifier);
     }
 }

@@ -27,9 +27,12 @@ It should be up to the store owner to figure out how he/she wants to fix these p
 ## Compatibility
 
 This module should be compatible with Magento 2.2.5 and higher.  
+
+We recently introduced a locking mechanism so that jobs can't run simultaneously at the same time, however, this locking mechanism has an issue during cronjob runs if you run a Magento version older then 2.4.0 where you'll see an error `'Current connection is already holding lock for $1, only single lock allowed'`. If you want to fix that, switch from the default database locking to file based locking using `bin/magento setup:config:set --lock-provider=file --lock-file-path={some-path}`, or altneratively apply a patch to the file `lib/internal/Magento/Framework/Lock/Backend/Database.php` from [over here](https://github.com/magento/magento2/commit/0423eae63cdb427078c75df9badfba348451017c#diff-e11c0a12525e02a8222062def818ee743f64e3aad74c6ea4bd50fefdf9bd0849).
+
 Some code in this module is using old ways of doing things. It could have been written in a more modern way (using message queues instead of cronjobs, use newer syntax for UI components, ...). But we wanted this module to be compatible with older versions of Magento, so we've chosen this route for now.
 
-The module should be compatible with PHP 7.1, 7.2, 7.3, 7.4, 8.1, 8.2, 8.3 and 8.4
+The module should be compatible with PHP 7.1, 7.2, 7.3, 7.4, 8.1, 8.2, 8.3, 8.4 and 8.5
 
 ## Installation
 
